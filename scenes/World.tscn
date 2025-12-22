@@ -6,6 +6,7 @@
 [node name="World" type="Node2D"]
 
 [node name="Background" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
 texture = ExtResource("1_32lhk")
 
 [node name="RedBalloon" parent="." instance=ExtResource("2_7g83o")]

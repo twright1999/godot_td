@@ -1,14 +1,16 @@
 extends CharacterBody2D
 
 
-const SPEED = 100
+const SPEED = 500
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
+	position = Vector2(100, 200)
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var new_x = position.x + SPEED * delta 
-	position = Vector2(new_x,200)
+	
+	var movement_vector = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	
+	position += movement_vector * SPEED * delta
