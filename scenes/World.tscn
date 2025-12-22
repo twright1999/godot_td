@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c476lm42j8d42"]
+
+[ext_resource type="Texture2D" uid="uid://cm2rfrgpw1lfb" path="res://assets/sprites/background.png" id="1_32lhk"]
+[ext_resource type="PackedScene" uid="uid://bamkppl7ekd10" path="res://scenes/RedBalloon.tscn" id="2_7g83o"]
+
+[node name="World" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_32lhk")
+
+[node name="RedBalloon" parent="." instance=ExtResource("2_7g83o")]
