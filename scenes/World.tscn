@@ -27,4 +27,4 @@ position = Vector2(-64, 128)
 rotates = false
 
 [node name="EndPoint" parent="." instance=ExtResource("4_d1c63")]
-position = Vector2(64, 64)
+position = Vector2(832, 64)
