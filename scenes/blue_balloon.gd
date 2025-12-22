@@ -1,11 +1,18 @@
 extends PathFollow2D
 
-@export var speed := 0.1
+@export var SPEED := 0.05
+@export var LIFETIME := 1
+# When, on a scale of 0-1, entity will be killed
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+var new_progress
+
 func _process(delta: float) -> void:
-	progress_ratio += speed * delta
+	new_progress = progress_ratio + SPEED * delta
+	# Calculates theoretical new progress
 	
-	if progress_ratio >= 0.2:
+	if new_progress >= LIFETIME:
+		# If new progress is larger than defined LIFETIME, kill entity
+		print("KILLED ", name)
 		queue_free()
-	
+	else:
+		progress_ratio = new_progress
