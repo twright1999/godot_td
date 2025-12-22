@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://c476lm42j8d42"]
+[gd_scene load_steps=6 format=3 uid="uid://c476lm42j8d42"]
 
 [ext_resource type="Texture2D" uid="uid://cm2rfrgpw1lfb" path="res://assets/sprites/background.png" id="1_32lhk"]
 [ext_resource type="PackedScene" uid="uid://bamkppl7ekd10" path="res://scenes/RedBalloon.tscn" id="2_7g83o"]
+[ext_resource type="PackedScene" uid="uid://131dd8siqq7i" path="res://scenes/blue_balloon.tscn" id="3_7g83o"]
+[ext_resource type="Script" uid="uid://bg1ggta7m16q6" path="res://scenes/path_follow_2d.gd" id="3_d1c63"]
+
+[sub_resource type="Curve2D" id="Curve2D_32lhk"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -64, 128, 0, 0, 0, 0, 384, 128, 0, 0, 0, 0, 384, 320, 0, 0, 0, 0, 128, 320, 0, 0, 0, 0, 128, 576, 0, 0, 0, 0, 768, 576, 0, 0, 0, 0, 768, 256, 0, 0, 0, 0, 576, 256, 0, 0, 0, 0, 576, 448, 0, 0, 0, 0, 1024, 448, 0, 0, 0, 0, 1024, 192, 0, 0, 0, 0, 1216, 192)
+}
+point_count = 12
 
 [node name="World" type="Node2D"]
 
@@ -10,3 +18,13 @@ position = Vector2(960, 540)
 texture = ExtResource("1_32lhk")
 
 [node name="RedBalloon" parent="." instance=ExtResource("2_7g83o")]
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_32lhk")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-64, 128)
+rotates = false
+script = ExtResource("3_d1c63")
+
+[node name="BlueBalloon" parent="Path2D/PathFollow2D" instance=ExtResource("3_7g83o")]
