@@ -1,21 +1,22 @@
 [gd_scene load_steps=6 format=3 uid="uid://c476lm42j8d42"]
 
-[ext_resource type="Texture2D" uid="uid://cm2rfrgpw1lfb" path="res://assets/sprites/background.png" id="1_32lhk"]
+[ext_resource type="Texture2D" uid="uid://cfv7rxsxewhy0" path="res://assets/sprites/monkey_meadows.png" id="1_d1c63"]
 [ext_resource type="PackedScene" uid="uid://bamkppl7ekd10" path="res://scenes/RedBalloon.tscn" id="2_7g83o"]
 [ext_resource type="PackedScene" uid="uid://131dd8siqq7i" path="res://scenes/blue_balloon.tscn" id="3_7g83o"]
 [ext_resource type="PackedScene" uid="uid://c423u4krl3u1s" path="res://scenes/end_point.tscn" id="4_d1c63"]
 
 [sub_resource type="Curve2D" id="Curve2D_32lhk"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -64, 128, 0, 0, 0, 0, 384, 128, 0, 0, 0, 0, 384, 320, 0, 0, 0, 0, 128, 320, 0, 0, 0, 0, 128, 576, 0, 0, 0, 0, 768, 576, 0, 0, 0, 0, 768, 256, 0, 0, 0, 0, 576, 256, 0, 0, 0, 0, 576, 448, 0, 0, 0, 0, 1024, 448, 0, 0, 0, 0, 1024, 192, 0, 0, 0, 0, 1216, 192)
+"points": PackedVector2Array(0, 0, 0, 0, -50, 270, 0, 0, 0, 0, 568, 272, 0, 0, 0, 0, 568, 120, 0, 0, 0, 0, 376, 120, 0, 0, 0, 0, 376, 512, 0, 0, 0, 0, 184, 512, 0, 0, 0, 0, 184, 376, 0, 0, 0, 0, 720, 368, 0, 0, 0, 0, 728, 216, 0, 0, 0, 0, 864, 216, 0, 0, 0, 0, 872, 344, 0, 0, 0, 0, 840, 472, 0, 0, 0, 0, 512, 488, 0, 0, 0, 0, 496, 576, 0, 0, 0, 0, 496, 704)
 }
-point_count = 12
+point_count = 15
 
 [node name="World" type="Node2D"]
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(960, 540)
-texture = ExtResource("1_32lhk")
+position = Vector2(576.1111, 326)
+scale = Vector2(0.6074074, 0.6074074)
+texture = ExtResource("1_d1c63")
 
 [node name="RedBalloon" parent="." instance=ExtResource("2_7g83o")]
 
@@ -23,7 +24,7 @@ texture = ExtResource("1_32lhk")
 curve = SubResource("Curve2D_32lhk")
 
 [node name="BlueBalloon" parent="Path2D" instance=ExtResource("3_7g83o")]
-position = Vector2(-64, 128)
+position = Vector2(-50, 270)
 rotates = false
 
 [node name="EndPoint" parent="." instance=ExtResource("4_d1c63")]
