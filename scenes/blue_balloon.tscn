@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://131dd8siqq7i"]
 
 [ext_resource type="Texture2D" uid="uid://cofgbon66382t" path="res://assets/sprites/blue_balloon.png" id="1_dvh5s"]
-[ext_resource type="Script" uid="uid://cpi1fndv0ap40" path="res://scenes/blue_balloon.gd" id="1_pc8vf"]
+[ext_resource type="Script" uid="uid://cpi1fndv0ap40" path="res://scenes/balloon.gd" id="1_pc8vf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pc8vf"]
 radius = 12.0415945

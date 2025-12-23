@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://klocc6yyvmuf"]
 
-[ext_resource type="Script" uid="uid://cpi1fndv0ap40" path="res://scenes/blue_balloon.gd" id="1_7nouu"]
+[ext_resource type="Script" uid="uid://cpi1fndv0ap40" path="res://scenes/balloon.gd" id="1_7nouu"]
 [ext_resource type="Texture2D" uid="uid://djnj0ntdukmru" path="res://assets/sprites/green_balloon.png" id="2_7nouu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pc8vf"]
