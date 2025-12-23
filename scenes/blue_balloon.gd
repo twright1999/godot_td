@@ -20,10 +20,16 @@ func _process(delta: float) -> void:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	var new_balloon = green_balloon_scene.instantiate()
+	# Instantiates new balloon to spawn after taking damage
 	
-	get_parent().add_child(new_balloon)
-	new_balloon.progress_ratio = progress_ratio
-	print(new_balloon.progress_ratio)
+	var balloon_parent = get_parent()
+	# Gets parent of current balloon for new balloon to spawn under
+	
+	balloon_parent.call_deferred("add_child", new_balloon)
+	new_balloon.set_deferred("progress_ratio", progress_ratio)
+	# Defers adding new balloon and setting of new balloons progress
+	# Necessary to avoid collisions changing while inside area_entered
 	
 	area.queue_free()
 	queue_free()
+	# Kills projectile and current balloon

@@ -3,7 +3,7 @@ extends Node2D
 signal dart(pos, rot)
 var balloons_in_range := []
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	balloons_in_range = $Range.get_overlapping_areas()
 	if not balloons_in_range.is_empty():
 		var highest_progress = 0
