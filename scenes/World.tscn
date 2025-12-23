@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://c476lm42j8d42"]
+[gd_scene load_steps=7 format=3 uid="uid://c476lm42j8d42"]
 
+[ext_resource type="Script" uid="uid://ubuhe6del1al" path="res://scenes/world.gd" id="1_1lgw5"]
 [ext_resource type="Texture2D" uid="uid://cfv7rxsxewhy0" path="res://assets/sprites/monkey_meadows.png" id="1_d1c63"]
 [ext_resource type="PackedScene" uid="uid://bamkppl7ekd10" path="res://scenes/RedBalloon.tscn" id="2_7g83o"]
 [ext_resource type="PackedScene" uid="uid://131dd8siqq7i" path="res://scenes/blue_balloon.tscn" id="3_7g83o"]
@@ -12,6 +13,7 @@ _data = {
 point_count = 15
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_1lgw5")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(576.1111, 326)
@@ -25,7 +27,12 @@ curve = SubResource("Curve2D_32lhk")
 
 [node name="BlueBalloon" parent="Path2D" instance=ExtResource("3_7g83o")]
 position = Vector2(-50, 270)
-rotates = false
 
 [node name="EndPoint" parent="." instance=ExtResource("4_d1c63")]
 position = Vector2(832, 64)
+
+[node name="BalloonTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="BalloonTimer" to="." method="_on_balloon_timer_timeout"]
+[connection signal="timeout" from="BalloonTimer" to="BalloonTimer" method="_on_balloon_timer_timeout"]
