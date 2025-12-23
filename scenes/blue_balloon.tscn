@@ -8,6 +8,7 @@ radius = 12.0415945
 
 [node name="BlueBalloon" type="PathFollow2D"]
 rotates = false
+loop = false
 script = ExtResource("1_pc8vf")
 SPEED = 0.04
 

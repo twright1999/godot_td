@@ -8,6 +8,7 @@ radius = 12.0415945
 
 [node name="GreenBalloon" type="PathFollow2D"]
 rotates = false
+loop = false
 script = ExtResource("1_7nouu")
 SPEED = 0.06
 
