@@ -1,8 +1,13 @@
 extends PathFollow2D
 
-@export var SPEED := 0.05
+var balloon_type
+var health
+var speed
 
-var green_balloon_scene: PackedScene = load("res://scenes/balloons/green_balloon.tscn")
+func _init() -> void:
+	self.balloon_type = "red_balloon"
+	self.health = 1
+	self.speed = 0
 
 func _process(delta: float) -> void:
 	move_balloon(delta)
@@ -16,7 +21,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 ##
 func move_balloon(delta: float) -> void:
 	# Move balloon along path according to SPEED
-	progress_ratio += SPEED * delta
+	progress_ratio += speed * delta
 
 	# Handle logic if balloon reaches end of path
 	if progress_ratio >= 1.0:
@@ -24,27 +29,29 @@ func move_balloon(delta: float) -> void:
 
 func balloon_reaches_end() -> void:
 	# Kills current balloon and prints debug message
-	print(name, " reached the exit")
+	print(balloon_type, " reached the exit")
 	queue_free()
 	
 ##
 ## Balloon popping logic
 ##
 func pop_balloon() -> void:
-	# Instantiates new balloon to spawn after taking damage
-	var new_balloon = green_balloon_scene.instantiate()
-	
-	# Gets parent of current balloon for new balloon to spawn under
-	var balloon_parent = get_parent()
-	
-	# Defers adding new balloon and setting of new balloons progress
-	# Necessary to avoid collisions changing while inside area_entered
-	balloon_parent.call_deferred("add_child", new_balloon)
-	new_balloon.set_deferred("progress_ratio", progress_ratio)
+	if BalloonData.balloon_data[balloon_type]["contains"].is_empty():
+		# If balloon contains no other balloons (red), kill balloon
+		queue_free()
+	elif len(BalloonData.balloon_data[balloon_type]["contains"]) == 1:
+		# If balloon contains 1 other balloon, become that balloon
+		var new_balloon = BalloonData.balloon_data[balloon_type]["contains"][0]
+		update_balloon_type(new_balloon)
+	else:
+		# TODO If balloon contains multiple balloons, spawn balloons
+		pass
 
 	# Kills current balloon and prints debug message
-	print(name, " was popped")
-	queue_free()
+	print(balloon_type, " was popped")
 
-func update_balloon_type(balloon_type: String) -> void:
-	print(BalloonData.balloon_data[balloon_type])
+func update_balloon_type(new_balloon_type: String) -> void:
+	self.balloon_type = new_balloon_type
+	self.health = BalloonData.balloon_data[new_balloon_type]["health"]
+	self.speed = BalloonData.balloon_data[new_balloon_type]["speed"]
+	$Sprite2D.texture = load(BalloonData.balloon_data[new_balloon_type]["sprite_path"])
