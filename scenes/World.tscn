@@ -46,6 +46,8 @@ stream = ExtResource("7_0uv0p")
 autoplay = true
 parameters/looping = true
 
+[node name="Darts" type="Node2D" parent="."]
+
 [connection signal="timeout" from="BalloonTimer" to="." method="_on_balloon_timer_timeout"]
 [connection signal="timeout" from="BalloonTimer" to="BalloonTimer" method="_on_balloon_timer_timeout"]
 [connection signal="dart" from="Towers/Lamprey_Tower" to="." method="_on_lamprey_tower_dart"]
