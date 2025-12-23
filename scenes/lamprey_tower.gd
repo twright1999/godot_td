@@ -1,15 +1,20 @@
 extends Node2D
 
 signal dart(pos, rot)
-var last_entered
+var balloons_in_range := []
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if last_entered:
-		look_at(last_entered.global_transform.origin)
-
-func _on_range_area_entered(area: Area2D) -> void:
-	last_entered = area
-	print(area)
+	balloons_in_range = $Range.get_overlapping_areas()
+	if not balloons_in_range.is_empty():
+		var highest_progress = 0
+		var targeted_balloon = null
+		for balloon in balloons_in_range:
+			print(balloon.get_parent())
+			var balloon_progress = balloon.get_parent().progress_ratio
+			if balloon_progress > highest_progress:
+				highest_progress = balloon_progress
+				targeted_balloon = balloon
+		look_at(targeted_balloon.global_transform.origin)
 
 func _on_timer_timeout() -> void:
 	dart.emit($DartOrigin.global_position, rotation)

@@ -11,11 +11,12 @@ rotates = false
 script = ExtResource("1_pc8vf")
 SPEED = 0.04
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_dvh5s")
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
 
-[node name="Area2D" type="Area2D" parent="Sprite2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_pc8vf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_dvh5s")

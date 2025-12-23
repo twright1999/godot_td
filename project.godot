@@ -14,6 +14,12 @@ config/name="godot_td"
 run/main_scene="uid://c476lm42j8d42"
 config/features=PackedStringArray("4.5", "Forward Plus")
 
+[layer_names]
+
+2d_physics/layer_1="Towers"
+2d_physics/layer_2="Balloons"
+2d_physics/layer_3="Projectiles"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

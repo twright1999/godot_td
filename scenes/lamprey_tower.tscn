@@ -14,6 +14,7 @@ scale = Vector2(0.8, 0.8)
 texture = ExtResource("1_u57g8")
 
 [node name="Range" type="Area2D" parent="."]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
 shape = SubResource("CircleShape2D_ymyjv")
@@ -24,5 +25,4 @@ autostart = true
 [node name="DartOrigin" type="Marker2D" parent="."]
 position = Vector2(16, -8)
 
-[connection signal="area_entered" from="Range" to="." method="_on_range_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
