@@ -14,6 +14,10 @@ config/name="godot_td"
 run/main_scene="uid://c476lm42j8d42"
 config/features=PackedStringArray("4.5", "Forward Plus")
 
+[autoload]
+
+BalloonData="*res://scenes/balloons/balloon_data.gd"
+
 [layer_names]
 
 2d_physics/layer_1="Towers"
