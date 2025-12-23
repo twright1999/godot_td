@@ -1,9 +1,9 @@
 extends Node2D
 
 # Load balloon scene
-var blue_balloon_scene: PackedScene = load("res://scenes/blue_balloon.tscn")
-var green_balloon_scene: PackedScene = load("res://scenes/green_balloon.tscn")
-var lamprey_dart_scene: PackedScene = load("res://scenes/lamprey_dart.tscn")
+var blue_balloon_scene: PackedScene = load("res://scenes/balloons/blue_balloon.tscn")
+var green_balloon_scene: PackedScene = load("res://scenes/balloons/green_balloon.tscn")
+var lamprey_dart_scene: PackedScene = load("res://scenes/projectiles/lamprey_dart.tscn")
 
 func _on_balloon_timer_timeout() -> void:
 	spawn_balloon()
@@ -23,6 +23,10 @@ func spawn_balloon() -> void:
 	var random_number = rng.randf_range(-1.0, 1.0)
 	
 	if random_number > 0:
-		$Path2D.add_child(blue_balloon_scene.instantiate())
+		var blue_balloon = blue_balloon_scene.instantiate()
+		blue_balloon.update_balloon_type("blue_balloon")
+		$Path2D.add_child(blue_balloon)
 	else:
-		$Path2D.add_child(green_balloon_scene.instantiate())
+		var green_balloon = green_balloon_scene.instantiate()
+		green_balloon.update_balloon_type("green_balloon")
+		$Path2D.add_child(green_balloon)

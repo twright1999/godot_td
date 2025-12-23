@@ -2,7 +2,7 @@ extends PathFollow2D
 
 @export var SPEED := 0.05
 
-var green_balloon_scene: PackedScene = load("res://scenes/green_balloon.tscn")
+var green_balloon_scene: PackedScene = load("res://scenes/balloons/green_balloon.tscn")
 
 func _process(delta: float) -> void:
 	move_balloon(delta)
@@ -45,3 +45,6 @@ func pop_balloon() -> void:
 	# Kills current balloon and prints debug message
 	print(name, " was popped")
 	queue_free()
+
+func update_balloon_type(balloon_type: String) -> void:
+	print(BalloonData.balloon_data[balloon_type])
