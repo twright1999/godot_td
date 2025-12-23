@@ -9,7 +9,6 @@ func _process(delta: float) -> void:
 		var highest_progress = 0
 		var targeted_balloon = null
 		for balloon in balloons_in_range:
-			print(balloon.get_parent())
 			var balloon_progress = balloon.get_parent().progress_ratio
 			if balloon_progress > highest_progress:
 				highest_progress = balloon_progress
@@ -17,4 +16,5 @@ func _process(delta: float) -> void:
 		look_at(targeted_balloon.global_transform.origin)
 
 func _on_timer_timeout() -> void:
-	dart.emit($DartOrigin.global_position, rotation)
+	if not balloons_in_range.is_empty():
+		dart.emit($DartOrigin.global_position, rotation)

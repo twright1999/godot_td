@@ -34,7 +34,6 @@ position = Vector2(-50, 270)
 position = Vector2(832, 64)
 
 [node name="BalloonTimer" type="Timer" parent="."]
-autostart = true
 
 [node name="Towers" type="Node2D" parent="."]
 
