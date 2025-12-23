@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://klocc6yyvmuf"]
+
+[ext_resource type="Script" uid="uid://cpi1fndv0ap40" path="res://scenes/blue_balloon.gd" id="1_7nouu"]
+[ext_resource type="Texture2D" uid="uid://djnj0ntdukmru" path="res://assets/sprites/green_balloon.png" id="2_7nouu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pc8vf"]
+radius = 12.0415945
+
+[node name="GreenBalloon" type="PathFollow2D"]
+rotates = false
+script = ExtResource("1_7nouu")
+SPEED = 0.06
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_7nouu")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_pc8vf")

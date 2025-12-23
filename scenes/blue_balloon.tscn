@@ -9,6 +9,7 @@ radius = 12.0415945
 [node name="BlueBalloon" type="PathFollow2D"]
 rotates = false
 script = ExtResource("1_pc8vf")
+SPEED = 0.04
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_dvh5s")
