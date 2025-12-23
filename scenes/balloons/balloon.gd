@@ -36,6 +36,9 @@ func balloon_reaches_end() -> void:
 ## Balloon popping logic
 ##
 func pop_balloon() -> void:
+	# Kills current balloon and prints debug message
+	print(balloon_type, " was popped")
+	
 	if BalloonData.balloon_data[balloon_type]["contains"].is_empty():
 		# If balloon contains no other balloons (red), kill balloon
 		queue_free()
@@ -46,9 +49,6 @@ func pop_balloon() -> void:
 	else:
 		# TODO If balloon contains multiple balloons, spawn balloons
 		pass
-
-	# Kills current balloon and prints debug message
-	print(balloon_type, " was popped")
 
 func update_balloon_type(new_balloon_type: String) -> void:
 	self.balloon_type = new_balloon_type
