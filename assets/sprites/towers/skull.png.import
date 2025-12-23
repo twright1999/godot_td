@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cofgbon66382t"
-path="res://.godot/imported/blue_balloon.png-4c94b15a1b6c912a954331173851d54d.ctex"
+uid="uid://cp24cx345a73j"
+path="res://.godot/imported/skull.png-9fc40e17f55ecf45ebd9ef1c3f9d4d90.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/blue_balloon.png"
-dest_files=["res://.godot/imported/blue_balloon.png-4c94b15a1b6c912a954331173851d54d.ctex"]
+source_file="res://assets/sprites/towers/skull.png"
+dest_files=["res://.godot/imported/skull.png-9fc40e17f55ecf45ebd9ef1c3f9d4d90.ctex"]
 
 [params]
 

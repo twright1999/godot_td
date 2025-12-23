@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b7bu8d0ptlx2v"
-path="res://.godot/imported/lamprey_tower.png-73e1960638eb74efa49159070587f21c.ctex"
+path="res://.godot/imported/lamprey_tower.png-566298605bad6c70d177ec0ba4da8637.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/lamprey_tower.png"
-dest_files=["res://.godot/imported/lamprey_tower.png-73e1960638eb74efa49159070587f21c.ctex"]
+source_file="res://assets/sprites/towers/lamprey_tower.png"
+dest_files=["res://.godot/imported/lamprey_tower.png-566298605bad6c70d177ec0ba4da8637.ctex"]
 
 [params]
 

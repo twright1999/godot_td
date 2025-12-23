@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dc2qka7do4kw6"]
 
-[ext_resource type="Texture2D" uid="uid://cq5p7yirboyoe" path="res://assets/sprites/lamprey_tooth.png" id="1_4q5ko"]
-[ext_resource type="Script" uid="uid://sighvxhb4gh1" path="res://scenes/lamprey_dart.gd" id="1_h0r24"]
+[ext_resource type="Texture2D" uid="uid://cq5p7yirboyoe" path="res://assets/sprites/projectiles/lamprey_tooth.png" id="1_4q5ko"]
+[ext_resource type="Script" uid="uid://sighvxhb4gh1" path="res://scenes/projectiles/lamprey_dart.gd" id="1_h0r24"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h0r24"]
 radius = 8.0

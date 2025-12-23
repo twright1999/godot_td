@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfv7rxsxewhy0"
-path="res://.godot/imported/monkey_meadows.png-f53f1e616f1f344ec465d53287a84526.ctex"
+uid="uid://duu1v1aadp035"
+path="res://.godot/imported/red_balloon.png-e2833a9e09d7e66bad94141c1b6bf7ec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/monkey_meadows.png"
-dest_files=["res://.godot/imported/monkey_meadows.png-f53f1e616f1f344ec465d53287a84526.ctex"]
+source_file="res://assets/sprites/balloons/red_balloon.png"
+dest_files=["res://.godot/imported/red_balloon.png-e2833a9e09d7e66bad94141c1b6bf7ec.ctex"]
 
 [params]
 
