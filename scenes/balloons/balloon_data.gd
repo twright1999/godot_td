@@ -12,7 +12,7 @@ var balloon_data = {
 		"health": 1,
 		"speed": 0.015,
 		"sprite_path": "res://assets/sprites/balloons/blue_balloon.png",
-		"contains": ["red_balloon"],
+		"contains": ["red_balloon", "red_balloon", "red_balloon", "red_balloon", "red_balloon"],
 		"resistances": []
 	},
 	"green_balloon": {
