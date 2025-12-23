@@ -55,10 +55,9 @@ func pop_balloon() -> void:
 		update_balloon_type(new_balloon)
 	else:
 		# If balloon contains multiple balloons, spawn balloons
-		update_balloon_type(spawn_list.pop_front())
 		for child_balloon in spawn_list:
 			spawn_child_balloon(child_balloon)
-			queue_free()
+		queue_free()
 
 func update_balloon_type(new_balloon_type: String) -> void:
 	self.balloon_type = new_balloon_type
@@ -66,10 +65,9 @@ func update_balloon_type(new_balloon_type: String) -> void:
 	self.speed = BalloonData.balloon_data[new_balloon_type]["speed"]
 	$Sprite2D.texture = load(BalloonData.balloon_data[new_balloon_type]["sprite_path"])
 
-func spawn_child_balloon(new_balloon: String) -> void:
+func spawn_child_balloon(new_balloon_type: String) -> void:
 	var rng := RandomNumberGenerator.new()
 	var child_balloon = balloon_scene.instantiate()
-	child_balloon.update_balloon_type(new_balloon)
+	child_balloon.update_balloon_type(new_balloon_type)
 	child_balloon.ready_progress = progress_ratio + rng.randf_range(-0.005, 0.005)
 	get_parent().call_deferred("add_child", child_balloon)
-	

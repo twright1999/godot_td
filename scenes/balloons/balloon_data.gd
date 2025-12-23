@@ -12,14 +12,14 @@ var balloon_data = {
 		"health": 1,
 		"speed": 0.015,
 		"sprite_path": "res://assets/sprites/balloons/blue_balloon.png",
-		"contains": ["red_balloon", "red_balloon", "red_balloon", "red_balloon", "red_balloon"],
+		"contains": ["red_balloon"],
 		"resistances": []
 	},
 	"green_balloon": {
 		"health": 1,
 		"speed": 0.02,
 		"sprite_path": "res://assets/sprites/balloons/green_balloon.png",
-		"contains": ["blue_balloon"],
+		"contains": ["blue_balloon", "blue_balloon"],
 		"resistances": []
 	},
 	"yellow_balloon": {
