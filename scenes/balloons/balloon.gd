@@ -47,7 +47,7 @@ func pop_balloon() -> void:
 	# Spawns all balloons contained inside popped balloon
 	var spawn_list = BalloonData.balloon_data[balloon_type]["contains"]
 	for child_balloon in spawn_list:
-		spawn_child_balloon(child_balloon)
+		spawn_child_balloon(child_balloon, get_parent())
 	
 	# Plays pop sound effect
 	get_parent().add_child(pop_scene.instantiate())
@@ -64,9 +64,9 @@ func update_balloon_type(new_balloon_type: String) -> void:
 	self.speed = BalloonData.balloon_data[new_balloon_type]["speed"]
 	$Sprite2D.texture = load(BalloonData.balloon_data[new_balloon_type]["sprite_path"])
 
-func spawn_child_balloon(new_balloon_type: String) -> void:
+func spawn_child_balloon(new_balloon_type: String, parent_path: Path2D) -> void:
 	var rng := RandomNumberGenerator.new()
 	var child_balloon = balloon_scene.instantiate()
 	child_balloon.update_balloon_type(new_balloon_type)
 	child_balloon.ready_progress = progress_ratio + rng.randf_range(-0.005, 0.005)
-	get_parent().call_deferred("add_child", child_balloon)
+	parent_path.call_deferred("add_child", child_balloon)

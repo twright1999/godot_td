@@ -29,7 +29,7 @@ func spawn_random_balloon() -> void:
 	"white_balloon",
 	"rainbow_balloon",
 	"ceramic_balloon"]
-	balloon.update_balloon_type(balloon_array[rng.randi_range(0, len(balloon_array)-1)])
+	balloon.spawn_child_balloon(balloon_array[rng.randi_range(0, len(balloon_array)-1)], $Path2D)
 	
 	# Adds balloon to path parent
 	$Path2D.add_child(balloon)
