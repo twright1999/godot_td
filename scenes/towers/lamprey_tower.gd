@@ -20,7 +20,7 @@ func _process(delta: float) -> void:
 				highest_progress = balloon_progress
 				targeted_balloon = balloon
 		$SpriteLamprey.look_at(targeted_balloon.global_transform.origin)
-	else:
+	elif $SpriteLamprey.visible:
 		hide_lamprey(delta)
 
 func _on_timer_timeout() -> void:
@@ -28,9 +28,13 @@ func _on_timer_timeout() -> void:
 		dart.emit($SpriteLamprey/DartOrigin.global_position, $SpriteLamprey.rotation)
 		
 func hide_lamprey(delta) -> void:
-	if $SpriteLamprey.scale >= Vector2(0.0, 0.0):
+	if $SpriteLamprey.scale >= Vector2(0.0, 0.0) and $SpriteLamprey.visible:
 		$SpriteLamprey.scale -= Vector2(shrink_speed, shrink_speed) * delta
+	else:
+		$SpriteLamprey.hide()
 
 func show_lamprey(delta) -> void:
+	if not $SpriteLamprey.visible:
+		$SpriteLamprey.show()
 	if $SpriteLamprey.scale <= Vector2(0.5, 0.5):
 		$SpriteLamprey.scale += Vector2(grow_speed, grow_speed) * delta
