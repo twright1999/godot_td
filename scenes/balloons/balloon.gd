@@ -47,18 +47,15 @@ func pop_balloon() -> void:
 	var spawn_list = BalloonData.balloon_data[balloon_type]["contains"]
 	print(balloon_type, " was popped, spawning ", spawn_list)
 	
-	if spawn_list.is_empty():
-		# If balloon contains no other balloons (red), kill balloon
-		queue_free()
-	elif len(spawn_list) == 1:
-		# If balloon contains 1 other balloon, become that balloon
-		var new_balloon = spawn_list[0]
-		update_balloon_type(new_balloon)
-	else:
+	if not spawn_list.is_empty():
 		# If balloon contains multiple balloons, spawn balloons
 		for child_balloon in spawn_list:
 			spawn_child_balloon(child_balloon)
-		queue_free()
+	
+	$PopSFX.play()
+	disable_balloon()
+	
+
 
 func update_balloon_type(new_balloon_type: String) -> void:
 	self.balloon_type = new_balloon_type
@@ -72,3 +69,12 @@ func spawn_child_balloon(new_balloon_type: String) -> void:
 	child_balloon.update_balloon_type(new_balloon_type)
 	child_balloon.ready_progress = progress_ratio + rng.randf_range(-0.005, 0.005)
 	get_parent().call_deferred("add_child", child_balloon)
+	
+func disable_balloon() -> void:
+	# Disable the balloon to allow time for the pop SFX to play
+	speed = 0
+	visible = false
+	$Area2D.monitoring = false
+
+func _on_pop_sfx_finished() -> void:
+	queue_free()
