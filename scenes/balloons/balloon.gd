@@ -44,17 +44,19 @@ func balloon_reaches_end() -> void:
 ## Balloon popping logic
 ##
 func pop_balloon() -> void:
-	# Kills current balloon and prints debug message
+	# Spawns all balloons contained inside popped balloon
 	var spawn_list = BalloonData.balloon_data[balloon_type]["contains"]
-	print(balloon_type, " was popped, spawning ", spawn_list)
+	for child_balloon in spawn_list:
+		spawn_child_balloon(child_balloon)
 	
-	if not spawn_list.is_empty():
-		# If balloon contains multiple balloons, spawn balloons
-		for child_balloon in spawn_list:
-			spawn_child_balloon(child_balloon)
+	# Plays pop sound effect
+	get_parent().add_child(pop_scene.instantiate())
 	
-	get_parent().add_child(pop_scene.instantiate())		
+	# Kills balloon
 	queue_free()
+	
+	# Uncomment for pop debug
+	# print(balloon_type, " was popped, spawning ", spawn_list)
 	
 func update_balloon_type(new_balloon_type: String) -> void:
 	self.balloon_type = new_balloon_type
