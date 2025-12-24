@@ -72,3 +72,18 @@ var balloon_data = {
 		"resistances": []
 	}
 }
+
+func _ready():
+	print(calculate_balloon_total_score("green_balloon"))
+	
+func calculate_balloon_total_score(balloon_type: String) -> int:
+	var total_score = BalloonData.balloon_data[balloon_type]["health"]
+	var contains_list = BalloonData.balloon_data[balloon_type]["contains"]
+	
+	if len(contains_list) == 0:
+		return BalloonData.balloon_data[balloon_type]["health"]
+	else:
+		for contained_balloon in contains_list:
+			total_score += calculate_balloon_total_score(contained_balloon)
+	print(balloon_type, total_score)
+	return total_score
