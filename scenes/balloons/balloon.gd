@@ -43,7 +43,7 @@ func balloon_reaches_end() -> void:
 ##
 func pop_balloon() -> void:
 	# Kills current balloon and prints debug message
-	var spawn_list = BalloonData.balloon_data[balloon_type]["contains"].duplicate()
+	var spawn_list = BalloonData.balloon_data[balloon_type]["contains"]
 	print(balloon_type, " was popped, spawning ", spawn_list)
 	
 	if spawn_list.is_empty():
