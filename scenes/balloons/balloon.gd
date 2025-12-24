@@ -3,7 +3,7 @@ extends PathFollow2D
 var balloon_type
 var health
 var speed
-var ready_progress = 0
+var ready_progress
 
 var balloon_scene: PackedScene = load("res://scenes/balloons/balloon.tscn")
 
@@ -11,6 +11,7 @@ func _init() -> void:
 	self.balloon_type = "red_balloon"
 	self.health = 1
 	self.speed = 0
+	self.ready_progress = 0
 	
 func _ready() -> void:
 	progress_ratio = ready_progress
