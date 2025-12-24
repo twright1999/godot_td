@@ -10,6 +10,13 @@ radius = 168.0
 [node name="LampreyTower" type="Node2D"]
 script = ExtResource("1_mvn5d")
 
+[node name="Range" type="Area2D" parent="."]
+scale = Vector2(0.62499994, 0.62499994)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
+shape = SubResource("CircleShape2D_ymyjv")
+
 [node name="SpritePuddle" type="Sprite2D" parent="."]
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_0nxcu")
@@ -17,13 +24,6 @@ texture = ExtResource("2_0nxcu")
 [node name="SpriteLamprey" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_u57g8")
-
-[node name="Range" type="Area2D" parent="SpriteLamprey"]
-scale = Vector2(1.2499999, 1.2499999)
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpriteLamprey/Range"]
-shape = SubResource("CircleShape2D_ymyjv")
 
 [node name="Timer" type="Timer" parent="SpriteLamprey"]
 wait_time = 0.25
