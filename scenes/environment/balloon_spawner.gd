@@ -23,4 +23,4 @@ func spawn_random_balloon() -> void:
 	"rainbow_balloon",
 	"ceramic_balloon"]
 	
-	var new_balloon = balloon.spawn_balloon(balloon_array[rng.randi_range(0, len(balloon_array)-1)], $BalloonPath, 0.0)
+	balloon.spawn_balloon(balloon_array[rng.randi_range(0, len(balloon_array)-1)], $BalloonPath, 0.0)
