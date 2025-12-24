@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1af5kv6kh7ey"]
+
+[ext_resource type="AudioStream" uid="uid://c26sax53ypaj" path="res://assets/audio/sound_effects/balloon_pop.ogg" id="1_3h3mn"]
+[ext_resource type="Script" uid="uid://caqtovx6quxqs" path="res://pop_sfx.gd" id="2_s2kfo"]
+
+[node name="PopSFX" type="AudioStreamPlayer"]
+stream = ExtResource("1_3h3mn")
+autoplay = true
+script = ExtResource("2_s2kfo")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

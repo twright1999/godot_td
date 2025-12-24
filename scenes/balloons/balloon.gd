@@ -6,6 +6,7 @@ var speed
 var ready_progress
 
 var balloon_scene: PackedScene = load("res://scenes/balloons/balloon.tscn")
+var pop_scene: PackedScene = load("res://scenes/sounds/pop_sfx.tscn")
 
 func _init() -> void:
 	self.balloon_type = "red_balloon"
@@ -52,11 +53,9 @@ func pop_balloon() -> void:
 		for child_balloon in spawn_list:
 			spawn_child_balloon(child_balloon)
 	
-	$PopSFX.play()
-	disable_balloon()
+	get_parent().add_child(pop_scene.instantiate())		
+	queue_free()
 	
-
-
 func update_balloon_type(new_balloon_type: String) -> void:
 	self.balloon_type = new_balloon_type
 	self.health = BalloonData.balloon_data[new_balloon_type]["health"]
@@ -69,12 +68,3 @@ func spawn_child_balloon(new_balloon_type: String) -> void:
 	child_balloon.update_balloon_type(new_balloon_type)
 	child_balloon.ready_progress = progress_ratio + rng.randf_range(-0.005, 0.005)
 	get_parent().call_deferred("add_child", child_balloon)
-	
-func disable_balloon() -> void:
-	# Disable the balloon to allow time for the pop SFX to play
-	speed = 0
-	visible = false
-	set_deferred("monitoring", false)
-
-func _on_pop_sfx_finished() -> void:
-	queue_free()

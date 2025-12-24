@@ -4,7 +4,7 @@ signal dart(pos, rot)
 var balloons_in_range := []
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	balloons_in_range = $Range.get_overlapping_areas()
+	balloons_in_range = $SpriteLamprey/Range.get_overlapping_areas()
 	if not balloons_in_range.is_empty():
 		var highest_progress = 0
 		var targeted_balloon = null
@@ -13,8 +13,8 @@ func _process(_delta: float) -> void:
 			if balloon_progress > highest_progress:
 				highest_progress = balloon_progress
 				targeted_balloon = balloon
-		look_at(targeted_balloon.global_transform.origin)
+		$SpriteLamprey.look_at(targeted_balloon.global_transform.origin)
 
 func _on_timer_timeout() -> void:
 	if not balloons_in_range.is_empty():
-		dart.emit($DartOrigin.global_position, rotation)
+		dart.emit($SpriteLamprey/DartOrigin.global_position, $SpriteLamprey.rotation)
