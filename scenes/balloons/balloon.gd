@@ -4,18 +4,10 @@ var balloon_type
 var health
 var speed
 var ready_progress
+var rng := RandomNumberGenerator.new()
 
 var balloon_scene: PackedScene = load("res://scenes/balloons/balloon.tscn")
 var pop_scene: PackedScene = load("res://scenes/sounds/pop_sfx.tscn")
-
-func _init() -> void:
-	self.balloon_type = "red_balloon"
-	self.health = 1
-	self.speed = 0
-	self.ready_progress = 0
-	
-func _ready() -> void:
-	progress_ratio = ready_progress
 
 func _process(delta: float) -> void:
 	move_balloon(delta)
@@ -45,9 +37,10 @@ func balloon_reaches_end() -> void:
 ##
 func pop_balloon() -> void:
 	# Spawns all balloons contained inside popped balloon
+	# Popped balloons are spawned randomly offset to parent balloon to stop bunching
 	var spawn_list = BalloonData.balloon_data[balloon_type]["contains"]
 	for child_balloon in spawn_list:
-		spawn_child_balloon(child_balloon, get_parent())
+		spawn_balloon(child_balloon, get_parent(), progress_ratio + rng.randf_range(-0.005, 0.005))
 	
 	# Plays pop sound effect
 	get_parent().add_child(pop_scene.instantiate())
@@ -56,17 +49,30 @@ func pop_balloon() -> void:
 	queue_free()
 	
 	# Uncomment for pop debug
-	# print(balloon_type, " was popped, spawning ", spawn_list)
-	
-func update_balloon_type(new_balloon_type: String) -> void:
-	self.balloon_type = new_balloon_type
-	self.health = BalloonData.balloon_data[new_balloon_type]["health"]
-	self.speed = BalloonData.balloon_data[new_balloon_type]["speed"]
-	$Sprite2D.texture = load(BalloonData.balloon_data[new_balloon_type]["sprite_path"])
+	print(balloon_type, " was popped, spawning ", spawn_list)
 
-func spawn_child_balloon(new_balloon_type: String, parent_path: Path2D) -> void:
-	var rng := RandomNumberGenerator.new()
-	var child_balloon = balloon_scene.instantiate()
-	child_balloon.update_balloon_type(new_balloon_type)
-	child_balloon.ready_progress = progress_ratio + rng.randf_range(-0.005, 0.005)
-	parent_path.call_deferred("add_child", child_balloon)
+##
+## Balloon spawning logic
+##
+func spawn_balloon(new_balloon_type: String, parent_path: Path2D, new_progress_ratio: float):
+	var new_balloon = balloon_scene.instantiate()
+	
+	# Sets new balloon attributes before parenting to path
+	new_balloon.balloon_type = new_balloon_type
+	new_balloon.health = BalloonData.balloon_data[new_balloon_type]["health"]
+	new_balloon.speed = BalloonData.balloon_data[new_balloon_type]["speed"]
+	new_balloon.get_node("Sprite2D").texture = load(BalloonData.balloon_data[new_balloon_type]["sprite_path"])
+	
+	# Progress cannot be immediately set as balloon is not yet child to path
+	# 	so set intermediate "ready" progress before adding child
+	new_balloon.ready_progress = new_progress_ratio
+	
+	# Set new balloon as child of Path2D, which calls _ready function and sets
+	# 	progress to ready_progress set above
+	parent_path.call_deferred("add_child", new_balloon)
+	
+func _ready() -> void:
+	progress_ratio = ready_progress
+	
+func _init() -> void:
+	ready_progress = 0
