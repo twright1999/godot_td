@@ -19,56 +19,56 @@ var balloon_data = {
 		"health": 1,
 		"speed": 0.02,
 		"sprite_path": "res://assets/sprites/balloons/green_balloon.png",
-		"contains": ["blue_balloon", "blue_balloon"],
+		"contains": ["blue_balloon"],
 		"resistances": []
 	},
 	"yellow_balloon": {
 		"health": 1,
 		"speed": 0.025,
-		"sprite_path": "placeholder",
+		"sprite_path": "res://assets/sprites/balloons/yellow_balloon.png",
 		"contains": ["green_balloon"],
 		"resistances": []
 	},
 	"pink_balloon": {
 		"health": 1,
 		"speed": 0.03,
-		"sprite_path": "placeholder",
+		"sprite_path": "res://assets/sprites/balloons/pink_balloon.png",
 		"contains": ["yellow_balloon"],
 		"resistances": []
 	},
 	"black_balloon": {
 		"health": 1,
 		"speed": 0.03,
-		"sprite_path": "placeholder",
+		"sprite_path": "res://assets/sprites/balloons/black_balloon.png",
 		"contains": ["pink_balloon", "pink_balloon"],
 		"resistances": ["explosion"]
 	},
 	"white_balloon": {
 		"health": 1,
 		"speed": 0.03,
-		"sprite_path": "placeholder",
+		"sprite_path": "res://assets/sprites/balloons/white_balloon.png",
 		"contains": ["pink_balloon", "pink_balloon"],
 		"resistances": ["freeze"]
 	},
 	"zebra_balloon": {
 		"health": 1,
 		"speed": 0.03,
-		"sprite_path": "placeholder",
+		"sprite_path": "res://assets/sprites/balloons/zebra_balloon.png",
 		"contains": ["black_balloon", "white_balloon"],
 		"resistances": ["explosion", "freeze"]
 	},
 	"rainbow_balloon": {
 		"health": 1,
 		"speed": 0.05,
-		"sprite_path": "placeholder",
+		"sprite_path": "res://assets/sprites/balloons/rainbow_balloon.png",
 		"contains": ["zebra_balloon", "zebra_balloon"],
 		"resistances": []
 	},
 	"ceramic_balloon": {
 		"health": 10,
 		"speed": 0.02,
-		"sprite_path": "placeholder",
-		"contains": ["zebra_balloon", "zebra_balloon"],
+		"sprite_path": "res://assets/sprites/balloons/ceramic_balloon.png",
+		"contains": ["rainbow_balloon", "rainbow_balloon"],
 		"resistances": []
 	}
 }

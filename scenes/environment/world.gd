@@ -20,7 +20,15 @@ func spawn_random_balloon() -> void:
 	# Selects and spawns a random balloon
 	var rng := RandomNumberGenerator.new()
 	var balloon = balloon_scene.instantiate()
-	var balloon_array = ["red_balloon", "blue_balloon", "green_balloon"]
+	var balloon_array = ["red_balloon",
+	"blue_balloon",
+	"green_balloon",
+	"yellow_balloon",
+	"pink_balloon",
+	"black_balloon",
+	"white_balloon",
+	"rainbow_balloon",
+	"ceramic_balloon"]
 	balloon.update_balloon_type(balloon_array[rng.randi_range(0, len(balloon_array)-1)])
 	
 	# Adds balloon to path parent
