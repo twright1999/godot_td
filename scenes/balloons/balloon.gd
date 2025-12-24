@@ -74,7 +74,7 @@ func disable_balloon() -> void:
 	# Disable the balloon to allow time for the pop SFX to play
 	speed = 0
 	visible = false
-	$Area2D.monitoring = false
+	set_deferred("monitoring", false)
 
 func _on_pop_sfx_finished() -> void:
 	queue_free()
