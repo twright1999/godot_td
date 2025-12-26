@@ -57,6 +57,13 @@ var balloon_data = {
 		"contains": ["black_balloon", "white_balloon"],
 		"resistances": ["explosion", "freeze"]
 	},
+	"lead_balloon":{
+		"health": 1,
+		"speed": 0.01,
+		"sprite_path": "res://assets/sprites/balloons/lead_balloon.png",
+		"contains": ["black_balloon", "black_balloon"],
+		"resistances": ["normal"]
+	},
 	"rainbow_balloon": {
 		"health": 1,
 		"speed": 0.05,
@@ -74,7 +81,11 @@ var balloon_data = {
 }
 
 func _ready():
-	print(calculate_balloon_total_score("green_balloon"))
+	# At start of game, calculate damage that player should take
+	# 	for each type of balloon reaching the exit
+	for balloon_type in balloon_data:
+		balloon_data[balloon_type]["damage"] = calculate_balloon_total_score(balloon_type)
+		print(balloon_type, balloon_data[balloon_type]["damage"])
 	
 func calculate_balloon_total_score(balloon_type: String) -> int:
 	var total_score = BalloonData.balloon_data[balloon_type]["health"]
@@ -85,5 +96,4 @@ func calculate_balloon_total_score(balloon_type: String) -> int:
 	else:
 		for contained_balloon in contains_list:
 			total_score += calculate_balloon_total_score(contained_balloon)
-	print(balloon_type, total_score)
 	return total_score
