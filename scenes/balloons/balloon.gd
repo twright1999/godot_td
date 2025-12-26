@@ -4,7 +4,6 @@ var balloon_type
 var health
 var speed
 var ready_progress
-var rng := RandomNumberGenerator.new()
 var dispersion = 0.002
 
 var balloon_scene: PackedScene = load("res://scenes/balloons/balloon.tscn")
@@ -42,7 +41,7 @@ func damage_balloon(damage: int):
 	else:
 		health -= damage
 
-func pop_balloon(residual_damage) -> void:
+func pop_balloon(residual_damage: int) -> void:
 	# Gets balloons contained inside popped balloon
 	# Passed as duplicate() instead of reference to stop editing of data file constants
 	var contains_list = BalloonData.balloon_data[balloon_type]["contains"].duplicate()
