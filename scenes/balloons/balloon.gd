@@ -5,6 +5,7 @@ var health
 var speed
 var ready_progress
 var rng := RandomNumberGenerator.new()
+var dispersion = 0.002
 
 var balloon_scene: PackedScene = load("res://scenes/balloons/balloon.tscn")
 var pop_scene: PackedScene = load("res://scenes/sounds/pop_sfx.tscn")
@@ -39,8 +40,9 @@ func pop_balloon() -> void:
 	# Spawns all balloons contained inside popped balloon
 	# Popped balloons are spawned randomly offset to parent balloon to stop bunching
 	var spawn_list = BalloonData.balloon_data[balloon_type]["contains"]
-	for child_balloon in spawn_list:
-		spawn_balloon(child_balloon, get_parent(), progress_ratio + rng.randf_range(-0.005, 0.005))
+	var dispersion_list = get_evenly_distributed_range(len(spawn_list))
+	for i in len(spawn_list):
+		spawn_balloon(spawn_list[i], get_parent(), dispersion_list[i] * dispersion + progress_ratio)
 	
 	# Plays pop sound effect
 	get_parent().add_child(pop_scene.instantiate())
@@ -51,6 +53,23 @@ func pop_balloon() -> void:
 	# Uncomment for pop debug
 	print(balloon_type, " was popped, spawning ", spawn_list)
 
+func get_evenly_distributed_range(n : float) -> Array:
+	# Given n, returns an array of n items distributed evenly between -1 and 1
+	# E.g.
+	# n = 0 returns []
+	# n = 1 returns [0]
+	# n = 2 returns [-1, 1]
+	# n = 3 returns [-1, 0, -1]
+	# Used for distributing spawned balloons uniformly along path
+	if n <= 0:
+		return []
+	elif n == 1:
+		return [0]
+	else:
+		var distributed_range = []
+		for i in range(n):
+			distributed_range.append(-1 + i * (2/(n-1)))
+		return distributed_range
 ##
 ## Balloon spawning logic
 ##
