@@ -4,6 +4,7 @@ var balloon_type
 var health
 var speed
 var ready_progress
+var resistances = []
 var dispersion = 0.002
 
 var balloon_scene: PackedScene = load("res://scenes/balloons/balloon.tscn")
@@ -13,7 +14,8 @@ func _process(delta: float) -> void:
 	move_balloon(delta)
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	damage_balloon(area.projectile_damage)
+	if area.damage_type not in resistances:
+		damage_balloon(area.projectile_damage)
 	area.queue_free()
 
 ##
@@ -114,6 +116,7 @@ func spawn_balloon(new_balloon_type: String, parent_path: Path2D, new_progress_r
 	new_balloon.balloon_type = new_balloon_type
 	new_balloon.health = BalloonData.balloon_data[new_balloon_type]["health"]
 	new_balloon.speed = BalloonData.balloon_data[new_balloon_type]["speed"]
+	new_balloon.resistances = BalloonData.balloon_data[new_balloon_type]["resistances"]
 	new_balloon.get_node("Sprite2D").texture = load(BalloonData.balloon_data[new_balloon_type]["sprite_path"])
 	
 	# Progress cannot be immediately set as balloon is not yet child to path
