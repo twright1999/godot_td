@@ -42,11 +42,16 @@ func damage_balloon(damage: int):
 	else:
 		health -= damage
 
-func pop_balloon(damage) -> void:
+func pop_balloon(residual_damage) -> void:
 	# Spawns all balloons contained inside popped balloon
-	# Popped balloons are spawned randomly offset to parent balloon to stop bunching
-	var spawn_list = BalloonData.balloon_data[balloon_type]["contains"]
+	# Balloons are spawned uniformly offset to parent balloon to stop bunching
+
+	var contains_list = BalloonData.balloon_data[balloon_type]["contains"]
+	
+	var spawn_list = calculate_balloons_after_residual_damage(contains_list, residual_damage)
+		
 	var dispersion_list = get_evenly_distributed_range(len(spawn_list))
+	
 	for i in len(spawn_list):
 		spawn_balloon(spawn_list[i], get_parent(), dispersion_list[i] * dispersion + progress_ratio)
 	
@@ -76,6 +81,23 @@ func get_evenly_distributed_range(n : float) -> Array:
 		for i in range(n):
 			distributed_range.append(-1 + i * (2/(n-1)))
 		return distributed_range
+
+func calculate_balloons_after_residual_damage(spawn_list, residual_damage) -> Array:
+	if spawn_list == []:
+		return []
+	elif residual_damage == 0:
+		return spawn_list
+	else:
+		var back_balloon = spawn_list.pop_back()
+		print(back_balloon)
+		var back_balloon_health = BalloonData.balloon_data[back_balloon]["health"]
+		if residual_damage >= back_balloon_health:
+			var contained_balloons = BalloonData.balloon_data[back_balloon]["contains"]
+			spawn_list.append_array(contained_balloons)
+			return calculate_balloons_after_residual_damage(spawn_list, residual_damage - back_balloon_health)
+		else:
+			spawn_list.append(back_balloon)
+			return spawn_list
 ##
 ## Balloon spawning logic
 ##
