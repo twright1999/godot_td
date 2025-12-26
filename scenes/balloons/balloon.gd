@@ -14,8 +14,8 @@ func _process(delta: float) -> void:
 	move_balloon(delta)
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
+	damage_balloon(area.projectile_damage)
 	area.queue_free()
-	pop_balloon()
 
 ##
 ## Balloon moving logic
@@ -36,7 +36,13 @@ func balloon_reaches_end() -> void:
 ##
 ## Balloon popping logic
 ##
-func pop_balloon() -> void:
+func damage_balloon(damage: int):
+	if damage >= health:
+		pop_balloon(damage - health)
+	else:
+		health -= damage
+
+func pop_balloon(damage) -> void:
 	# Spawns all balloons contained inside popped balloon
 	# Popped balloons are spawned randomly offset to parent balloon to stop bunching
 	var spawn_list = BalloonData.balloon_data[balloon_type]["contains"]
