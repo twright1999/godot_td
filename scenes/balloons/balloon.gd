@@ -43,15 +43,18 @@ func damage_balloon(damage: int):
 		health -= damage
 
 func pop_balloon(residual_damage) -> void:
-	# Spawns all balloons contained inside popped balloon
-	# Balloons are spawned uniformly offset to parent balloon to stop bunching
-
-	var contains_list = BalloonData.balloon_data[balloon_type]["contains"]
+	# Gets balloons contained inside popped balloon
+	# Passed as duplicate() instead of reference to stop editing of data file constants
+	var contains_list = BalloonData.balloon_data[balloon_type]["contains"].duplicate()
 	
+	# Applies damage to contained balloons to get final spawn list
 	var spawn_list = calculate_balloons_after_residual_damage(contains_list, residual_damage)
-		
+	
+	# Balloons are spawned uniformly offset to parent balloon to stop bunching
 	var dispersion_list = get_evenly_distributed_range(len(spawn_list))
 	
+	
+	# Spawns all balloons contained inside popped balloon
 	for i in len(spawn_list):
 		spawn_balloon(spawn_list[i], get_parent(), dispersion_list[i] * dispersion + progress_ratio)
 	
@@ -83,18 +86,22 @@ func get_evenly_distributed_range(n : float) -> Array:
 		return distributed_range
 
 func calculate_balloons_after_residual_damage(spawn_list, residual_damage) -> Array:
+	# If no balloons in spawn list to damage, return empty list
 	if spawn_list == []:
 		return []
+	# If no more damage to apply, return current spawn list
 	elif residual_damage == 0:
 		return spawn_list
 	else:
 		var back_balloon = spawn_list.pop_back()
-		print(back_balloon)
 		var back_balloon_health = BalloonData.balloon_data[back_balloon]["health"]
+		# If residual damage would pop back balloon in spawn list, reapply
+		#	residual damage calculation to spawn list with a popped back balloon
 		if residual_damage >= back_balloon_health:
 			var contained_balloons = BalloonData.balloon_data[back_balloon]["contains"]
 			spawn_list.append_array(contained_balloons)
 			return calculate_balloons_after_residual_damage(spawn_list, residual_damage - back_balloon_health)
+		# If residual damage cannot pop back balloon, return current spawn list
 		else:
 			spawn_list.append(back_balloon)
 			return spawn_list
