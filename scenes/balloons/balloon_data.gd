@@ -85,8 +85,7 @@ func _ready():
 	# 	for each type of balloon reaching the exit
 	for balloon_type in balloon_data:
 		balloon_data[balloon_type]["damage"] = calculate_balloon_total_score(balloon_type)
-		print(balloon_type, balloon_data[balloon_type]["damage"])
-	
+
 func calculate_balloon_total_score(balloon_type: String) -> int:
 	var total_score = BalloonData.balloon_data[balloon_type]["health"]
 	var contains_list = BalloonData.balloon_data[balloon_type]["contains"]

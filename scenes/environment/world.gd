@@ -7,4 +7,3 @@ func _on_lamprey_tower_dart(pos, rot) -> void:
 	lamprey_dart.position = pos
 	lamprey_dart.rotation = rot
 	$Darts.add_child(lamprey_dart)
-	
