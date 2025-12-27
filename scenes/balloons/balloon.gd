@@ -30,9 +30,11 @@ func move_balloon(delta: float) -> void:
 		balloon_reaches_end()
 
 func balloon_reaches_end() -> void:
-	# Kills current balloon and prints debug message
-	print(balloon_type, " reached the exit")
+	# Kills balloon
 	queue_free()
+	
+	# Uncomment for reaching end debug
+	# print(balloon_type, " reached the exit")
 	
 ##
 ## Balloon popping logic
@@ -66,7 +68,7 @@ func pop_balloon(residual_damage: int) -> void:
 	queue_free()
 	
 	# Uncomment for pop debug
-	print(balloon_type, " was popped, spawning ", spawn_list)
+	# print(balloon_type, " was popped, spawning ", spawn_list)
 
 func get_evenly_distributed_range(n : float) -> Array:
 	# Given n, returns an array of n items distributed evenly between -1 and 1

@@ -1,9 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://c476lm42j8d42"]
+[gd_scene load_steps=9 format=3 uid="uid://c476lm42j8d42"]
 
 [ext_resource type="Script" uid="uid://ubuhe6del1al" path="res://scenes/environment/world.gd" id="1_1lgw5"]
 [ext_resource type="Texture2D" uid="uid://cfv7rxsxewhy0" path="res://assets/sprites/environment/monkey_meadows.png" id="1_d1c63"]
-[ext_resource type="PackedScene" uid="uid://bamkppl7ekd10" path="res://scenes/balloons/red_balloon.tscn" id="2_7g83o"]
-[ext_resource type="PackedScene" uid="uid://c423u4krl3u1s" path="res://scenes/environment/end_point.tscn" id="4_d1c63"]
 [ext_resource type="PackedScene" uid="uid://dxmidg8jbjvnv" path="res://scenes/towers/lamprey_tower.tscn" id="6_hlk0d"]
 [ext_resource type="Script" uid="uid://ccfh2muxqt3wb" path="res://scenes/environment/balloon_spawner.gd" id="7_43fak"]
 [ext_resource type="Script" uid="uid://cxcx2fg2r1yr2" path="res://data/wave_data.gd" id="8_xrntt"]
@@ -23,11 +21,6 @@ script = ExtResource("1_1lgw5")
 position = Vector2(576.1111, 326)
 scale = Vector2(0.6074074, 0.6074074)
 texture = ExtResource("1_d1c63")
-
-[node name="RedBalloon" parent="." instance=ExtResource("2_7g83o")]
-
-[node name="EndPoint" parent="." instance=ExtResource("4_d1c63")]
-position = Vector2(832, 64)
 
 [node name="Towers" type="Node2D" parent="."]
 
