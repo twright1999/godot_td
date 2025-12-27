@@ -1,8 +1,8 @@
 extends Node
 
 func _ready():
-	get_node("MainMenu/Margin/VBoxContainer/Play").connect("pressed", on_play_pressed)
-	get_node("MainMenu/Margin/VBoxContainer/Quit").connect("pressed", on_quit_pressed)
+	get_node("MainMenu/Margin/VBoxContainer/Play").pressed.connect(on_play_pressed)
+	get_node("MainMenu/Margin/VBoxContainer/Quit").pressed.connect(on_quit_pressed)
 
 func on_play_pressed():
 	get_node("MainMenu").queue_free()
