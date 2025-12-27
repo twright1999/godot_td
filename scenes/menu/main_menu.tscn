@@ -63,7 +63,7 @@ texture_pressed = ExtResource("5_hj162")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Control" type="Control" parent="Margin/VBoxContainer"]
+[node name="Spacer" type="Control" parent="Margin/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
