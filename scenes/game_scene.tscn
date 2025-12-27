@@ -1,16 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://hxb14nj846pi"]
+[gd_scene load_steps=8 format=3 uid="uid://hxb14nj846pi"]
 
+[ext_resource type="Script" uid="uid://cjfadwtuuiniv" path="res://scenes/game_scene.gd" id="1_rurhu"]
 [ext_resource type="PackedScene" uid="uid://c476lm42j8d42" path="res://scenes/environment/world.tscn" id="1_w5aja"]
 [ext_resource type="Texture2D" uid="uid://cecauatrhb76s" path="res://assets/sprites/menu/buttonSquare_beige.png" id="2_bw6k5"]
+[ext_resource type="Script" uid="uid://bu4giqfa15aba" path="res://scenes/ui.gd" id="3_kk2rg"]
 [ext_resource type="Texture2D" uid="uid://cad5bx2rcfqvy" path="res://assets/sprites/menu/buttonSquare_beige_pressed.png" id="3_y3j0m"]
 [ext_resource type="Texture2D" uid="uid://b3on7tkvtqh3" path="res://assets/sprites/menu/buttonSquare_beige_hover.png" id="4_rurhu"]
 [ext_resource type="Texture2D" uid="uid://b7bu8d0ptlx2v" path="res://assets/sprites/towers/lamprey_tower.png" id="5_y3j0m"]
 
 [node name="GameScene" type="Node2D"]
+script = ExtResource("1_rurhu")
 
 [node name="World" parent="." instance=ExtResource("1_w5aja")]
 
 [node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("3_kk2rg")
 
 [node name="HUD" type="Control" parent="UI"]
 layout_mode = 3
@@ -21,6 +25,7 @@ offset_right = 1142.0
 offset_bottom = 638.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="HUDMargin" type="MarginContainer" parent="UI/HUD"]
 layout_mode = 1
@@ -40,7 +45,7 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 
-[node name="LampreyTower" type="TextureButton" parent="UI/HUD/HUDMargin/BuildBar"]
+[node name="LampreyTower" type="TextureButton" parent="UI/HUD/HUDMargin/BuildBar" groups=["BuildButtons"]]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 4

@@ -1,8 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://c476lm42j8d42"]
+[gd_scene load_steps=7 format=3 uid="uid://c476lm42j8d42"]
 
-[ext_resource type="Script" uid="uid://ubuhe6del1al" path="res://scenes/environment/world.gd" id="1_1lgw5"]
 [ext_resource type="Texture2D" uid="uid://cfv7rxsxewhy0" path="res://assets/sprites/environment/monkey_meadows.png" id="1_d1c63"]
-[ext_resource type="PackedScene" uid="uid://dxmidg8jbjvnv" path="res://scenes/towers/lamprey_tower.tscn" id="6_hlk0d"]
 [ext_resource type="Script" uid="uid://ccfh2muxqt3wb" path="res://scenes/environment/balloon_spawner.gd" id="7_43fak"]
 [ext_resource type="Script" uid="uid://cxcx2fg2r1yr2" path="res://data/wave_data.gd" id="8_xrntt"]
 [ext_resource type="Resource" uid="uid://xn6moe0eyayq" path="res://data/wave_01.tres" id="9_hfr0h"]
@@ -15,7 +13,6 @@ _data = {
 point_count = 15
 
 [node name="World" type="Node2D"]
-script = ExtResource("1_1lgw5")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(576.1111, 326)
@@ -24,10 +21,7 @@ texture = ExtResource("1_d1c63")
 
 [node name="Towers" type="Node2D" parent="."]
 
-[node name="Lamprey_Tower" parent="Towers" instance=ExtResource("6_hlk0d")]
-position = Vector2(272, 208)
-
-[node name="Darts" type="Node2D" parent="."]
+[node name="Projectiles" type="Node2D" parent="."]
 
 [node name="BalloonSpawner" type="Node2D" parent="."]
 script = ExtResource("7_43fak")
@@ -40,6 +34,10 @@ curve = SubResource("Curve2D_32lhk")
 one_shot = true
 autostart = true
 
+[node name="BuildExclusionArea" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BuildExclusionArea"]
+polygon = PackedVector2Array(-44, 248, 358, 250, 349, 125, 378, 98, 502, 92, 578, 113, 593, 215, 590, 268, 574, 287, 560, 292, 399, 298, 406, 252, 550, 252, 541, 147, 474, 134, 395, 141, 398, 349, 692, 349, 708, 334, 710, 219, 722, 192, 789, 186, 870, 196, 896, 236, 897, 351, 882, 451, 847, 492, 746, 499, 549, 500, 525, 509, 519, 722, 472, 720, 480, 482, 495, 467, 544, 458, 825, 452, 845, 413, 854, 263, 845, 238, 803, 230, 752, 233, 758, 301, 749, 355, 716, 388, 653, 395, 393, 397, 399, 466, 393, 510, 376, 534, 342, 544, 205, 541, 165, 512, 163, 434, 175, 372, 205, 356, 348, 353, 347, 400, 216, 400, 202, 480, 209, 494, 335, 501, 357, 486, 353, 293, -41, 294)
+
 [connection signal="ready" from="." to="BalloonSpawner" method="_on_world_ready"]
-[connection signal="dart" from="Towers/Lamprey_Tower" to="." method="_on_lamprey_tower_dart"]
 [connection signal="timeout" from="BalloonSpawner/BalloonTimer" to="BalloonSpawner" method="_on_balloon_timer_timeout"]
