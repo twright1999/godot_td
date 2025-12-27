@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="WaveData" load_steps=5 format=3 uid="uid://xn6moe0eyayq"]
+
+[ext_resource type="Script" uid="uid://bdi2h1kwq867u" path="res://data/group.gd" id="1_equx5"]
+[ext_resource type="Script" uid="uid://cxcx2fg2r1yr2" path="res://data/wave_data.gd" id="2_8cskb"]
+
+[sub_resource type="Resource" id="Resource_ain8k"]
+script = ExtResource("1_equx5")
+count = 10
+balloon_type = "red_balloon"
+delay = 1.0
+metadata/_custom_type_script = "uid://bdi2h1kwq867u"
+
+[sub_resource type="Resource" id="Resource_equx5"]
+script = ExtResource("1_equx5")
+count = 3
+balloon_type = "blue_balloon"
+delay = 1.0
+metadata/_custom_type_script = "uid://bdi2h1kwq867u"
+
+[resource]
+resource_name = "wave_01"
+script = ExtResource("2_8cskb")
+groups = Array[ExtResource("1_equx5")]([SubResource("Resource_ain8k"), SubResource("Resource_equx5")])
