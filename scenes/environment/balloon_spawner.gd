@@ -23,6 +23,7 @@ func spawn_random_balloon() -> void:
 	"black_balloon",
 	"white_balloon",
 	"rainbow_balloon",
+	"lead_balloon",
 	"ceramic_balloon"]
 	
 	balloon.spawn_balloon(balloon_array[rng.randi_range(0, len(balloon_array)-1)], $BalloonPath, 0.0)
