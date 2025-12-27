@@ -40,7 +40,7 @@ func _on_node_added(node:Node) -> void:
 		node.pressed.connect(_play_pressed_sound)
 
 func _play_hover_sound() -> void:
-	playback.play_stream(preload("res://assets/audio/sound_effects/hover.ogg"), 0, 0, randf_range(0.9, 1.1))
+	playback.play_stream(preload("res://assets/audio/sound_effects/hover.ogg"), 0, -10, randf_range(0.9, 1.1))
 
 func _play_pressed_sound() -> void:
-	playback.play_stream(preload("res://assets/audio/sound_effects/click.ogg"), 0, 0, randf_range(0.9, 1.1))
+	playback.play_stream(preload("res://assets/audio/sound_effects/click.ogg"), 0, -10, randf_range(0.9, 1.1))
