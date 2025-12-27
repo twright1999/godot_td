@@ -29,13 +29,15 @@ func set_lamprey_active(active: bool):
 	if scale_tween:
 		scale_tween.kill()
 		
-	scale_tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	scale_tween = create_tween().set_ease(Tween.EASE_OUT)
 	
 	if lamprey_active:
-		scale_tween.tween_property($SpriteLamprey, "scale", Vector2(0.7, 0.7), 0.3)
+		scale_tween.set_trans(Tween.TRANS_ELASTIC)
+		scale_tween.tween_property($SpriteLamprey, "scale", Vector2(0.5, 0.5), 0.5)
 	else:
 		scale_tween.tween_interval(1)
-		scale_tween.tween_property($SpriteLamprey, "scale", Vector2(0, 0), 0.3)
+		scale_tween.set_trans(Tween.TRANS_LINEAR)
+		scale_tween.tween_property($SpriteLamprey, "scale", Vector2(0, 0), 1)
 
 func target_balloon():
 	var highest_progress = 0
