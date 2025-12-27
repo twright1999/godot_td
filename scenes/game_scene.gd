@@ -14,6 +14,8 @@ func _ready() -> void:
 		i.pressed.connect(initiate_build_mode.bind(i.get_name()))
 
 func initiate_build_mode(tower_type):
+	if build_mode:
+		cancel_build_mode()
 	build_type = tower_type
 	build_mode = true
 	$UI.set_tower_preview(build_type, get_global_mouse_position())
@@ -21,6 +23,19 @@ func initiate_build_mode(tower_type):
 func _process(_delta: float) -> void:
 	if build_mode:
 		update_tower_preview()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_released("ui_cancel") and build_mode == true:
+		cancel_build_mode()
+	if event.is_action_released("ui_accept") and build_mode == true:
+		verify_and_build()
+		cancel_build_mode()
+
+func verify_and_build():
+	if build_valid:
+		var new_tower = load("res://scenes/towers/lamprey_tower.tscn").instantiate()
+		new_tower.position = build_location
+		$World.get_node("Towers").add_child(new_tower)
 
 func update_tower_preview():
 	var mouse_position = get_global_mouse_position()
@@ -34,4 +49,6 @@ func update_tower_preview():
 		build_valid = false
 	
 func cancel_build_mode():
-	pass
+	build_mode = false
+	build_valid = false
+	get_node("UI/TowerPreview").free()
