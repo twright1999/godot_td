@@ -14,10 +14,14 @@ func _ready() -> void:
 		i.pressed.connect(initiate_build_mode.bind(i.get_name()))
 
 func initiate_build_mode(tower_type):
+	# Initiates build mode for tower_type binded to button in _ready()
 	if build_mode:
+		# If already in build mode, cancel previous build mode to avoid
+		#	duplication/cloning of preview towers
 		cancel_build_mode()
 	build_type = tower_type
 	build_mode = true
+	# Begin previewing tower_type to build
 	$UI.set_tower_preview(build_type, get_global_mouse_position())
 	
 func _process(_delta: float) -> void:
@@ -32,6 +36,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		cancel_build_mode()
 
 func verify_and_build():
+	# If tower can be built, create tower at position and set built to true
 	if build_valid:
 		var new_tower = load("res://scenes/towers/lamprey_tower.tscn").instantiate()
 		new_tower.position = build_location
@@ -41,15 +46,20 @@ func verify_and_build():
 func update_tower_preview():
 	var mouse_position = get_global_mouse_position()
 	
+	# Checks if tower is colliding with pre-existing towers or designated
+	#	path exclusion area
 	if not get_node("UI/TowerPreview/DragTower").build_colliding:
+		# Set tower preview to green shade and allow building
 		$UI.update_tower_preview(mouse_position, "3ff05f")
 		build_valid = true
 		build_location = mouse_position
 	else:
+		# Set tower preview to red shade and disallow building
 		$UI.update_tower_preview(mouse_position, "ff5a76")
 		build_valid = false
 	
 func cancel_build_mode():
 	build_mode = false
 	build_valid = false
+	# Remove tower preview
 	get_node("UI/TowerPreview").free()
