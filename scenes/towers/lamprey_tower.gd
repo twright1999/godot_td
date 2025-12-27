@@ -5,6 +5,8 @@ var balloons_in_range := []
 
 var shrink_speed = 0.7
 var grow_speed = 2
+var built = false
+var build_colliding = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -22,6 +24,18 @@ func _process(delta: float) -> void:
 		$SpriteLamprey.look_at(targeted_balloon.global_transform.origin)
 	elif $SpriteLamprey.visible:
 		hide_lamprey(delta)
+	if not built:
+		check_build_collisions()
+		
+func check_build_collisions():
+	if $BuildRadius.get_overlapping_areas().is_empty():
+		build_colliding = false
+	else:
+		build_colliding = true
+	print($BuildRadius.get_overlapping_areas())
+	print(build_colliding)
+	
+		
 
 func _on_timer_timeout() -> void:
 	if not balloons_in_range.is_empty():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxmidg8jbjvnv"]
+[gd_scene load_steps=6 format=3 uid="uid://dxmidg8jbjvnv"]
 
 [ext_resource type="Script" uid="uid://cguw11uwu6hx2" path="res://scenes/towers/lamprey_tower.gd" id="1_mvn5d"]
 [ext_resource type="Texture2D" uid="uid://b7bu8d0ptlx2v" path="res://assets/sprites/towers/lamprey_tower.png" id="1_u57g8"]
@@ -7,11 +7,15 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_ymyjv"]
 radius = 168.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_0nxcu"]
+radius = 34.0147
+
 [node name="LampreyTower" type="Node2D"]
 script = ExtResource("1_mvn5d")
 
 [node name="Range" type="Area2D" parent="."]
 scale = Vector2(0.62499994, 0.62499994)
+collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
@@ -33,5 +37,11 @@ autostart = true
 [node name="DartOrigin" type="Marker2D" parent="SpriteLamprey"]
 position = Vector2(19.999998, -9.999999)
 scale = Vector2(1.2499999, 1.2499999)
+
+[node name="BuildRadius" type="Area2D" parent="."]
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildRadius"]
+shape = SubResource("CircleShape2D_0nxcu")
 
 [connection signal="timeout" from="SpriteLamprey/Timer" to="." method="_on_timer_timeout"]

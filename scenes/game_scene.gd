@@ -26,6 +26,7 @@ func _process(_delta: float) -> void:
 func update_tower_preview():
 	var mouse_position = get_global_mouse_position()
 	
+	#if $DragTower
 	#if tower collision not overlapping any other tower collisions or map collisions
 		# $UI.update_tower_preview(good)
 		# build_valid = true

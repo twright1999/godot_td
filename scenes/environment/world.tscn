@@ -40,6 +40,11 @@ curve = SubResource("Curve2D_32lhk")
 one_shot = true
 autostart = true
 
+[node name="BuildExclusionArea" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BuildExclusionArea"]
+polygon = PackedVector2Array(-44, 248, 358, 250, 349, 125, 378, 98, 502, 92, 578, 113, 593, 215, 590, 268, 574, 287, 560, 292, 399, 298, 406, 252, 550, 252, 541, 147, 474, 134, 395, 141, 398, 349, 692, 349, 708, 334, 710, 219, 722, 192, 789, 186, 870, 196, 896, 236, 897, 351, 882, 451, 847, 492, 746, 499, 549, 500, 525, 509, 519, 722, 472, 720, 480, 482, 495, 467, 544, 458, 825, 452, 845, 413, 854, 263, 845, 238, 803, 230, 752, 233, 758, 301, 749, 355, 716, 388, 653, 395, 393, 397, 399, 466, 393, 510, 376, 534, 342, 544, 205, 541, 165, 512, 163, 434, 175, 372, 205, 356, 348, 353, 347, 400, 216, 400, 202, 480, 209, 494, 335, 501, 357, 486, 353, 293, -41, 294)
+
 [connection signal="ready" from="." to="BalloonSpawner" method="_on_world_ready"]
 [connection signal="dart" from="Towers/Lamprey_Tower" to="." method="_on_lamprey_tower_dart"]
 [connection signal="timeout" from="BalloonSpawner/BalloonTimer" to="BalloonSpawner" method="_on_balloon_timer_timeout"]

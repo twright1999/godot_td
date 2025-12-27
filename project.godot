@@ -27,6 +27,7 @@ mouse_cursor/custom_image="uid://b01j4tqi5w6t2"
 2d_physics/layer_1="Towers"
 2d_physics/layer_2="Balloons"
 2d_physics/layer_3="Projectiles"
+2d_physics/layer_4="BuildExclusion"
 
 [rendering]
 
