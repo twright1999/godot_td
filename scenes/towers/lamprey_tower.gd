@@ -21,20 +21,26 @@ func _process(_delta: float) -> void:
 		check_build_collisions()
 
 func set_lamprey_active(active: bool):
+	# If active state matches what it is already set to, do nothing
 	if active == lamprey_active:
 		return
-		
+	
+	# Set the new state
 	lamprey_active = active
 
+	# If already animating, kill previous animation
 	if scale_tween:
 		scale_tween.kill()
-		
+	
+	# Create a tween
 	scale_tween = create_tween().set_ease(Tween.EASE_OUT)
 	
 	if lamprey_active:
+		# Set scale to 0.5, 0.5 quickly and elastically
 		scale_tween.set_trans(Tween.TRANS_ELASTIC)
 		scale_tween.tween_property($SpriteLamprey, "scale", Vector2(0.5, 0.5), 0.5)
 	else:
+		# Wait a while, then slowly revert to 0 scale
 		scale_tween.tween_interval(1)
 		scale_tween.set_trans(Tween.TRANS_LINEAR)
 		scale_tween.tween_property($SpriteLamprey, "scale", Vector2(0, 0), 1)
