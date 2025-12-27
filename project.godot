@@ -18,6 +18,10 @@ config/features=PackedStringArray("4.5", "Forward Plus")
 
 BalloonData="*res://scenes/balloons/balloon_data.gd"
 
+[display]
+
+mouse_cursor/custom_image="uid://b01j4tqi5w6t2"
+
 [layer_names]
 
 2d_physics/layer_1="Towers"
