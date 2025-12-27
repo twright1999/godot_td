@@ -35,6 +35,7 @@ func verify_and_build():
 	if build_valid:
 		var new_tower = load("res://scenes/towers/lamprey_tower.tscn").instantiate()
 		new_tower.position = build_location
+		new_tower.built = true
 		$World.get_node("Towers").add_child(new_tower)
 
 func update_tower_preview():
