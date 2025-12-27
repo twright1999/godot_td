@@ -17,7 +17,6 @@ func initiate_build_mode(tower_type):
 	build_type = tower_type
 	build_mode = true
 	$UI.set_tower_preview(build_type, get_global_mouse_position())
-	pass
 	
 func _process(_delta: float) -> void:
 	if build_mode:
@@ -26,14 +25,13 @@ func _process(_delta: float) -> void:
 func update_tower_preview():
 	var mouse_position = get_global_mouse_position()
 	
-	#if $DragTower
-	#if tower collision not overlapping any other tower collisions or map collisions
-		# $UI.update_tower_preview(good)
-		# build_valid = true
-		# build_location = mouse_position
-	#else:
-		# $UI.update_tower_preview(bad)
-		# build_valid = false
+	if not get_node("UI/TowerPreview/DragTower").build_colliding:
+		$UI.update_tower_preview(mouse_position, "3ff05f")
+		build_valid = true
+		build_location = mouse_position
+	else:
+		$UI.update_tower_preview(mouse_position, "ff5a76")
+		build_valid = false
 	
 func cancel_build_mode():
 	pass

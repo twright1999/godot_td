@@ -11,3 +11,8 @@ func set_tower_preview(tower_type, mouse_position):
 	control.set_name("TowerPreview")
 	add_child(control, true)
 	move_child(control, 0)
+
+func update_tower_preview(new_position, color):
+	$TowerPreview.position = new_position
+	if get_node("TowerPreview/DragTower").modulate != Color(color):
+		get_node("TowerPreview/DragTower").modulate = Color(color)

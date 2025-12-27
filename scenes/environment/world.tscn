@@ -25,7 +25,7 @@ texture = ExtResource("1_d1c63")
 [node name="Towers" type="Node2D" parent="."]
 
 [node name="Lamprey_Tower" parent="Towers" instance=ExtResource("6_hlk0d")]
-position = Vector2(272, 208)
+position = Vector2(275, 206)
 
 [node name="Darts" type="Node2D" parent="."]
 
