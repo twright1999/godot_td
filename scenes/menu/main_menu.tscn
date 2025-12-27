@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://cap5duurfk2jq"]
+[gd_scene load_steps=8 format=3 uid="uid://cap5duurfk2jq"]
 
 [ext_resource type="Texture2D" uid="uid://h71j6rh14po2" path="res://assets/sprites/menu/menu_bg.jpg" id="1_nl8w3"]
+[ext_resource type="Texture2D" uid="uid://bobt61ve7vs7p" path="res://assets/sprites/menu/play_button.png" id="2_3rkf3"]
+[ext_resource type="Texture2D" uid="uid://rtrcl4gb18cr" path="res://assets/sprites/menu/play_button_pressed.png" id="3_247la"]
+[ext_resource type="Texture2D" uid="uid://j7ymyftem7uw" path="res://assets/sprites/menu/options_button.png" id="4_kiqgm"]
+[ext_resource type="Texture2D" uid="uid://xbvseey2mjmm" path="res://assets/sprites/menu/options_button_pressed.png" id="5_hj162"]
+[ext_resource type="Texture2D" uid="uid://b4gf2mnm40vbw" path="res://assets/sprites/menu/quit_button.png" id="6_isoef"]
+[ext_resource type="Texture2D" uid="uid://d35dsp16emkha" path="res://assets/sprites/menu/quit_button_pressed.png" id="7_qgo02"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -31,3 +37,41 @@ theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Margin"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Play" type="TextureButton" parent="Margin/VBoxContainer"]
+custom_minimum_size = Vector2(350, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("2_3rkf3")
+texture_pressed = ExtResource("3_247la")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Options" type="TextureButton" parent="Margin/VBoxContainer"]
+custom_minimum_size = Vector2(350, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("4_kiqgm")
+texture_pressed = ExtResource("5_hj162")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Control" type="Control" parent="Margin/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Quit" type="TextureButton" parent="Margin/VBoxContainer"]
+custom_minimum_size = Vector2(350, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("6_isoef")
+texture_pressed = ExtResource("7_qgo02")
+ignore_texture_size = true
+stretch_mode = 0
