@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cap5duurfk2jq"]
+[gd_scene load_steps=7 format=3 uid="uid://cap5duurfk2jq"]
 
 [ext_resource type="Texture2D" uid="uid://h71j6rh14po2" path="res://assets/sprites/menu/menu_bg.jpg" id="1_nl8w3"]
 [ext_resource type="Texture2D" uid="uid://yk2eg0k0tn5g" path="res://assets/sprites/menu/buttonLong_brown.png" id="2_isoef"]
 [ext_resource type="Texture2D" uid="uid://2c6ndpbhb6w0" path="res://assets/sprites/menu/buttonLong_brown_pressed.png" id="3_qgo02"]
 [ext_resource type="Texture2D" uid="uid://cge5re5l2dugg" path="res://assets/sprites/menu/buttonLong_brown_hover.png" id="4_hj162"]
 [ext_resource type="FontFile" uid="uid://bqes785rrmhld" path="res://assets/fonts/River Adventurer.ttf" id="4_kiqgm"]
+[ext_resource type="Texture2D" uid="uid://ldid1r43sy1h" path="res://assets/sprites/menu/logo.png" id="6_xn6kt"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -130,3 +131,10 @@ theme_override_font_sizes/font_size = 48
 text = "Quit"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Margin"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("6_xn6kt")
+stretch_mode = 2
