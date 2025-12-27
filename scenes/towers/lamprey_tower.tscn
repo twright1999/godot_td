@@ -30,7 +30,6 @@ scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("1_u57g8")
 
 [node name="Timer" type="Timer" parent="SpriteLamprey"]
-wait_time = 0.25
 autostart = true
 
 [node name="DartOrigin" type="Marker2D" parent="SpriteLamprey"]

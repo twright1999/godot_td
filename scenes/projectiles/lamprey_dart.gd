@@ -1,6 +1,6 @@
 extends Area2D
 
-var projectile_damage = 2
+var projectile_damage = 1
 var speed = 1000
 var damage_type = "normal"
 # Called every frame. 'delta' is the elapsed time since the previous frame.
