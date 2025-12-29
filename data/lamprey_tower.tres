@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="TowerStats" load_steps=5 format=3 uid="uid://omdedhnw2nf6"]
+
+[ext_resource type="Texture2D" uid="uid://ds1gdh3bs38e2" path="res://assets/sprites/towers/lamprey_puddle.png" id="1_atj7f"]
+[ext_resource type="PackedScene" uid="uid://dc2qka7do4kw6" path="res://scenes/projectiles/lamprey_dart.tscn" id="2_svlm6"]
+[ext_resource type="Script" uid="uid://c8o7cf1e4q27p" path="res://data/tower_stats.gd" id="2_yoqfg"]
+[ext_resource type="Texture2D" uid="uid://b7bu8d0ptlx2v" path="res://assets/sprites/towers/lamprey_tower.png" id="3_svlm6"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_yoqfg")
+tower_radius = 1000.0
+tower_rof = 1.0
+tower_build_radius = 35.0
+base_texture = ExtResource("1_atj7f")
+turret_texture = ExtResource("3_svlm6")
+projectile = ExtResource("2_svlm6")
+metadata/_custom_type_script = "uid://c8o7cf1e4q27p"

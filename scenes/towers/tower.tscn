@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxmidg8jbjvnv"]
+
+[ext_resource type="Script" uid="uid://cmw8xqtylmt20" path="res://scenes/towers/tower.gd" id="1_vfpy0"]
+[ext_resource type="Resource" uid="uid://omdedhnw2nf6" path="res://data/lamprey_tower.tres" id="2_1opkc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ymyjv"]
+radius = 200.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0nxcu"]
+radius = 35.0
+
+[node name="Tower" type="Node2D"]
+script = ExtResource("1_vfpy0")
+stats = ExtResource("2_1opkc")
+
+[node name="Range" type="Area2D" parent="."]
+scale = Vector2(0.62499994, 0.62499994)
+collision_layer = 0
+collision_mask = 2
+
+[node name="RangeCollision" type="CollisionShape2D" parent="Range"]
+shape = SubResource("CircleShape2D_ymyjv")
+
+[node name="TowerBase" type="Sprite2D" parent="."]
+scale = Vector2(0.8, 0.8)
+
+[node name="TowerTurret" type="Sprite2D" parent="."]
+
+[node name="Timer" type="Timer" parent="TowerTurret"]
+autostart = true
+
+[node name="DartOrigin" type="Marker2D" parent="TowerTurret"]
+position = Vector2(19.999998, -9.999999)
+scale = Vector2(1.2499999, 1.2499999)
+
+[node name="BuildRadius" type="Area2D" parent="."]
+collision_mask = 9
+
+[node name="BuildRadiusCollision" type="CollisionShape2D" parent="BuildRadius"]
+shape = SubResource("CircleShape2D_0nxcu")
+
+[connection signal="timeout" from="TowerTurret/Timer" to="." method="_on_timer_timeout"]

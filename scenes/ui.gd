@@ -6,7 +6,8 @@ func set_tower_preview(tower_type, mouse_position):
 	print("building ", tower_type)
 	
 	# Instantiate the tower to be previewed
-	var drag_tower = load("res://scenes/towers/lamprey_tower.tscn").instantiate()
+	var drag_tower = load("res://scenes/towers/tower.tscn").instantiate()
+	drag_tower.stats = load("res://data/lamprey_tower.tres")
 	drag_tower.set_name("DragTower")
 	drag_tower.modulate = Color("ff5a76")
 	
