@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://cofgbon66382t" path="res://assets/sprites/balloons/blue_balloon.png" id="2_bhdq7"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_5pyci")
-name = 2
 speed = 0.015
 sprite = ExtResource("2_bhdq7")
 contains = Array[int]([1])

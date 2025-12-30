@@ -1,7 +1,6 @@
 class_name BalloonData
 extends Resource
 
-@export var name: DataTypes.Balloon = DataTypes.Balloon.INVALID
 @export var health: int = 1
 @export var speed: float = 0
 @export var sprite: Texture2D
