@@ -2,6 +2,7 @@ extends PathFollow2D
 
 var balloon_stats = Resource
 
+var balloon_type
 var health
 var speed
 var contains = []
@@ -11,6 +12,7 @@ var ready_progress
 var dispersion = 0.002
 
 signal spawn_child_balloons(progress_ratio, contains_list, residual_damage)
+signal reach_exit(balloon_type)
 
 func _ready() -> void:
 	progress_ratio = ready_progress
@@ -40,6 +42,7 @@ func move_balloon(delta: float) -> void:
 		balloon_reaches_end()
 
 func balloon_reaches_end() -> void:
+	reach_exit.emit(balloon_type)
 	# Kills balloon
 	queue_free()
 	

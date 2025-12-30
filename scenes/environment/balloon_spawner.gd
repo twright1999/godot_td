@@ -11,21 +11,28 @@ const BalloonDict = {
 	DataTypes.Balloon.RED : preload("res://data/balloons/red.tres"),
 	DataTypes.Balloon.BLUE : preload("res://data/balloons/blue.tres"),
 	DataTypes.Balloon.GREEN : preload("res://data/balloons/green.tres"),
-	DataTypes.Balloon.YELLOW : preload("res://data/balloons/yellow.tres")
+	DataTypes.Balloon.YELLOW : preload("res://data/balloons/yellow.tres"),
+	DataTypes.Balloon.PINK : preload("res://data/balloons/pink.tres"),
+	DataTypes.Balloon.BLACK : preload("res://data/balloons/black.tres"),
+	DataTypes.Balloon.WHITE : preload("res://data/balloons/white.tres"),
+	DataTypes.Balloon.ZEBRA : preload("res://data/balloons/zebra.tres"),
+	DataTypes.Balloon.LEAD : preload("res://data/balloons/lead.tres"),
+	DataTypes.Balloon.RAINBOW : preload("res://data/balloons/rainbow.tres"),
+	DataTypes.Balloon.CERAMIC : preload("res://data/balloons/ceramic.tres"),
 }
-
 ##
 ## Balloon Spawning
 ##
 func _on_spawn_child_balloons(progress_ratio, contains_list, residual_damage):
-	print("pop to spawn ", contains_list, " at ", progress_ratio, " with ", residual_damage, " residual damage")
+	# Apply residual damage from balloon pop to contained balloons
 	var spawn_list = calculate_balloons_after_residual_damage(contains_list.duplicate(), residual_damage)
+	
+	# Get list of dispersions for evenly distributed children
 	var dispersion_list = get_evenly_distributed_range(len(spawn_list))
 	
+	# Spawn children balloons at given dispersions
 	for i in len(spawn_list):
 		spawn_balloon(spawn_list[i], $BalloonPath, dispersion_list[i] * dispersion + progress_ratio)
-		
-	print("balloon popped, spawning ", spawn_list)
 
 func get_evenly_distributed_range(n : float) -> Array:
 	# Given n, returns an array of n items distributed evenly between -1 and 1
@@ -71,12 +78,15 @@ func spawn_balloon(new_balloon_type: DataTypes.Balloon, parent_path: Path2D, new
 	
 	# Sets new balloon attributes before parenting to path
 	new_balloon.balloon_stats = BalloonDict[new_balloon_type]
+	new_balloon.balloon_type = new_balloon_type
 	
 	# Progress cannot be immediately set as balloon is not yet child to path
 	# 	so set intermediate "ready" progress before adding child
 	new_balloon.ready_progress = new_progress_ratio
 	
+	# Connect signals used for popping and reaching exit detection
 	new_balloon.connect("spawn_child_balloons", _on_spawn_child_balloons)
+	new_balloon.connect("reach_exit", _on_balloon_reaches_exit)
 	
 	# Set new balloon as child of Path2D, which calls _ready function and sets
 	# 	progress to ready_progress set above
@@ -101,3 +111,20 @@ func spawn_group(group: BalloonGroup) -> void:
 	for i in group.count:
 		spawn_balloon(group.balloon_type, $BalloonPath, 0.0)
 		await get_tree().create_timer(group.delay).timeout
+
+##
+## Balloon reaches exit
+##
+func _on_balloon_reaches_exit(balloon_type):
+	print(balloon_type, " reached exit, damage for ", calculate_damage_balloon_deals(balloon_type))
+
+func calculate_damage_balloon_deals(balloon_type):
+	var total_score = BalloonDict[balloon_type].health
+	var contains_list = BalloonDict[balloon_type].contains
+	
+	if len(contains_list) == 0:
+		return BalloonDict[balloon_type].health
+	else:
+		for contained_balloon in contains_list:
+			total_score += calculate_damage_balloon_deals(BalloonDict[contained_balloon])
+	return total_score
