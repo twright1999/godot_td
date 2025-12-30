@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BalloonData" load_steps=3 format=3 uid="uid://fljrn3yoq5oo"]
+
+[ext_resource type="Script" uid="uid://c3of18vktwx0u" path="res://data/balloons/balloon_data.gd" id="1_woydb"]
+[ext_resource type="Texture2D" uid="uid://dirf4nk71gmvi" path="res://assets/sprites/balloons/zebra_balloon.png" id="2_r3bul"]
+
+[resource]
+script = ExtResource("1_woydb")
+speed = 0.03
+sprite = ExtResource("2_r3bul")
+contains = Array[int]([6, 7])
+resistances = Array[int]([1, 2])
+metadata/_custom_type_script = "uid://c3of18vktwx0u"
