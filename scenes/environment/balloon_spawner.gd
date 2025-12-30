@@ -126,5 +126,5 @@ func calculate_damage_balloon_deals(balloon_type):
 		return BalloonDict[balloon_type].health
 	else:
 		for contained_balloon in contains_list:
-			total_score += calculate_damage_balloon_deals(BalloonDict[contained_balloon])
+			total_score += calculate_damage_balloon_deals(contained_balloon)
 	return total_score
