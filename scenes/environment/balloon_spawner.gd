@@ -33,6 +33,9 @@ func _on_spawn_child_balloons(progress_ratio, contains_list, residual_damage):
 	# Spawn children balloons at given dispersions
 	for i in len(spawn_list):
 		spawn_balloon(spawn_list[i], $BalloonPath, dispersion_list[i] * dispersion + progress_ratio)
+	
+	# Pop sound effect
+	add_child(pop_scene.instantiate())
 
 func get_evenly_distributed_range(n : float) -> Array:
 	# Given n, returns an array of n items distributed evenly between -1 and 1
