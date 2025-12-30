@@ -14,10 +14,6 @@ config/name="godot_td"
 run/main_scene="uid://2kqk5sc71yfl"
 config/features=PackedStringArray("4.5", "Forward Plus")
 
-[autoload]
-
-BalloonData="*res://scenes/balloons/balloon_data.gd"
-
 [display]
 
 mouse_cursor/custom_image="uid://b01j4tqi5w6t2"

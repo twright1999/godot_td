@@ -56,7 +56,6 @@ func pop_balloon(residual_damage: int) -> void:
 	# Balloons are spawned uniformly offset to parent balloon to stop bunching
 	var dispersion_list = get_evenly_distributed_range(len(spawn_list))
 	
-	
 	# Spawns all balloons contained inside popped balloon
 	for i in len(spawn_list):
 		spawn_balloon(spawn_list[i], get_parent(), dispersion_list[i] * dispersion + progress_ratio)
