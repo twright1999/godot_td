@@ -6,14 +6,14 @@
 [sub_resource type="Resource" id="Resource_ain8k"]
 script = ExtResource("1_equx5")
 count = 10
-balloon_type = "red_balloon"
+balloon_type = 1
 delay = 1.0
 metadata/_custom_type_script = "uid://bdi2h1kwq867u"
 
 [sub_resource type="Resource" id="Resource_equx5"]
 script = ExtResource("1_equx5")
 count = 3
-balloon_type = "blue_balloon"
+balloon_type = 2
 delay = 1.0
 metadata/_custom_type_script = "uid://bdi2h1kwq867u"
 

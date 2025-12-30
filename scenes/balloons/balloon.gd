@@ -1,10 +1,11 @@
 extends PathFollow2D
 
-var balloon_type
 var health
 var speed
-var ready_progress
+var contains = []
 var resistances = []
+var ready_progress
+
 var dispersion = 0.002
 
 var balloon_scene: PackedScene = load("res://scenes/balloons/balloon.tscn")
@@ -114,11 +115,14 @@ func spawn_balloon(new_balloon_type: String, parent_path: Path2D, new_progress_r
 	var new_balloon = balloon_scene.instantiate()
 	
 	# Sets new balloon attributes before parenting to path
-	new_balloon.balloon_type = new_balloon_type
-	new_balloon.health = BalloonData.balloon_data[new_balloon_type]["health"]
-	new_balloon.speed = BalloonData.balloon_data[new_balloon_type]["speed"]
-	new_balloon.resistances = BalloonData.balloon_data[new_balloon_type]["resistances"]
-	new_balloon.get_node("Sprite2D").texture = load(BalloonData.balloon_data[new_balloon_type]["sprite_path"])
+	
+	new_balloon.balloon_stats = load("res://data/balloons/red.tres")
+	
+	health = balloon_stats.health
+	speed = balloon_stats.speed
+	get_node("Sprite2D").texture = load(balloon_stats.sprite)
+	contains = balloon_stats.contains
+	resistances = balloon_stats.resistances
 	
 	# Progress cannot be immediately set as balloon is not yet child to path
 	# 	so set intermediate "ready" progress before adding child
@@ -132,4 +136,10 @@ func _ready() -> void:
 	progress_ratio = ready_progress
 	
 func _init() -> void:
-	ready_progress = 0
+	balloon_stats = preload("res://data/balloons/red.tres")
+	health = balloon_stats.health
+	speed = balloon_stats.speed
+	get_node("Sprite2D").texture = load(balloon_stats.sprite)
+	contains = balloon_stats.contains
+	resistances = balloon_stats.resistances
+	
