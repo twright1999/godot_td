@@ -5,7 +5,6 @@
 
 [resource]
 script = ExtResource("1_rn1w1")
-name = 1
 speed = 0.01
 sprite = ExtResource("2_4grds")
 metadata/_custom_type_script = "uid://c3of18vktwx0u"
