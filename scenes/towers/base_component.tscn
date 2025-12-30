@@ -1,15 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dji4iraoidxk1"]
+[gd_scene load_steps=2 format=3 uid="uid://dji4iraoidxk1"]
 
 [ext_resource type="Script" uid="uid://byu1hpidnxie7" path="res://scenes/towers/base_component.gd" id="1_dftfx"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_dftfx"]
-
-[node name="BaseComponent" type="Node2D"]
-script = ExtResource("1_dftfx")
-
-[node name="BaseSize" type="Area2D" parent="."]
+[node name="BaseComponent" type="Area2D"]
 scale = Vector2(0.99999994, 0.99999994)
 collision_mask = 9
+script = ExtResource("1_dftfx")
 
-[node name="SizeCollision" type="CollisionShape2D" parent="BaseSize"]
-shape = SubResource("CircleShape2D_dftfx")
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
