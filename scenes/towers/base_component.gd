@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var BaseSprite: Texture2D
+@export var BaseSize: float
 
 func _init():
-	$BaseSprite.texture = BaseSprite
+	pass

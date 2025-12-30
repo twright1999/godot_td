@@ -1,12 +1,11 @@
 extends Node2D
 
-@export var TurretTexture: Texture2D
-@export var TurretRange: float
-@export var TurretRoundsPerSecond: float
-@export var ProjectileOffset: Vector2
+@onready var TurretRange = $Range
+@onready var TurretTimer = $Timer
+@onready var TurretDartOrigin = $DartOrigin
 
-func _init():
-	$TurretSprite.texture = TurretTexture
-	$Range/CollisionShape2D.radius = TurretRange
-	$Timer.wait_time = 1/TurretRoundsPerSecond
-	$DartOrigin.position = ProjectileOffset
+func _ready():
+	pass
+	#$Range/CollisionShape2D.radius = TurretRange
+	#$Timer.wait_time = 1/TurretRoundsPerSecond
+	#$DartOrigin.position = ProjectileOffset
