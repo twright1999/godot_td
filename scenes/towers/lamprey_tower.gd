@@ -12,18 +12,10 @@ var built = true
 var build_colliding = true
 
 func _process(_delta: float) -> void:
-	#balloons_in_range = $Range.get_overlapping_areas()
 	if built:
-		#if not balloons_in_range.is_empty():
-		set_lamprey_active(true)
 		var target = targeting.get_first_target()
-		
 		if target:
-			print(target)
-			$SpriteLamprey.look_at(target)
-			
-		#else:
-			#set_lamprey_active(false)
+			$TurretComponent/Sprite2D.look_at(target.global_position)
 	else:
 		check_build_collisions()
 
