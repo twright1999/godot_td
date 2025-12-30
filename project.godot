@@ -16,7 +16,7 @@ config/features=PackedStringArray("4.5", "Forward Plus")
 
 [autoload]
 
-BalloonData="*res://scenes/balloons/balloon_data.gd"
+DataTypes="*res://data/balloons/data_types.gd"
 
 [display]
 

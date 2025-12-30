@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BalloonData" load_steps=3 format=3 uid="uid://g12cmabo2kgl"]
+
+[ext_resource type="Script" uid="uid://c3of18vktwx0u" path="res://data/balloons/balloon_data.gd" id="1_5pyci"]
+[ext_resource type="Texture2D" uid="uid://cofgbon66382t" path="res://assets/sprites/balloons/blue_balloon.png" id="2_bhdq7"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_5pyci")
+speed = 0.015
+sprite = ExtResource("2_bhdq7")
+contains = Array[int]([1])
+metadata/_custom_type_script = "uid://c3of18vktwx0u"

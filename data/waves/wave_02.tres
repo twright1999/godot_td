@@ -1,26 +1,26 @@
 [gd_resource type="Resource" script_class="WaveData" load_steps=6 format=3 uid="uid://betnfrdwpnb2t"]
 
-[ext_resource type="Script" uid="uid://bdi2h1kwq867u" path="res://data/group.gd" id="1_q2xxr"]
-[ext_resource type="Script" uid="uid://cxcx2fg2r1yr2" path="res://data/wave_data.gd" id="2_wajoa"]
+[ext_resource type="Script" uid="uid://bdi2h1kwq867u" path="res://data/waves/group.gd" id="1_q2xxr"]
+[ext_resource type="Script" uid="uid://cxcx2fg2r1yr2" path="res://data/waves/wave_data.gd" id="2_wajoa"]
 
 [sub_resource type="Resource" id="Resource_q2xxr"]
 script = ExtResource("1_q2xxr")
 count = 10
-balloon_type = "red_balloon"
+balloon_type = 1
 delay = 0.5
 metadata/_custom_type_script = "uid://bdi2h1kwq867u"
 
 [sub_resource type="Resource" id="Resource_wajoa"]
 script = ExtResource("1_q2xxr")
 count = 5
-balloon_type = "blue_balloon"
+balloon_type = 2
 delay = 1.0
 metadata/_custom_type_script = "uid://bdi2h1kwq867u"
 
 [sub_resource type="Resource" id="Resource_ddidl"]
 script = ExtResource("1_q2xxr")
 count = 1
-balloon_type = "green_balloon"
+balloon_type = 3
 metadata/_custom_type_script = "uid://bdi2h1kwq867u"
 
 [resource]
