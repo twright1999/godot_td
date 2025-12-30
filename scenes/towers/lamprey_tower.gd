@@ -7,7 +7,7 @@ var scale_tween: Tween
 var lamprey_dart_scene: PackedScene = load("res://scenes/projectiles/lamprey_dart.tscn")
 
 var balloons_in_range := []
-var lamprey_active = false
+var lamprey_active = true
 
 var built = false
 var build_colliding = true
@@ -16,10 +16,10 @@ func _physics_process(_delta: float) -> void:
 	if built:
 		var target = targeting.get_first_target()
 		if target:
-			#set_lamprey_active(true)
-			$TurretComponent/Sprite2D.look_at(target.global_position)
-		#else:
-			#set_lamprey_active(false)
+			set_lamprey_active(true)
+			$TurretComponent.look_at(target.global_position)
+		else:
+			set_lamprey_active(false)
 	else:
 		build_colliding = base.is_building_colliding()
 
@@ -41,16 +41,23 @@ func set_lamprey_active(active: bool):
 	if lamprey_active:
 		# Set scale to 0.5, 0.5 quickly and elastically
 		scale_tween.set_trans(Tween.TRANS_ELASTIC)
-		scale_tween.tween_property($SpriteLamprey, "scale", Vector2(0.5, 0.5), 0.5)
+		scale_tween.tween_property($TurretComponent/Sprite2D, "scale", Vector2(0.5, 0.5), 0.5)
 	else:
 		# Wait a while, then slowly revert to 0 scale
 		scale_tween.tween_interval(1)
 		scale_tween.set_trans(Tween.TRANS_LINEAR)
-		scale_tween.tween_property($SpriteLamprey, "scale", Vector2(0, 0), 1)
+		scale_tween.tween_property($TurretComponent/Sprite2D, "scale", Vector2(0, 0), 1)
 
 func _on_timer_timeout() -> void:
-	if not balloons_in_range.is_empty() and built:
-		var lamprey_dart = lamprey_dart_scene.instantiate()
-		lamprey_dart.position = $SpriteLamprey/DartOrigin.global_position
-		lamprey_dart.rotation = $SpriteLamprey.rotation
-		get_node("../../Projectiles").add_child(lamprey_dart)
+	pass
+	#if not balloons_in_range.is_empty() and built:
+		#var lamprey_dart = lamprey_dart_scene.instantiate()
+		#lamprey_dart.position = $TurretComponent/DartOrigin.global_position
+		#lamprey_dart.rotation = $TurretComponent/Sprite2D.rotation
+		#get_node("../../Projectiles").add_child(lamprey_dart)
+
+
+func _on_turret_component_fire_projectile(projectile: Node) -> void:
+	#projectile.rotation = $TurretComponent/Sprite2D.rotation
+	if built:
+		get_node("../../Projectiles").add_child(projectile)

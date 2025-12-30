@@ -1,11 +1,22 @@
 extends Node2D
 
-@onready var TurretRange = $Range
-@onready var TurretTimer = $Timer
-@onready var TurretDartOrigin = $DartOrigin
+@export var fire_interval := 1.0
+@export var projectile_scene: PackedScene
+
+signal fire_projectile(projectile: Node)
+
+@onready var turret_timer = $Timer
+@onready var turret_dart_origin = $DartOrigin
 
 func _ready():
-	pass
-	#$Range/CollisionShape2D.radius = TurretRange
-	#$Timer.wait_time = 1/TurretRoundsPerSecond
-	#$DartOrigin.position = ProjectileOffset
+	turret_timer.wait_time = fire_interval
+
+func _on_timer_timeout() -> void:
+	if projectile_scene:
+		fire()
+	
+func fire() -> void:
+	var projectile = projectile_scene.instantiate()
+	projectile.position = turret_dart_origin.global_position
+	projectile.rotation = rotation
+	fire_projectile.emit(projectile)
