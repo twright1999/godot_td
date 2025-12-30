@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_5h5ow")
+health = 1
 speed = 0.02
 sprite = ExtResource("2_s6bpb")
 contains = Array[int]([2])
