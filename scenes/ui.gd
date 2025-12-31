@@ -1,5 +1,21 @@
 extends CanvasLayer
 
+func _ready():
+	get_node("HUD/HUDMargin/GameSpeedControl/PlayPause").pressed.connect(on_play_paused_pressed)
+	get_node("HUD/HUDMargin/GameSpeedControl/SpeedUp").pressed.connect(on_speedup_pressed)
+
+func on_play_paused_pressed():
+	if get_tree().is_paused():
+		get_tree().paused = false
+	else:
+		get_tree().paused = true
+	
+func on_speedup_pressed():
+	if Engine.get_time_scale() == 1.0:
+		Engine.set_time_scale(2.0)
+	else:
+		Engine.set_time_scale(1.0)
+
 func set_tower_preview(tower_type, mouse_position):
 	# TODO use tower_type to load the correct tower scene
 	#	(hardcoded to lamprey tower below)
