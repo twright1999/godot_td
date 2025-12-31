@@ -29,6 +29,7 @@ func initiate_build_mode(tower_type):
 func _process(_delta: float) -> void:
 	if build_mode:
 		update_tower_preview()
+		CursorHandler.set_state(CursorHandler.CursorState.GRAB)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_released("ui_cancel") and build_mode == true:
@@ -65,5 +66,7 @@ func update_tower_preview():
 func cancel_build_mode():
 	build_mode = false
 	build_valid = false
+	
+	CursorHandler.set_state(CursorHandler.CursorState.DEFAULT)
 	# Remove tower preview
 	get_node("UI/TowerPreview").free()

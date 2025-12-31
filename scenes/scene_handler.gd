@@ -37,6 +37,8 @@ func _on_node_added(node:Node) -> void:
 		# If the added node is a button we connect to its mouse_entered and pressed signals
 		# and play a sound
 		node.mouse_entered.connect(_play_hover_sound)
+		node.mouse_entered.connect(_set_cursor_hover)
+		node.mouse_exited.connect(_set_cursor_default)
 		node.pressed.connect(_play_pressed_sound)
 
 func _play_hover_sound() -> void:
@@ -44,3 +46,9 @@ func _play_hover_sound() -> void:
 
 func _play_pressed_sound() -> void:
 	playback.play_stream(preload("res://assets/audio/sound_effects/click.ogg"), 0, -10, randf_range(0.9, 1.1))
+	
+func _set_cursor_hover() -> void:
+	CursorHandler.set_state(CursorHandler.CursorState.HOVER)
+
+func _set_cursor_default() -> void:
+	CursorHandler.set_state(CursorHandler.CursorState.DEFAULT)

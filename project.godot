@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.5", "Forward Plus")
 [autoload]
 
 DataTypes="*res://data/balloons/data_types.gd"
+CursorHandler="*res://scenes/CursorHandler.tscn"
 
 [display]
 
