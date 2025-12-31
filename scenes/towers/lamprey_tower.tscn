@@ -28,7 +28,6 @@ scale = Vector2(0.8, 0.8)
 texture = ExtResource("3_27axp")
 
 [node name="TurretComponent" parent="." instance=ExtResource("3_0nxcu")]
-fire_interval = 0.1
 projectile_scene = ExtResource("5_7iqa5")
 
 [node name="Sprite2D" type="Sprite2D" parent="TurretComponent"]

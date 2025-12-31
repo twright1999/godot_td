@@ -10,7 +10,6 @@ var balloons_in_range := []
 var lamprey_active = true
 
 var built = false
-#var build_colliding = true
 
 func _physics_process(_delta: float) -> void:
 	if built:
@@ -20,8 +19,6 @@ func _physics_process(_delta: float) -> void:
 			$TurretComponent.look_at(target.global_position)
 		else:
 			set_lamprey_active(false)
-	#else:
-		#build_colliding = base.is_building_colliding()
 
 func set_lamprey_active(active: bool):
 	# If active state matches what it is already set to, do nothing
@@ -50,5 +47,5 @@ func set_lamprey_active(active: bool):
 
 func _on_turret_component_fire_projectile(projectile: Node) -> void:
 	#projectile.rotation = $TurretComponent/Sprite2D.rotation
-	if built:
+	if built and lamprey_active:
 		get_node("../../Projectiles").add_child(projectile)
