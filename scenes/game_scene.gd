@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var projectile_container := $World/Projectiles
+
 var map_node
 
 var build_mode = false
@@ -39,6 +41,7 @@ func verify_and_build():
 	# If tower can be built, create tower at position and set built to true
 	if build_valid:
 		var new_tower = load("res://scenes/towers/lamprey_tower.tscn").instantiate()
+		new_tower.projectile_container = projectile_container
 		new_tower.position = build_location
 		new_tower.built = true
 		$World.get_node("Towers").add_child(new_tower)

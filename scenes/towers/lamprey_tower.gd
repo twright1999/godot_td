@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var projectile_container: Node2D
+
 @onready var targeting = $TargetingComponent
 @onready var base = $BaseComponent
 
@@ -46,6 +48,5 @@ func set_lamprey_active(active: bool):
 		scale_tween.tween_property($TurretComponent/Sprite2D, "scale", Vector2(0, 0), 1)
 
 func _on_turret_component_fire_projectile(projectile: Node) -> void:
-	#projectile.rotation = $TurretComponent/Sprite2D.rotation
 	if built and lamprey_active:
-		get_node("../../Projectiles").add_child(projectile)
+		projectile_container.add_child(projectile)
