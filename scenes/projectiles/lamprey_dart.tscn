@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cq5p7yirboyoe" path="res://assets/sprites/projectiles/lamprey_tooth.png" id="1_4q5ko"]
 [ext_resource type="Script" uid="uid://sighvxhb4gh1" path="res://scenes/projectiles/lamprey_dart.gd" id="1_h0r24"]
-[ext_resource type="PackedScene" uid="uid://cmgvl2vxm8my6" path="res://scenes/projectiles/projectile_component.tscn" id="2_kx8ts"]
+[ext_resource type="PackedScene" uid="uid://iqpglvnv6hsi" path="res://scenes/projectiles/projectile_component.tscn" id="2_kx8ts"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h0r24"]
 radius = 2.0
@@ -16,9 +16,9 @@ rotation = 1.5707964
 texture = ExtResource("1_4q5ko")
 
 [node name="ProjectileComponent" parent="." instance=ExtResource("2_kx8ts")]
+lifetime = 1.0
 projectile_damage = 5
 speed = 100
-lifetime = 0.05
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileComponent"]
 position = Vector2(6, 0)
