@@ -45,19 +45,20 @@ func verify_and_build():
 
 func update_tower_preview():
 	var mouse_position = get_global_mouse_position()
+	var drag_tower = get_node("UI/TowerPreview/DragTower")
 	
 	# Checks if tower is colliding with pre-existing towers or designated
 	#	path exclusion area
-	if not get_node("UI/TowerPreview/DragTower").build_colliding:
+	if drag_tower.base and drag_tower.base.is_building_colliding():
+		# Set tower preview to red shade and disallow building
+		$UI.update_tower_preview(mouse_position, "ff5a76")
+		build_valid = false
+	else:
 		# Set tower preview to green shade and allow building
 		$UI.update_tower_preview(mouse_position, "3ff05f")
 		build_valid = true
 		build_location = mouse_position
-	else:
-		# Set tower preview to red shade and disallow building
-		$UI.update_tower_preview(mouse_position, "ff5a76")
-		build_valid = false
-	
+		
 func cancel_build_mode():
 	build_mode = false
 	build_valid = false

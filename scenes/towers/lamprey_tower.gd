@@ -10,7 +10,7 @@ var balloons_in_range := []
 var lamprey_active = true
 
 var built = false
-var build_colliding = true
+#var build_colliding = true
 
 func _physics_process(_delta: float) -> void:
 	if built:
@@ -20,8 +20,8 @@ func _physics_process(_delta: float) -> void:
 			$TurretComponent.look_at(target.global_position)
 		else:
 			set_lamprey_active(false)
-	else:
-		build_colliding = base.is_building_colliding()
+	#else:
+		#build_colliding = base.is_building_colliding()
 
 func set_lamprey_active(active: bool):
 	# If active state matches what it is already set to, do nothing
@@ -47,15 +47,6 @@ func set_lamprey_active(active: bool):
 		scale_tween.tween_interval(1)
 		scale_tween.set_trans(Tween.TRANS_LINEAR)
 		scale_tween.tween_property($TurretComponent/Sprite2D, "scale", Vector2(0, 0), 1)
-
-func _on_timer_timeout() -> void:
-	pass
-	#if not balloons_in_range.is_empty() and built:
-		#var lamprey_dart = lamprey_dart_scene.instantiate()
-		#lamprey_dart.position = $TurretComponent/DartOrigin.global_position
-		#lamprey_dart.rotation = $TurretComponent/Sprite2D.rotation
-		#get_node("../../Projectiles").add_child(lamprey_dart)
-
 
 func _on_turret_component_fire_projectile(projectile: Node) -> void:
 	#projectile.rotation = $TurretComponent/Sprite2D.rotation
