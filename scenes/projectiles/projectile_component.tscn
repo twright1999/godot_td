@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmgvl2vxm8my6"]
+
+[ext_resource type="Script" uid="uid://bvj3y5a2ndv0b" path="res://scenes/projectiles/projectile_component.gd" id="1_dassl"]
+
+[node name="ProjectileComponent" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_dassl")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
