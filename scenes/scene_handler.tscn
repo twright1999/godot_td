@@ -10,6 +10,7 @@ script = ExtResource("1_6kaua")
 [node name="MainMenu" parent="." instance=ExtResource("2_tx7b0")]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
 stream = ExtResource("3_tx7b0")
 autoplay = true
 parameters/looping = true

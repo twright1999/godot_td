@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://hxb14nj846pi"]
+[gd_scene load_steps=12 format=3 uid="uid://hxb14nj846pi"]
 
 [ext_resource type="Script" uid="uid://cjfadwtuuiniv" path="res://scenes/game_scene.gd" id="1_rurhu"]
 [ext_resource type="PackedScene" uid="uid://c476lm42j8d42" path="res://scenes/environment/world.tscn" id="1_w5aja"]
@@ -7,6 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://cad5bx2rcfqvy" path="res://assets/sprites/menu/buttonSquare_beige_pressed.png" id="3_y3j0m"]
 [ext_resource type="Texture2D" uid="uid://b3on7tkvtqh3" path="res://assets/sprites/menu/buttonSquare_beige_hover.png" id="4_rurhu"]
 [ext_resource type="Texture2D" uid="uid://b7bu8d0ptlx2v" path="res://assets/sprites/towers/lamprey_tower.png" id="5_y3j0m"]
+[ext_resource type="Texture2D" uid="uid://q0ekl5plb6tj" path="res://assets/sprites/menu/right.png" id="8_utbpp"]
+[ext_resource type="Texture2D" uid="uid://bg6dxabj7oqfw" path="res://assets/sprites/menu/pause.png" id="9_tcjrq"]
+[ext_resource type="Texture2D" uid="uid://bq88qug7sx1oq" path="res://assets/sprites/menu/fastForward_1.png" id="10_tcjrq"]
+[ext_resource type="Texture2D" uid="uid://cqx75sdkl0p1p" path="res://assets/sprites/menu/fastForward_2.png" id="11_rvs2r"]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_rurhu")
@@ -63,3 +67,32 @@ offset_right = 70.0
 offset_bottom = 65.0
 texture = ExtResource("5_y3j0m")
 expand_mode = 1
+
+[node name="GameSpeedControl" type="HBoxContainer" parent="UI/HUD/HUDMargin"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="PlayPause" type="TextureButton" parent="UI/HUD/HUDMargin/GameSpeedControl"]
+process_mode = 3
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+toggle_mode = true
+button_pressed = true
+texture_normal = ExtResource("8_utbpp")
+texture_pressed = ExtResource("9_tcjrq")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="SpeedUp" type="TextureButton" parent="UI/HUD/HUDMargin/GameSpeedControl"]
+process_mode = 3
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("10_tcjrq")
+texture_pressed = ExtResource("11_rvs2r")
+ignore_texture_size = true
+stretch_mode = 0
