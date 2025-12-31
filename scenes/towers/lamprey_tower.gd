@@ -1,16 +1,13 @@
 extends Node2D
 
-@export var projectile_container: Node2D
+@export var projectile_container: Node2D		## World scene container for projectiles
 
 @onready var targeting = $TargetingComponent
 @onready var base = $BaseComponent
 
 var scale_tween: Tween
-var lamprey_dart_scene: PackedScene = load("res://scenes/projectiles/lamprey_dart.tscn")
 
-var balloons_in_range := []
 var lamprey_active = true
-
 var built = false
 
 func _physics_process(_delta: float) -> void:
