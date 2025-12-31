@@ -1,24 +1,23 @@
 extends Node2D
 
+@export var projectile_container: Node2D		## World scene container for projectiles
+
+@onready var targeting = $TargetingComponent
+@onready var base = $BaseComponent
+
 var scale_tween: Tween
-var lamprey_dart_scene: PackedScene = load("res://scenes/projectiles/lamprey_dart.tscn")
 
-var balloons_in_range := []
-var lamprey_active = false
-
+var lamprey_active = true
 var built = false
-var build_colliding = true
 
-func _process(_delta: float) -> void:
-	balloons_in_range = $Range.get_overlapping_areas()
+func _physics_process(_delta: float) -> void:
 	if built:
-		if not balloons_in_range.is_empty():
+		var target = targeting.get_first_target()
+		if target:
 			set_lamprey_active(true)
-			target_balloon()
+			$TurretComponent.look_at(target.global_position)
 		else:
 			set_lamprey_active(false)
-	else:
-		check_build_collisions()
 
 func set_lamprey_active(active: bool):
 	# If active state matches what it is already set to, do nothing
@@ -38,32 +37,13 @@ func set_lamprey_active(active: bool):
 	if lamprey_active:
 		# Set scale to 0.5, 0.5 quickly and elastically
 		scale_tween.set_trans(Tween.TRANS_ELASTIC)
-		scale_tween.tween_property($SpriteLamprey, "scale", Vector2(0.5, 0.5), 0.5)
+		scale_tween.tween_property($TurretComponent/Sprite2D, "scale", Vector2(0.5, 0.5), 0.5)
 	else:
 		# Wait a while, then slowly revert to 0 scale
 		scale_tween.tween_interval(1)
 		scale_tween.set_trans(Tween.TRANS_LINEAR)
-		scale_tween.tween_property($SpriteLamprey, "scale", Vector2(0, 0), 1)
+		scale_tween.tween_property($TurretComponent/Sprite2D, "scale", Vector2(0, 0), 1)
 
-func target_balloon():
-	var highest_progress = 0
-	var targeted_balloon = null
-	for balloon in balloons_in_range:
-		var balloon_progress = balloon.get_parent().progress_ratio
-		if balloon_progress > highest_progress:
-			highest_progress = balloon_progress
-			targeted_balloon = balloon
-	$SpriteLamprey.look_at(targeted_balloon.global_transform.origin)
-
-func check_build_collisions():
-	if $BuildRadius.get_overlapping_areas().is_empty():
-		build_colliding = false
-	else:
-		build_colliding = true
-
-func _on_timer_timeout() -> void:
-	if not balloons_in_range.is_empty() and built:
-		var lamprey_dart = lamprey_dart_scene.instantiate()
-		lamprey_dart.position = $SpriteLamprey/DartOrigin.global_position
-		lamprey_dart.rotation = $SpriteLamprey.rotation
-		get_node("../../Projectiles").add_child(lamprey_dart)
+func _on_turret_component_fire_projectile(projectile: Node) -> void:
+	if built and lamprey_active:
+		projectile_container.add_child(projectile)

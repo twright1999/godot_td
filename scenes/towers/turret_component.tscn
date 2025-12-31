@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3xrk1eclr1q1"]
+
+[ext_resource type="Script" uid="uid://dh7xqkn3p286w" path="res://scenes/towers/turret_component.gd" id="1_li04h"]
+
+[node name="TurretComponent" type="Node2D"]
+script = ExtResource("1_li04h")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="DartOrigin" type="Marker2D" parent="."]
+position = Vector2(0.00019999998, -9.999999e-05)
+scale = Vector2(1.2499999e-05, 1.2499999e-05)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

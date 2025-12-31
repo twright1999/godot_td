@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var projectile_container := $World/Projectiles
+
 var map_node
 
 var build_mode = false
@@ -39,25 +41,27 @@ func verify_and_build():
 	# If tower can be built, create tower at position and set built to true
 	if build_valid:
 		var new_tower = load("res://scenes/towers/lamprey_tower.tscn").instantiate()
+		new_tower.projectile_container = projectile_container
 		new_tower.position = build_location
 		new_tower.built = true
 		$World.get_node("Towers").add_child(new_tower)
 
 func update_tower_preview():
 	var mouse_position = get_global_mouse_position()
+	var drag_tower = get_node("UI/TowerPreview/DragTower")
 	
 	# Checks if tower is colliding with pre-existing towers or designated
 	#	path exclusion area
-	if not get_node("UI/TowerPreview/DragTower").build_colliding:
+	if drag_tower.base and drag_tower.base.is_building_colliding():
+		# Set tower preview to red shade and disallow building
+		$UI.update_tower_preview(mouse_position, "ff5a76")
+		build_valid = false
+	else:
 		# Set tower preview to green shade and allow building
 		$UI.update_tower_preview(mouse_position, "3ff05f")
 		build_valid = true
 		build_location = mouse_position
-	else:
-		# Set tower preview to red shade and disallow building
-		$UI.update_tower_preview(mouse_position, "ff5a76")
-		build_valid = false
-	
+		
 func cancel_build_mode():
 	build_mode = false
 	build_valid = false
