@@ -18,7 +18,10 @@ texture = ExtResource("1_4q5ko")
 [node name="ProjectileComponent" parent="." instance=ExtResource("2_kx8ts")]
 projectile_damage = 5
 speed = 100
+lifetime = 0.05
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileComponent"]
 position = Vector2(6, 0)
 shape = SubResource("CapsuleShape2D_h0r24")
+
+[connection signal="lifetime_expired" from="ProjectileComponent" to="." method="_on_projectile_component_lifetime_expired"]

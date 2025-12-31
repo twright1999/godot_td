@@ -4,5 +4,6 @@ extends Node2D
 
 func _physics_process(delta: float) -> void:
 	position += projectile.move(rotation, delta)
-	if projectile.is_lifetime_expired():
-		queue_free()
+
+func _on_projectile_component_lifetime_expired() -> void:
+	queue_free()
