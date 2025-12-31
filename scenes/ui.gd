@@ -13,8 +13,10 @@ func on_play_paused_pressed():
 func on_speedup_pressed():
 	if Engine.get_time_scale() == 1.0:
 		Engine.set_time_scale(2.0)
+		Engine.physics_ticks_per_second = 120
 	else:
 		Engine.set_time_scale(1.0)
+		Engine.physics_ticks_per_second = 60
 
 func set_tower_preview(tower_type, mouse_position):
 	# TODO use tower_type to load the correct tower scene
