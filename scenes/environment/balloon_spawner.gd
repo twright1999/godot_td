@@ -7,6 +7,10 @@ var pop_scene: PackedScene = load("res://scenes/sounds/pop_sfx.tscn")
 
 const dispersion = 0.002
 
+signal finished_wave_signal
+var finished_wave
+
+
 const BalloonDict = {
 	DataTypes.Balloon.RED : preload("res://data/balloons/red.tres"),
 	DataTypes.Balloon.BLUE : preload("res://data/balloons/blue.tres"),
@@ -20,6 +24,13 @@ const BalloonDict = {
 	DataTypes.Balloon.RAINBOW : preload("res://data/balloons/rainbow.tres"),
 	DataTypes.Balloon.CERAMIC : preload("res://data/balloons/ceramic.tres"),
 }
+
+func _physics_process(_delta: float) -> void:
+	var prev_finished_wave = finished_wave
+	finished_wave = $BalloonPath.get_child_count() == 0
+	if not prev_finished_wave and finished_wave:
+		finished_wave_signal.emit()
+
 ##
 ## Balloon Spawning
 ##
@@ -102,6 +113,8 @@ func _on_world_ready() -> void:
 	for wave in waves:
 		# Waits for the current wave to finish spawning before
 		# calling the next wave.
+		await finished_wave_signal
+		print("START NEXT WAVE")
 		await run_wave(wave)
 		
 func run_wave(wave: WaveData) -> void:
