@@ -7,9 +7,7 @@ var pop_scene: PackedScene = load("res://scenes/sounds/pop_sfx.tscn")
 
 const dispersion = 0.002
 
-signal finished_wave_signal
-var finished_wave
-
+var wave_number = 1
 
 const BalloonDict = {
 	DataTypes.Balloon.RED : preload("res://data/balloons/red.tres"),
@@ -26,10 +24,7 @@ const BalloonDict = {
 }
 
 func _physics_process(_delta: float) -> void:
-	var prev_finished_wave = finished_wave
-	finished_wave = $BalloonPath.get_child_count() == 0
-	if not prev_finished_wave and finished_wave:
-		finished_wave_signal.emit()
+	GameEvents.wave_running = $BalloonPath.get_child_count() != 0
 
 ##
 ## Balloon Spawning
@@ -110,18 +105,20 @@ func spawn_balloon(new_balloon_type: DataTypes.Balloon, parent_path: Path2D, new
 ## Balloon Waves
 ##
 func _on_world_ready() -> void:
-	for wave in waves:
-		# Waits for the current wave to finish spawning before
-		# calling the next wave.
-		await finished_wave_signal
-		print("START NEXT WAVE")
-		await run_wave(wave)
-		
-func run_wave(wave: WaveData) -> void:
-	for group in wave.groups:
-		# Waits for group to finish spawning.
-		await spawn_group(group)
-		await get_tree().create_timer(wave.group_delay).timeout
+	GameEvents.wave_start_requested.connect(run_wave)
+
+func run_wave() -> void:
+	if wave_number > len(waves):
+		print("No more waves!!!")
+		GameEvents.wave_finished.emit()
+	else:
+		print("Running Wave ", wave_number)
+		var wave = waves[wave_number - 1]
+		for group in wave.groups:
+			# Waits for group to finish spawning.
+			await spawn_group(group)
+			await get_tree().create_timer(wave.group_delay).timeout
+		wave_number += 1
 	
 func spawn_group(group: BalloonGroup) -> void:
 	for i in group.count:

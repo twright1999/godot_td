@@ -18,6 +18,7 @@ config/features=PackedStringArray("4.5", "Forward Plus")
 
 DataTypes="*res://data/balloons/data_types.gd"
 CursorHandler="*res://scenes/cursor_handler.tscn"
+GameEvents="*res://events/game_events.gd"
 
 [display]
 

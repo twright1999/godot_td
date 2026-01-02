@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://c476lm42j8d42"]
 
 [ext_resource type="Texture2D" uid="uid://cfv7rxsxewhy0" path="res://assets/sprites/environment/monkey_meadows.png" id="1_d1c63"]
+[ext_resource type="Resource" uid="uid://betnfrdwpnb2t" path="res://data/waves/wave_02.tres" id="5_wcnsb"]
 [ext_resource type="Script" uid="uid://ccfh2muxqt3wb" path="res://scenes/environment/balloon_spawner.gd" id="7_43fak"]
 [ext_resource type="Script" uid="uid://cxcx2fg2r1yr2" path="res://data/waves/wave_data.gd" id="8_xrntt"]
 [ext_resource type="Resource" uid="uid://xn6moe0eyayq" path="res://data/waves/wave_01.tres" id="9_hfr0h"]
-[ext_resource type="Resource" uid="uid://betnfrdwpnb2t" path="res://data/waves/wave_02.tres" id="10_hfr0h"]
 
 [sub_resource type="Curve2D" id="Curve2D_32lhk"]
 _data = {
@@ -36,7 +36,7 @@ texture = ExtResource("1_d1c63")
 
 [node name="BalloonSpawner" type="Node2D" parent="."]
 script = ExtResource("7_43fak")
-waves = Array[ExtResource("8_xrntt")]([ExtResource("9_hfr0h"), ExtResource("10_hfr0h")])
+waves = Array[ExtResource("8_xrntt")]([ExtResource("9_hfr0h"), ExtResource("5_wcnsb")])
 
 [node name="BalloonPath" type="Path2D" parent="BalloonSpawner"]
 curve = SubResource("Curve2D_32lhk")
