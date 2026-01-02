@@ -39,4 +39,7 @@ texture = ExtResource("2_27axp")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TargetingComponent"]
 shape = SubResource("CircleShape2D_7iqa5")
 
+[node name="GrabPoint" type="Marker2D" parent="."]
+position = Vector2(-16, -45)
+
 [connection signal="fire_projectile" from="TurretComponent" to="." method="_on_turret_component_fire_projectile"]
