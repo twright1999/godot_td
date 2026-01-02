@@ -5,9 +5,7 @@ func _ready():
 	get_node("HUD/HUDMargin/GameSpeedControl/SpeedUp").pressed.connect(on_speedup_pressed)
 
 func on_play_paused_pressed():
-	print(GameEvents.wave_running)
 	if not GameEvents.wave_running:
-		print("emitting")
 		GameEvents.wave_start_requested.emit()
 	elif get_tree().is_paused():
 		get_tree().paused = false
