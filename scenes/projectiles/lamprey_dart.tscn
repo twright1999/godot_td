@@ -1,28 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://dc2qka7do4kw6"]
+[gd_scene load_steps=5 format=3 uid="uid://dc2qka7do4kw6"]
 
 [ext_resource type="Texture2D" uid="uid://cq5p7yirboyoe" path="res://assets/sprites/projectiles/lamprey_tooth.png" id="1_4q5ko"]
 [ext_resource type="Script" uid="uid://sighvxhb4gh1" path="res://scenes/projectiles/lamprey_dart.gd" id="1_h0r24"]
+[ext_resource type="PackedScene" uid="uid://iqpglvnv6hsi" path="res://scenes/projectiles/projectile_component.tscn" id="2_kx8ts"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h0r24"]
 radius = 2.0
 height = 6.0
 
-[node name="LampreyDart" type="Area2D"]
-collision_layer = 4
-collision_mask = 2
+[node name="LampreyDart" type="Node2D"]
 script = ExtResource("1_h0r24")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5707964
 texture = ExtResource("1_4q5ko")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="ProjectileComponent" parent="." instance=ExtResource("2_kx8ts")]
+lifetime = 3.0
+projectile_damage = 1
+speed = 1000
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileComponent"]
 position = Vector2(6, 0)
 shape = SubResource("CapsuleShape2D_h0r24")
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
-one_shot = true
-autostart = true
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="lifetime_expired" from="ProjectileComponent" to="." method="_on_projectile_component_lifetime_expired"]

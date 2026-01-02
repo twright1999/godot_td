@@ -6,7 +6,6 @@
 script = ExtResource("1_li04h")
 
 [node name="Timer" type="Timer" parent="."]
-autostart = true
 
 [node name="DartOrigin" type="Marker2D" parent="."]
 position = Vector2(0.00019999998, -9.999999e-05)

@@ -10,6 +10,7 @@ signal fire_projectile(projectile: Node)
 
 func _ready():
 	turret_timer.wait_time = fire_interval
+	turret_timer.start()
 
 func _on_timer_timeout() -> void:
 	if projectile_scene:
