@@ -44,6 +44,10 @@ func verify_and_build():
 		var new_tower = build_type.instantiate()
 		new_tower.projectile_container = projectile_container
 		new_tower.position = build_location
+		
+		if new_tower.get_node("GrabPoint"):
+			new_tower.position -= new_tower.get_node("GrabPoint").position
+			
 		new_tower.built = true
 		$World.get_node("Towers").add_child(new_tower)
 

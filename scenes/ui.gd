@@ -38,6 +38,10 @@ func set_tower_preview(tower_type, mouse_position):
 
 func update_tower_preview(new_position, color):
 	$TowerPreview.position = new_position
+	
+	if $TowerPreview/DragTower/GrabPoint:
+		$TowerPreview.position -= $TowerPreview/DragTower/GrabPoint.position
+		
 	# Change color to new specified color if it has changed
 	if get_node("TowerPreview/DragTower").modulate != Color(color):
 		get_node("TowerPreview/DragTower").modulate = Color(color)
