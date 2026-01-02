@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://c476lm42j8d42"]
+[gd_scene load_steps=11 format=3 uid="uid://c476lm42j8d42"]
 
 [ext_resource type="Texture2D" uid="uid://cfv7rxsxewhy0" path="res://assets/sprites/environment/monkey_meadows.png" id="1_d1c63"]
-[ext_resource type="PackedScene" uid="uid://bu3pht1n6h2qg" path="res://scenes/towers/skull_tower.tscn" id="2_tmq7g"]
 [ext_resource type="Script" uid="uid://ccfh2muxqt3wb" path="res://scenes/environment/balloon_spawner.gd" id="7_43fak"]
 [ext_resource type="Script" uid="uid://cxcx2fg2r1yr2" path="res://data/waves/wave_data.gd" id="8_xrntt"]
 [ext_resource type="Resource" uid="uid://xn6moe0eyayq" path="res://data/waves/wave_01.tres" id="9_hfr0h"]
@@ -32,10 +31,6 @@ scale = Vector2(0.6074074, 0.6074074)
 texture = ExtResource("1_d1c63")
 
 [node name="Towers" type="Node2D" parent="."]
-
-[node name="Skull" parent="Towers" node_paths=PackedStringArray("projectile_container") instance=ExtResource("2_tmq7g")]
-position = Vector2(95, 229)
-projectile_container = NodePath("../../Projectiles")
 
 [node name="Projectiles" type="Node2D" parent="."]
 

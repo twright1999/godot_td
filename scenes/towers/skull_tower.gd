@@ -7,7 +7,7 @@ extends Node2D
 
 @export var proj_count := 8
 
-var built = true
+var built = false
 var target = null
 
 func _physics_process(_delta: float) -> void:

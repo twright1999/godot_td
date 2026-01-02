@@ -13,7 +13,7 @@ func _ready() -> void:
 	# For each build button, binds the button to the initiate_build_mode function
 	for i in get_tree().get_nodes_in_group("BuildButtons"):
 		# Adds the tower name as a parameter passed to the binded function
-		i.pressed.connect(initiate_build_mode.bind(i.get_name()))
+		i.pressed.connect(initiate_build_mode.bind(i.Tower))
 
 func initiate_build_mode(tower_type):
 	# Initiates build mode for tower_type binded to button in _ready()
@@ -41,7 +41,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func verify_and_build():
 	# If tower can be built, create tower at position and set built to true
 	if build_valid:
-		var new_tower = load("res://scenes/towers/lamprey_tower.tscn").instantiate()
+		var new_tower = build_type.instantiate()
 		new_tower.projectile_container = projectile_container
 		new_tower.position = build_location
 		new_tower.built = true
