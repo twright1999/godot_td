@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://hxb14nj846pi"]
+[gd_scene load_steps=10 format=3 uid="uid://hxb14nj846pi"]
 
 [ext_resource type="Script" uid="uid://cjfadwtuuiniv" path="res://scenes/game_scene.gd" id="1_rurhu"]
 [ext_resource type="PackedScene" uid="uid://c476lm42j8d42" path="res://scenes/environment/world.tscn" id="1_w5aja"]
@@ -8,10 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b7bu8d0ptlx2v" path="res://assets/sprites/towers/lamprey_tower.png" id="5_y3j0m"]
 [ext_resource type="PackedScene" uid="uid://da8h1d77kgman" path="res://scenes/towers/skull_tower.tscn" id="7_tcjrq"]
 [ext_resource type="Texture2D" uid="uid://eb8wxsw1xs03" path="res://assets/sprites/towers/skull.png" id="8_rvs2r"]
-[ext_resource type="Texture2D" uid="uid://q0ekl5plb6tj" path="res://assets/sprites/menu/right.png" id="8_utbpp"]
-[ext_resource type="Texture2D" uid="uid://bg6dxabj7oqfw" path="res://assets/sprites/menu/pause.png" id="9_tcjrq"]
-[ext_resource type="Texture2D" uid="uid://bq88qug7sx1oq" path="res://assets/sprites/menu/fastForward_1.png" id="10_tcjrq"]
-[ext_resource type="Texture2D" uid="uid://cqx75sdkl0p1p" path="res://assets/sprites/menu/fastForward_2.png" id="11_rvs2r"]
+[ext_resource type="PackedScene" uid="uid://bcpsi6u8c8rto" path="res://scenes/menu/play_speed_up_button.tscn" id="13_tqxxy"]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_rurhu")
@@ -88,24 +85,8 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 
-[node name="PlayPause" type="TextureButton" parent="UI/HUD/HUDMargin/GameSpeedControl"]
-process_mode = 3
-custom_minimum_size = Vector2(64, 64)
+[node name="PlaySpeedUpButton" parent="UI/HUD/HUDMargin/GameSpeedControl" instance=ExtResource("13_tqxxy")]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-toggle_mode = true
-texture_normal = ExtResource("8_utbpp")
-texture_pressed = ExtResource("9_tcjrq")
-ignore_texture_size = true
-stretch_mode = 0
 
-[node name="SpeedUp" type="TextureButton" parent="UI/HUD/HUDMargin/GameSpeedControl"]
-process_mode = 3
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-toggle_mode = true
-texture_normal = ExtResource("10_tcjrq")
-texture_pressed = ExtResource("11_rvs2r")
-ignore_texture_size = true
-stretch_mode = 0
+[connection signal="set_speedup_fast" from="UI/HUD/HUDMargin/GameSpeedControl/PlaySpeedUpButton" to="UI" method="_on_set_speedup_fast"]
+[connection signal="set_speedup_normal" from="UI/HUD/HUDMargin/GameSpeedControl/PlaySpeedUpButton" to="UI" method="_on_set_speedup_normal"]

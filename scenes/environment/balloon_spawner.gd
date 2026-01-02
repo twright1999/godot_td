@@ -110,10 +110,10 @@ func _on_world_ready() -> void:
 func run_wave() -> void:
 	if wave_number > len(waves):
 		print("No more waves!!!")
+		GameEvents.wave_finished.emit()
 	else:
 		print("Running Wave ", wave_number)
 		var wave = waves[wave_number - 1]
-		GameEvents.wave_running = true
 		for group in wave.groups:
 			# Waits for group to finish spawning.
 			await spawn_group(group)
