@@ -2,9 +2,16 @@ extends Node
 
 var playback:AudioStreamPlaybackPolyphonic
 
+var click_sfx = preload("res://assets/audio/sound_effects/click.ogg")
+var hover_sfx = preload("res://assets/audio/sound_effects/hover.ogg")
+var honk_sfx = preload("res://assets/audio/sound_effects/honk.ogg")
+
+
 func _ready():
 	get_node("MainMenu/Margin/VBoxContainer/Play").pressed.connect(on_play_pressed)
 	get_node("MainMenu/Margin/VBoxContainer/Quit").pressed.connect(on_quit_pressed)
+	get_node("MainMenu/HonkJoe").pressed.connect(on_honk_pressed)
+	get_node("MainMenu/HonkTom").pressed.connect(on_honk_pressed)
 
 func on_play_pressed():
 	get_node("MainMenu").queue_free()
@@ -13,6 +20,9 @@ func on_play_pressed():
 
 func on_quit_pressed():
 	get_tree().quit()
+
+func on_honk_pressed():
+	playback.play_stream(honk_sfx, 0, -10, 1)
 
 ##
 ## Button Sounds
@@ -42,10 +52,10 @@ func _on_node_added(node:Node) -> void:
 		node.pressed.connect(_play_pressed_sound)
 
 func _play_hover_sound() -> void:
-	playback.play_stream(preload("res://assets/audio/sound_effects/hover.ogg"), 0, -10, randf_range(0.9, 1.1))
+	playback.play_stream(hover_sfx, 0, -10, randf_range(0.9, 1.1))
 
 func _play_pressed_sound() -> void:
-	playback.play_stream(preload("res://assets/audio/sound_effects/click.ogg"), 0, -10, randf_range(0.9, 1.1))
+	playback.play_stream(click_sfx, 0, -10, randf_range(0.9, 1.1))
 	
 func _set_cursor_hover() -> void:
 	CursorHandler.set_state(CursorHandler.CursorState.HOVER)

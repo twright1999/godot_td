@@ -147,3 +147,19 @@ size_flags_horizontal = 0
 size_flags_vertical = 4
 texture = ExtResource("6_xn6kt")
 stretch_mode = 2
+
+[node name="HonkJoe" type="Button" parent="."]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 524.0
+offset_top = 363.0
+offset_right = 548.0
+offset_bottom = 385.0
+
+[node name="HonkTom" type="Button" parent="."]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 461.0
+offset_top = 428.0
+offset_right = 478.0
+offset_bottom = 447.0
