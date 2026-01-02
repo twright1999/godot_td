@@ -2,6 +2,7 @@ extends Node2D
 
 var balloon_scene: PackedScene = load("res://scenes/balloons/balloon.tscn")
 var pop_scene: PackedScene = load("res://scenes/sounds/pop_sfx.tscn")
+var ceramic_pop_scene: PackedScene = load("res://scenes/sounds/ceramic_pop.tscn")
 
 @export var waves: Array[WaveData]
 
@@ -34,7 +35,7 @@ func _physics_process(_delta: float) -> void:
 ##
 ## Balloon Spawning
 ##
-func _on_spawn_child_balloons(progress_ratio, contains_list, residual_damage):
+func _on_spawn_child_balloons(current_balloon_type, progress_ratio, contains_list, residual_damage):
 	# Apply residual damage from balloon pop to contained balloons
 	var spawn_list = calculate_balloons_after_residual_damage(contains_list.duplicate(), residual_damage)
 	
@@ -46,7 +47,10 @@ func _on_spawn_child_balloons(progress_ratio, contains_list, residual_damage):
 		spawn_balloon(spawn_list[i], $BalloonPath, dispersion_list[i] * dispersion + progress_ratio)
 	
 	# Pop sound effect
-	add_child(pop_scene.instantiate())
+	if current_balloon_type == DataTypes.Balloon.CERAMIC:
+		add_child(ceramic_pop_scene.instantiate())
+	else:
+		add_child(pop_scene.instantiate())
 
 func get_evenly_distributed_range(n : float) -> Array:
 	# Given n, returns an array of n items distributed evenly between -1 and 1

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxialypt8n4xd"]
+
+[ext_resource type="AudioStream" uid="uid://bnsqtph5cvs3d" path="res://assets/audio/sound_effects/ceramic_tap.ogg" id="1_7c17j"]
+[ext_resource type="Script" uid="uid://caqtovx6quxqs" path="res://scenes/sounds/pop_sfx.gd" id="2_wb6bb"]
+
+[node name="CeramicTap" type="AudioStreamPlayer"]
+stream = ExtResource("1_7c17j")
+volume_db = -20.0
+autoplay = true
+script = ExtResource("2_wb6bb")
