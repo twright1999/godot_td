@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var projectile_container: Node2D		## World scene container for projectiles
+var projectile_container: Node2D		## World scene container for projectiles
 
 @onready var targeting = $TargetingComponent
 @onready var base = $BaseComponent

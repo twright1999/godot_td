@@ -1,9 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bu3pht1n6h2qg"]
+[gd_scene load_steps=9 format=3 uid="uid://da8h1d77kgman"]
 
 [ext_resource type="PackedScene" uid="uid://dji4iraoidxk1" path="res://scenes/towers/base_component.tscn" id="1_b8xnt"]
 [ext_resource type="Script" uid="uid://dpibuqy1ivhbe" path="res://scenes/towers/skull_tower.gd" id="1_t6mjm"]
 [ext_resource type="PackedScene" uid="uid://c3xrk1eclr1q1" path="res://scenes/towers/turret_component.tscn" id="2_5vyp7"]
-[ext_resource type="PackedScene" uid="uid://dp7ame7ve4ag4" path="res://scenes/projectiles/fireball.tscn" id="3_5vyp7"]
+[ext_resource type="PackedScene" path="res://scenes/projectiles/fireball.tscn" id="3_5vyp7"]
 [ext_resource type="Texture2D" uid="uid://eb8wxsw1xs03" path="res://assets/sprites/towers/skull.png" id="3_t6mjm"]
 [ext_resource type="PackedScene" uid="uid://cgu8dcxvsk36n" path="res://scenes/towers/targeting_component.tscn" id="4_vb7av"]
 
