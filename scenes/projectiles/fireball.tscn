@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dp7ame7ve4ag4"]
+
+[ext_resource type="Script" uid="uid://dlhvfrqj8ape3" path="res://scenes/projectiles/fireball.gd" id="1_s73vv"]
+[ext_resource type="PackedScene" uid="uid://iqpglvnv6hsi" path="res://scenes/projectiles/projectile_component.tscn" id="1_t07v1"]
+[ext_resource type="Texture2D" uid="uid://cpvehka077ck4" path="res://assets/sprites/towers/fireball.png" id="2_s73vv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qphfj"]
+
+[node name="Fireball" type="Node2D"]
+script = ExtResource("1_s73vv")
+
+[node name="ProjectileComponent" parent="." instance=ExtResource("1_t07v1")]
+lifetime = 0.4
+projectile_damage = 1
+speed = 200
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileComponent"]
+shape = SubResource("CircleShape2D_qphfj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+texture = ExtResource("2_s73vv")
+
+[connection signal="lifetime_expired" from="ProjectileComponent" to="." method="_on_projectile_component_lifetime_expired"]
