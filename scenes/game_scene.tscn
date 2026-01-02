@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d3k5ngv6o6m6c" path="res://scenes/build_button.tscn" id="4_b5spy"]
 [ext_resource type="PackedScene" uid="uid://dxmidg8jbjvnv" path="res://scenes/towers/lamprey_tower.tscn" id="5_utbpp"]
 [ext_resource type="Texture2D" uid="uid://b7bu8d0ptlx2v" path="res://assets/sprites/towers/lamprey_tower.png" id="5_y3j0m"]
-[ext_resource type="PackedScene" path="res://scenes/towers/skull_tower.tscn" id="7_tcjrq"]
+[ext_resource type="PackedScene" uid="uid://da8h1d77kgman" path="res://scenes/towers/skull_tower.tscn" id="7_tcjrq"]
 [ext_resource type="Texture2D" uid="uid://eb8wxsw1xs03" path="res://assets/sprites/towers/skull.png" id="8_rvs2r"]
 [ext_resource type="Texture2D" uid="uid://q0ekl5plb6tj" path="res://assets/sprites/menu/right.png" id="8_utbpp"]
 [ext_resource type="Texture2D" uid="uid://bg6dxabj7oqfw" path="res://assets/sprites/menu/pause.png" id="9_tcjrq"]
@@ -95,7 +95,6 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 toggle_mode = true
-button_pressed = true
 texture_normal = ExtResource("8_utbpp")
 texture_pressed = ExtResource("9_tcjrq")
 ignore_texture_size = true
