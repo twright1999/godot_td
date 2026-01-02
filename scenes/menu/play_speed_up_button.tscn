@@ -1,13 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://bcpsi6u8c8rto"]
+[gd_scene load_steps=5 format=3 uid="uid://bcpsi6u8c8rto"]
 
 [ext_resource type="Script" uid="uid://cry62xh75htba" path="res://play_speed_up_button.gd" id="1_fcyf0"]
+[ext_resource type="Texture2D" uid="uid://bqyxoml4v8c1l" path="res://assets/sprites/menu/play_speedup_button/buttonSquare_beige_play.png" id="1_fh6ij"]
+[ext_resource type="Texture2D" uid="uid://bt1fjtfi8tjei" path="res://assets/sprites/menu/play_speedup_button/buttonSquare_beige_play_pressed.png" id="2_7h048"]
+[ext_resource type="Texture2D" uid="uid://dwwesgcn5wsgp" path="res://assets/sprites/menu/play_speedup_button/buttonSquare_beige_play_hover.png" id="3_qndbg"]
 
-[node name="PlaySpeedUpButton" type="Button"]
+[node name="PlaySpeedUpButton" type="TextureButton"]
+custom_minimum_size = Vector2(80, 80)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
 focus_mode = 0
-flat = true
+texture_normal = ExtResource("1_fh6ij")
+texture_pressed = ExtResource("2_7h048")
+texture_hover = ExtResource("3_qndbg")
+ignore_texture_size = true
+stretch_mode = 0
 script = ExtResource("1_fcyf0")

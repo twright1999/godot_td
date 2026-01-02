@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bq88qug7sx1oq"
-path="res://.godot/imported/fastForward_1.png-5889170cbedfa0bb268a5ead7563087a.ctex"
+uid="uid://crlg6nf8kgbdq"
+path="res://.godot/imported/buttonSquare_beige_ff_fast.png-f3948ab34251748a2cbe1fcb59ca8352.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/menu/fastForward_1.png"
-dest_files=["res://.godot/imported/fastForward_1.png-5889170cbedfa0bb268a5ead7563087a.ctex"]
+source_file="res://assets/sprites/menu/play_speedup_button/buttonSquare_beige_ff_fast.png"
+dest_files=["res://.godot/imported/buttonSquare_beige_ff_fast.png-f3948ab34251748a2cbe1fcb59ca8352.ctex"]
 
 [params]
 

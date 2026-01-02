@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bilahbayxnhni"
-path="res://.godot/imported/menuGrid.png-416e9a2886c6af5ece26cd50998fc83e.ctex"
+uid="uid://dsoahnwo0sdmj"
+path="res://.godot/imported/buttonSquare_beige_ff_normal_pressed.png-d1b631dadcab3132aca183d5091bc87b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/menu/menuGrid.png"
-dest_files=["res://.godot/imported/menuGrid.png-416e9a2886c6af5ece26cd50998fc83e.ctex"]
+source_file="res://assets/sprites/menu/play_speedup_button/buttonSquare_beige_ff_normal_pressed.png"
+dest_files=["res://.godot/imported/buttonSquare_beige_ff_normal_pressed.png-d1b631dadcab3132aca183d5091bc87b.ctex"]
 
 [params]
 

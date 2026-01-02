@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0hquselt6ihd"
-path="res://.godot/imported/next.png-099ba95f796f3f9fb1120f88f096f118.ctex"
+uid="uid://bt1fjtfi8tjei"
+path="res://.godot/imported/buttonSquare_beige_play_pressed.png-1d7a86fc1e31f98879a8b18b385da6f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/menu/next.png"
-dest_files=["res://.godot/imported/next.png-099ba95f796f3f9fb1120f88f096f118.ctex"]
+source_file="res://assets/sprites/menu/play_speedup_button/buttonSquare_beige_play_pressed.png"
+dest_files=["res://.godot/imported/buttonSquare_beige_play_pressed.png-1d7a86fc1e31f98879a8b18b385da6f6.ctex"]
 
 [params]
 

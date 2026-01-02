@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfevirikukh6b"
-path="res://.godot/imported/stop.png-83b3d498047bf6392f5ea3fff4179ab6.ctex"
+uid="uid://pd7it064imir"
+path="res://.godot/imported/buttonSquare_beige_ff_fast_hover.png-70ceb5993ddaba2dfb12b52d49d61b64.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/menu/stop.png"
-dest_files=["res://.godot/imported/stop.png-83b3d498047bf6392f5ea3fff4179ab6.ctex"]
+source_file="res://assets/sprites/menu/play_speedup_button/buttonSquare_beige_ff_fast_hover.png"
+dest_files=["res://.godot/imported/buttonSquare_beige_ff_fast_hover.png-70ceb5993ddaba2dfb12b52d49d61b64.ctex"]
 
 [params]
 

@@ -1,4 +1,4 @@
-extends Button
+extends TextureButton
 
 enum ButtonState {
 	PLAY,
@@ -7,9 +7,21 @@ enum ButtonState {
 }
 
 var texture_map = {
-	ButtonState.PLAY : preload("res://assets/sprites/menu/right.png"),
-	ButtonState.SPEEDUP_NORMAL : preload("res://assets/sprites/menu/fastForward_1.png"),
-	ButtonState.SPEEDUP_FAST : preload("res://assets/sprites/menu/fastForward_2.png")
+	ButtonState.PLAY : {
+		"normal" : preload("res://assets/sprites/menu/play_speedup_button/buttonSquare_beige_play.png"),
+		"hover": preload("res://assets/sprites/menu/play_speedup_button/buttonSquare_beige_play_hover.png"),
+		"pressed" : preload("res://assets/sprites/menu/play_speedup_button/buttonSquare_beige_play_pressed.png"),
+		},
+	ButtonState.SPEEDUP_NORMAL : {
+		"normal" : preload("res://assets/sprites/menu/play_speedup_button/buttonSquare_beige_ff_normal.png"),
+		"hover": preload("res://assets/sprites/menu/play_speedup_button/buttonSquare_beige_ff_normal_hover.png"),
+		"pressed" : preload("res://assets/sprites/menu/play_speedup_button/buttonSquare_beige_ff_normal_pressed.png"),
+		},
+	ButtonState.SPEEDUP_FAST : {
+		"normal" : preload("res://assets/sprites/menu/play_speedup_button/buttonSquare_beige_ff_fast.png"),
+		"hover": preload("res://assets/sprites/menu/play_speedup_button/buttonSquare_beige_ff_fast_hover.png"),
+		"pressed" : preload("res://assets/sprites/menu/play_speedup_button/buttonSquare_beige_ff_fast_pressed.png"),
+		},
 }
 
 var current_state: ButtonState = ButtonState.PLAY
@@ -21,7 +33,9 @@ func _ready():
 	GameEvents.wave_finished.connect(wave_finished)
 
 func update_visuals():
-	self.icon = texture_map[current_state]
+	self.texture_normal = texture_map[current_state]["normal"]
+	self.texture_hover = texture_map[current_state]["hover"]
+	self.texture_pressed = texture_map[current_state]["pressed"]
 
 func _pressed():
 	match current_state:

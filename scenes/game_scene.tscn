@@ -79,14 +79,10 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_rvs2r")
 
-[node name="GameSpeedControl" type="HBoxContainer" parent="UI/HUD/HUDMargin"]
-custom_minimum_size = Vector2(128, 64)
+[node name="PlaySpeedUpButton" parent="UI/HUD/HUDMargin" instance=ExtResource("13_tqxxy")]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 
-[node name="PlaySpeedUpButton" parent="UI/HUD/HUDMargin/GameSpeedControl" instance=ExtResource("13_tqxxy")]
-layout_mode = 2
-
-[connection signal="set_speedup_fast" from="UI/HUD/HUDMargin/GameSpeedControl/PlaySpeedUpButton" to="UI" method="_on_set_speedup_fast"]
-[connection signal="set_speedup_normal" from="UI/HUD/HUDMargin/GameSpeedControl/PlaySpeedUpButton" to="UI" method="_on_set_speedup_normal"]
+[connection signal="set_speedup_fast" from="UI/HUD/HUDMargin/PlaySpeedUpButton" to="UI" method="_on_set_speedup_fast"]
+[connection signal="set_speedup_normal" from="UI/HUD/HUDMargin/PlaySpeedUpButton" to="UI" method="_on_set_speedup_normal"]
