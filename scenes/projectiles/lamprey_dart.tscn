@@ -16,9 +16,9 @@ rotation = 1.5707964
 texture = ExtResource("1_4q5ko")
 
 [node name="ProjectileComponent" parent="." instance=ExtResource("2_kx8ts")]
-lifetime = 1.0
-projectile_damage = 5
-speed = 100
+lifetime = 3.0
+projectile_damage = 1
+speed = 1000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileComponent"]
 position = Vector2(6, 0)
