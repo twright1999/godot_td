@@ -1,8 +1,6 @@
 extends CanvasLayer
 
 func set_tower_preview(tower_type, mouse_position):
-	print("building ", tower_type)
-	
 	# Instantiate the tower to be previewed
 	var drag_tower = tower_type.instantiate()
 	drag_tower.set_name("DragTower")
