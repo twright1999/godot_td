@@ -8,6 +8,6 @@ resource_local_to_scene = true
 script = ExtResource("1_5pyci")
 health = 1
 speed = 0.015
-sprite = ExtResource("2_bhdq7")
+sprites = Array[Texture2D]([ExtResource("2_bhdq7")])
 contains = Array[int]([1])
 metadata/_custom_type_script = "uid://c3of18vktwx0u"

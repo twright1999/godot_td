@@ -7,6 +7,6 @@
 script = ExtResource("1_owctn")
 health = 1
 speed = 0.025
-sprite = ExtResource("2_j8641")
+sprites = Array[Texture2D]([ExtResource("2_j8641")])
 contains = Array[int]([3])
 metadata/_custom_type_script = "uid://c3of18vktwx0u"

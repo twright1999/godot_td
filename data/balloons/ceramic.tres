@@ -1,12 +1,16 @@
-[gd_resource type="Resource" script_class="BalloonData" load_steps=3 format=3 uid="uid://dyh2gjeyjruwe"]
+[gd_resource type="Resource" script_class="BalloonData" load_steps=7 format=3 uid="uid://dyh2gjeyjruwe"]
 
 [ext_resource type="Script" uid="uid://c3of18vktwx0u" path="res://data/balloons/balloon_data.gd" id="1_gy1b2"]
-[ext_resource type="Texture2D" uid="uid://bwpar82vb7wo2" path="res://assets/sprites/balloons/ceramic_balloon.png" id="2_cl11r"]
+[ext_resource type="Texture2D" uid="uid://31fpxomt82nm" path="res://assets/sprites/balloons/ceramic_balloon_0.png" id="2_cl11r"]
+[ext_resource type="Texture2D" uid="uid://r2e7mpvcpqu0" path="res://assets/sprites/balloons/ceramic_balloon_1.png" id="3_25g4v"]
+[ext_resource type="Texture2D" uid="uid://djiptu1cgf85x" path="res://assets/sprites/balloons/ceramic_balloon_2.png" id="4_0h7of"]
+[ext_resource type="Texture2D" uid="uid://e7lyv7dxwdmq" path="res://assets/sprites/balloons/ceramic_balloon_3.png" id="5_n1cw6"]
+[ext_resource type="Texture2D" uid="uid://bnemuaueh2r5q" path="res://assets/sprites/balloons/ceramic_balloon_4.png" id="6_0regw"]
 
 [resource]
 script = ExtResource("1_gy1b2")
 health = 10
 speed = 0.02
-sprite = ExtResource("2_cl11r")
+sprites = Array[Texture2D]([ExtResource("2_cl11r"), ExtResource("3_25g4v"), ExtResource("4_0h7of"), ExtResource("5_n1cw6"), ExtResource("6_0regw")])
 contains = Array[int]([9, 9])
 metadata/_custom_type_script = "uid://c3of18vktwx0u"
