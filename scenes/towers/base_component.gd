@@ -10,6 +10,12 @@ var built := false :
 			built = value
 			queue_redraw()
 
+var show_range := false :
+	set(value):
+		if value != show_range:
+			show_range = value
+			queue_redraw()
+
 func _on_area_entered(area: Area2D) -> void:
 	building_obstructions.append(area.get_parent())
 	
@@ -19,7 +25,11 @@ func _on_area_exited(area: Area2D) -> void:
 func is_building_colliding() -> bool:
 	return len(building_obstructions) > 0
 
+func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
+		show_range = not show_range
+
 func _draw():
-	if not built:
+	if not built or show_range:
 		# Draw a circle the same size as the targeting range
 		draw_circle(Vector2.ZERO, targeting_range.shape.radius, Color("95959580"), true)
