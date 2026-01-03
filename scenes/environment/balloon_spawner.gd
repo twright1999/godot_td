@@ -23,9 +23,6 @@ const BalloonDict = {
 	DataTypes.Balloon.CERAMIC : preload("res://data/balloons/ceramic.tres"),
 }
 
-func _physics_process(_delta: float) -> void:
-	GameEvents.wave_running = $BalloonPath.get_child_count() != 0
-
 ##
 ## Balloon Spawning
 ##
@@ -108,18 +105,30 @@ func _on_world_ready() -> void:
 	GameEvents.wave_start_requested.connect(run_wave)
 
 func run_wave() -> void:
+	# If no more waves
 	if wave_number > len(waves):
 		print("No more waves!!!")
 		GameEvents.wave_finished.emit()
+	# Else, spawn next wave
 	else:
+		# Set state logic for buttons and end of wave detection
+		GameEvents.wave_running = true
 		print("Running Wave ", wave_number)
 		var wave = waves[wave_number - 1]
 		for group in wave.groups:
 			# Waits for group to finish spawning.
 			await spawn_group(group)
 			await get_tree().create_timer(wave.group_delay).timeout
+		
+		# Balloons have stopped spawning
+		print("All balloons spawned in Wave ", wave_number)
+		await $BalloonPath.no_children
+		
+		# All balloons killed, end wave
+		print("Ending Wave ", wave_number)
 		wave_number += 1
-	
+		GameEvents.wave_running = false
+
 func spawn_group(group: BalloonGroup) -> void:
 	for i in group.count:
 		spawn_balloon(group.balloon_type, $BalloonPath, 0.0)

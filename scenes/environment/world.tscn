@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://c476lm42j8d42"]
+[gd_scene load_steps=12 format=3 uid="uid://c476lm42j8d42"]
 
 [ext_resource type="Texture2D" uid="uid://cfv7rxsxewhy0" path="res://assets/sprites/environment/monkey_meadows.png" id="1_d1c63"]
 [ext_resource type="Resource" uid="uid://betnfrdwpnb2t" path="res://data/waves/wave_02.tres" id="5_wcnsb"]
+[ext_resource type="Script" uid="uid://em0qxdrq1erf" path="res://scenes/environment/balloon_path.gd" id="6_tmq7g"]
 [ext_resource type="Script" uid="uid://ccfh2muxqt3wb" path="res://scenes/environment/balloon_spawner.gd" id="7_43fak"]
 [ext_resource type="Script" uid="uid://cxcx2fg2r1yr2" path="res://data/waves/wave_data.gd" id="8_xrntt"]
 [ext_resource type="Resource" uid="uid://xn6moe0eyayq" path="res://data/waves/wave_01.tres" id="9_hfr0h"]
@@ -40,6 +41,7 @@ waves = Array[ExtResource("8_xrntt")]([ExtResource("9_hfr0h"), ExtResource("5_wc
 
 [node name="BalloonPath" type="Path2D" parent="BalloonSpawner"]
 curve = SubResource("Curve2D_32lhk")
+script = ExtResource("6_tmq7g")
 
 [node name="BalloonTimer" type="Timer" parent="BalloonSpawner"]
 one_shot = true
@@ -77,4 +79,6 @@ position = Vector2(537, 657)
 shape = SubResource("WorldBoundaryShape2D_scdbs")
 
 [connection signal="ready" from="." to="BalloonSpawner" method="_on_world_ready"]
+[connection signal="child_entered_tree" from="BalloonSpawner/BalloonPath" to="BalloonSpawner/BalloonPath" method="_on_child_entered_tree"]
+[connection signal="child_exiting_tree" from="BalloonSpawner/BalloonPath" to="BalloonSpawner/BalloonPath" method="_on_child_exiting_tree"]
 [connection signal="timeout" from="BalloonSpawner/BalloonTimer" to="BalloonSpawner" method="_on_balloon_timer_timeout"]
