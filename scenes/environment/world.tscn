@@ -74,6 +74,5 @@ shape = SubResource("WorldBoundaryShape2D_43fak")
 position = Vector2(537, 657)
 shape = SubResource("WorldBoundaryShape2D_scdbs")
 
-[connection signal="ready" from="." to="BalloonSpawner" method="_on_world_ready"]
 [connection signal="child_entered_tree" from="BalloonSpawner/BalloonPath" to="BalloonSpawner/BalloonPath" method="_on_child_entered_tree"]
 [connection signal="child_exiting_tree" from="BalloonSpawner/BalloonPath" to="BalloonSpawner/BalloonPath" method="_on_child_exiting_tree"]

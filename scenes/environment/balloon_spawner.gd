@@ -101,7 +101,7 @@ func spawn_balloon(new_balloon_type: DataTypes.Balloon, parent_path: Path2D, new
 ##
 ## Balloon Waves
 ##
-func _on_world_ready() -> void:
+func _ready() -> void:
 	GameEvents.wave_start_requested.connect(run_wave)
 
 func run_wave() -> void:
@@ -122,6 +122,8 @@ func run_wave() -> void:
 		
 		# Balloons have stopped spawning
 		print("All balloons spawned in Wave ", wave_number)
+		
+		# Wait for path to report having no more balloons
 		await $BalloonPath.no_children
 		
 		# All balloons killed, end wave
