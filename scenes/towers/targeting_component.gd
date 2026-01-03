@@ -1,11 +1,6 @@
 extends Area2D
 
 var targets_in_range: Array[Node2D] = []
-var show_range := false :
-	set(value):
-		if value != show_range:
-			show_range = value
-			queue_redraw()
 
 func _on_area_entered(area: Area2D) -> void:
 	targets_in_range.append(area.get_parent())
@@ -22,7 +17,3 @@ func get_first_target() -> Node2D:
 			target_balloon = balloon
 	
 	return target_balloon
-
-func _draw():
-	if show_range:
-		draw_circle(Vector2.ZERO, $CollisionShape2D.shape.radius, Color("95959580"), true)

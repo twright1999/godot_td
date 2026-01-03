@@ -48,7 +48,7 @@ func verify_and_build():
 		if new_tower.get_node("GrabPoint"):
 			new_tower.position -= new_tower.get_node("GrabPoint").position
 			
-		new_tower.built = true
+		new_tower.get_node("BaseComponent").built = true
 		$World.get_node("Towers").add_child(new_tower)
 
 func update_tower_preview():

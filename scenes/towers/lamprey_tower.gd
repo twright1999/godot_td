@@ -4,23 +4,20 @@ var projectile_container: Node2D		## World scene container for projectiles
 
 @onready var targeting = $TargetingComponent
 @onready var base = $BaseComponent
+@onready var turret = $TurretComponent
 
 var scale_tween: Tween
 
 var lamprey_active = true
-var built = false
 
 func _physics_process(_delta: float) -> void:
-	if built:
-		targeting.show_range = false
+	if base.built:
 		var target = targeting.get_first_target()
 		if target:
 			set_lamprey_active(true)
-			targeting.look_at(target.global_position)
+			turret.look_at(target.global_position)
 		else:
 			set_lamprey_active(false)
-	else:
-		targeting.show_range = true
 
 func set_lamprey_active(active: bool):
 	# If active state matches what it is already set to, do nothing
@@ -48,5 +45,5 @@ func set_lamprey_active(active: bool):
 		scale_tween.tween_property($TurretComponent/Sprite2D, "scale", Vector2(0, 0), 1)
 
 func _on_turret_component_fire_projectile(projectile: Node) -> void:
-	if built and lamprey_active:
+	if base.built and lamprey_active:
 		projectile_container.add_child(projectile)
