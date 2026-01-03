@@ -43,10 +43,6 @@ waves = Array[ExtResource("8_xrntt")]([ExtResource("9_hfr0h"), ExtResource("5_wc
 curve = SubResource("Curve2D_32lhk")
 script = ExtResource("6_tmq7g")
 
-[node name="BalloonTimer" type="Timer" parent="BalloonSpawner"]
-one_shot = true
-autostart = true
-
 [node name="BuildExclusionArea" type="Area2D" parent="."]
 collision_layer = 8
 
@@ -81,4 +77,3 @@ shape = SubResource("WorldBoundaryShape2D_scdbs")
 [connection signal="ready" from="." to="BalloonSpawner" method="_on_world_ready"]
 [connection signal="child_entered_tree" from="BalloonSpawner/BalloonPath" to="BalloonSpawner/BalloonPath" method="_on_child_entered_tree"]
 [connection signal="child_exiting_tree" from="BalloonSpawner/BalloonPath" to="BalloonSpawner/BalloonPath" method="_on_child_exiting_tree"]
-[connection signal="timeout" from="BalloonSpawner/BalloonTimer" to="BalloonSpawner" method="_on_balloon_timer_timeout"]
