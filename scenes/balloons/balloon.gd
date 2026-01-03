@@ -21,6 +21,7 @@ func _ready() -> void:
 	$Sprite2D.texture = balloon_stats.sprite
 	contains = balloon_stats.contains
 	resistances = balloon_stats.resistances
+	$Area2D/CollisionShape2D.disabled = true
 
 func _process(delta: float) -> void:
 	move_balloon(delta)
@@ -58,3 +59,11 @@ func damage_balloon(damage: int):
 		queue_free()
 	else:
 		health -= damage
+
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	$Area2D/CollisionShape2D.disabled = false
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	$Area2D/CollisionShape2D.disabled = true
