@@ -37,6 +37,7 @@ texture = ExtResource("2_27axp")
 [node name="TargetingComponent" parent="." instance=ExtResource("6_cph6s")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TargetingComponent"]
+modulate = Color(0.914097, 0.56218857, 0.9329399, 1)
 shape = SubResource("CircleShape2D_7iqa5")
 
 [node name="GrabPoint" type="Marker2D" parent="."]

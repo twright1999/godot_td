@@ -12,12 +12,15 @@ var built = false
 
 func _physics_process(_delta: float) -> void:
 	if built:
+		targeting.show_range = false
 		var target = targeting.get_first_target()
 		if target:
 			set_lamprey_active(true)
-			$TurretComponent.look_at(target.global_position)
+			targeting.look_at(target.global_position)
 		else:
 			set_lamprey_active(false)
+	else:
+		targeting.show_range = true
 
 func set_lamprey_active(active: bool):
 	# If active state matches what it is already set to, do nothing
