@@ -42,14 +42,18 @@ func verify_and_build():
 	# If tower can be built, create tower at position and set built to true
 	if build_valid:
 		var new_tower = build_type.instantiate()
-		new_tower.projectile_container = projectile_container
-		new_tower.position = build_location
 		
-		if new_tower.get_node("GrabPoint"):
-			new_tower.position -= new_tower.get_node("GrabPoint").position
+		if MoneyHealthManager.take_money(new_tower.get_node("BaseComponent").tower_cost):
+			new_tower.projectile_container = projectile_container
+			new_tower.position = build_location
 			
-		new_tower.get_node("BaseComponent").built = true
-		$World.get_node("Towers").add_child(new_tower)
+			if new_tower.get_node("GrabPoint"):
+				new_tower.position -= new_tower.get_node("GrabPoint").position
+				
+			new_tower.get_node("BaseComponent").built = true
+			$World.get_node("Towers").add_child(new_tower)
+		else:
+			new_tower.queue_free()
 
 func update_tower_preview():
 	var mouse_position = get_global_mouse_position()
