@@ -1,5 +1,7 @@
 extends PathFollow2D
 
+var ceramic_tap_scene: PackedScene = load("res://scenes/sounds/ceramic_tap.tscn")
+
 var balloon_stats = Resource
 
 var balloon_type
@@ -7,18 +9,19 @@ var health
 var speed
 var contains = []
 var resistances = []
+var sprite_index := 0
 
 var ready_progress
 var dispersion = 0.002
 
-signal spawn_child_balloons(progress_ratio, contains_list, residual_damage)
+signal spawn_child_balloons(current_balloon, progress_ratio, contains_list, residual_damage)
 signal reach_exit(balloon_type)
 
 func _ready() -> void:
 	progress_ratio = ready_progress
 	health = balloon_stats.health
 	speed = balloon_stats.speed
-	$Sprite2D.texture = balloon_stats.sprite
+	$Sprite2D.texture = balloon_stats.sprites[0]
 	contains = balloon_stats.contains
 	resistances = balloon_stats.resistances
 	$Area2D/CollisionShape2D.disabled = true
@@ -55,10 +58,33 @@ func balloon_reaches_end() -> void:
 ##
 func damage_balloon(damage: int):
 	if damage >= health:
-		spawn_child_balloons.emit(progress_ratio, contains, damage - health)
+		spawn_child_balloons.emit(balloon_type, progress_ratio, contains, damage - health)
 		queue_free()
 	else:
 		health -= damage
+		if balloon_type == DataTypes.Balloon.CERAMIC:
+			update_ceramic_sprite()
+			play_ceramic_tap()
+
+func update_ceramic_sprite():
+	var new_sprite_index = 0
+	
+	match health:
+		8, 7:
+			new_sprite_index = 1
+		6, 5:
+			new_sprite_index = 2
+		4, 3:
+			new_sprite_index = 3
+		2, 1:
+			new_sprite_index = 4
+	
+	if new_sprite_index != sprite_index:
+		sprite_index = new_sprite_index
+		$Sprite2D.texture = balloon_stats.sprites[sprite_index]
+
+func play_ceramic_tap():
+	add_child(ceramic_tap_scene.instantiate())
 
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:

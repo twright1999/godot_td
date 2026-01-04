@@ -2,6 +2,7 @@ extends Node2D
 
 var balloon_scene: PackedScene = load("res://scenes/balloons/balloon.tscn")
 var pop_scene: PackedScene = load("res://scenes/sounds/pop_sfx.tscn")
+var ceramic_pop_scene: PackedScene = load("res://scenes/sounds/ceramic_pop.tscn")
 
 @export var waves: Array[WaveData]
 
@@ -23,13 +24,10 @@ const BalloonDict = {
 	DataTypes.Balloon.CERAMIC : preload("res://data/balloons/ceramic.tres"),
 }
 
-func _physics_process(_delta: float) -> void:
-	GameEvents.wave_running = $BalloonPath.get_child_count() != 0
-
 ##
 ## Balloon Spawning
 ##
-func _on_spawn_child_balloons(progress_ratio, contains_list, residual_damage):
+func _on_spawn_child_balloons(current_balloon_type, progress_ratio, contains_list, residual_damage):
 	# Apply residual damage from balloon pop to contained balloons
 	var spawn_list = calculate_balloons_after_residual_damage(contains_list.duplicate(), residual_damage)
 	
@@ -41,7 +39,10 @@ func _on_spawn_child_balloons(progress_ratio, contains_list, residual_damage):
 		spawn_balloon(spawn_list[i], $BalloonPath, dispersion_list[i] * dispersion + progress_ratio)
 	
 	# Pop sound effect
-	add_child(pop_scene.instantiate())
+	if current_balloon_type == DataTypes.Balloon.CERAMIC:
+		add_child(ceramic_pop_scene.instantiate())
+	else:
+		add_child(pop_scene.instantiate())
 
 func get_evenly_distributed_range(n : float) -> Array:
 	# Given n, returns an array of n items distributed evenly between -1 and 1
@@ -104,22 +105,36 @@ func spawn_balloon(new_balloon_type: DataTypes.Balloon, parent_path: Path2D, new
 ##
 ## Balloon Waves
 ##
-func _on_world_ready() -> void:
+func _ready() -> void:
 	GameEvents.wave_start_requested.connect(run_wave)
 
 func run_wave() -> void:
+	# If no more waves
 	if wave_number > len(waves):
 		print("No more waves!!!")
 		GameEvents.wave_finished.emit()
+	# Else, spawn next wave
 	else:
+		# Set state logic for buttons and end of wave detection
+		GameEvents.wave_running = true
 		print("Running Wave ", wave_number)
 		var wave = waves[wave_number - 1]
 		for group in wave.groups:
 			# Waits for group to finish spawning.
 			await spawn_group(group)
 			await get_tree().create_timer(wave.group_delay).timeout
+		
+		# Balloons have stopped spawning
+		print("All balloons spawned in Wave ", wave_number)
+		
+		# Wait for path to report having no more balloons
+		await $BalloonPath.no_children
+		
+		# All balloons killed, end wave
+		print("Ending Wave ", wave_number)
 		wave_number += 1
-	
+		GameEvents.wave_running = false
+
 func spawn_group(group: BalloonGroup) -> void:
 	for i in group.count:
 		spawn_balloon(group.balloon_type, $BalloonPath, 0.0)
