@@ -16,14 +16,22 @@ config/features=PackedStringArray("4.5", "Forward Plus")
 
 [autoload]
 
-DataTypes="*res://data/balloons/data_types.gd"
-CursorHandler="*res://scenes/cursor_handler.tscn"
-GameEvents="*res://events/game_events.gd"
-MoneyHealthManager="*res://scenes/environment/money_health_manager.tscn"
+DataTypes="*res://data/global/data_types.gd"
+GameEvents="*res://data/global/game_events.gd"
+MoneyHealthManager="*res://data/global/money_health_manager.gd"
+CursorHandler="*res://data/global/cursor_handler.gd"
 
 [display]
 
 mouse_cursor/custom_image="uid://b01j4tqi5w6t2"
+
+[file_customization]
+
+folder_colors={
+"res://assets/": "red",
+"res://data/": "yellow",
+"res://scenes/": "green"
+}
 
 [input]
 
