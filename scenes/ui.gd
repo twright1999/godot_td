@@ -1,5 +1,11 @@
 extends CanvasLayer
 
+func _ready() -> void:
+	MoneyHealthManager.connect("money_updated", _on_money_updated)
+	MoneyHealthManager.connect("health_updated", _on_health_updated)
+	MoneyHealthManager.reset()
+	
+
 func set_tower_preview(tower_type, mouse_position):
 	# Instantiate the tower to be previewed
 	var drag_tower = tower_type.instantiate()
@@ -33,3 +39,9 @@ func _on_set_speedup_fast() -> void:
 func _on_set_speedup_normal() -> void:
 	Engine.set_time_scale(1.0)
 	Engine.physics_ticks_per_second = 60
+
+func _on_money_updated(new_money) -> void:
+	$HUD/HUDMargin/VBoxContainer/HBoxMoney/MoneyLabel.text = str(new_money)
+
+func _on_health_updated(new_health) -> void:
+	$HUD/HUDMargin/VBoxContainer/HBoxHealth/HealthLabel.text = str(new_health)

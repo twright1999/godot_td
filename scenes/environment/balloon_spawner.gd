@@ -43,6 +43,8 @@ func _on_spawn_child_balloons(current_balloon_type, progress_ratio, contains_lis
 		add_child(ceramic_pop_scene.instantiate())
 	else:
 		add_child(pop_scene.instantiate())
+	
+	MoneyHealthManager.add_money(1)
 
 func get_evenly_distributed_range(n : float) -> Array:
 	# Given n, returns an array of n items distributed evenly between -1 and 1
@@ -132,6 +134,8 @@ func run_wave() -> void:
 		
 		# All balloons killed, end wave
 		print("Ending Wave ", wave_number)
+		MoneyHealthManager.add_money(100 + wave_number)
+		
 		wave_number += 1
 		GameEvents.wave_running = false
 
@@ -144,7 +148,9 @@ func spawn_group(group: BalloonGroup) -> void:
 ## Balloon reaches exit
 ##
 func _on_balloon_reaches_exit(balloon_type):
-	print(balloon_type, " reached exit, damage for ", calculate_damage_balloon_deals(balloon_type))
+	var damage = calculate_damage_balloon_deals(balloon_type)
+	print(balloon_type, " reached exit, damage for ", damage)
+	MoneyHealthManager.take_health(damage)
 
 func calculate_damage_balloon_deals(balloon_type):
 	var total_score = BalloonDict[balloon_type].health

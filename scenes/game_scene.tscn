@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://hxb14nj846pi"]
+[gd_scene load_steps=13 format=3 uid="uid://hxb14nj846pi"]
 
 [ext_resource type="Script" uid="uid://cjfadwtuuiniv" path="res://scenes/game_scene.gd" id="1_rurhu"]
 [ext_resource type="PackedScene" uid="uid://c476lm42j8d42" path="res://scenes/environment/world.tscn" id="1_w5aja"]
@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://b7bu8d0ptlx2v" path="res://assets/sprites/towers/lamprey_tower.png" id="5_y3j0m"]
 [ext_resource type="PackedScene" uid="uid://da8h1d77kgman" path="res://scenes/towers/skull_tower.tscn" id="7_tcjrq"]
 [ext_resource type="Texture2D" uid="uid://eb8wxsw1xs03" path="res://assets/sprites/towers/skull.png" id="8_rvs2r"]
+[ext_resource type="FontFile" uid="uid://bqes785rrmhld" path="res://assets/fonts/River Adventurer.ttf" id="10_mw25s"]
+[ext_resource type="Texture2D" uid="uid://buqd241i1fvgg" path="res://assets/sprites/ui/coins.png" id="10_rvs2r"]
+[ext_resource type="Texture2D" uid="uid://c43fvajn2gjpw" path="res://assets/sprites/ui/heart.png" id="12_tqxxy"]
 [ext_resource type="PackedScene" uid="uid://bcpsi6u8c8rto" path="res://scenes/menu/play_speed_up_button.tscn" id="13_tqxxy"]
 
 [node name="GameScene" type="Node2D"]
@@ -83,6 +86,40 @@ texture = ExtResource("8_rvs2r")
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/HUD/HUDMargin"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="HBoxHealth" type="HBoxContainer" parent="UI/HUD/HUDMargin/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/HUD/HUDMargin/VBoxContainer/HBoxHealth"]
+layout_mode = 2
+texture = ExtResource("12_tqxxy")
+expand_mode = 2
+
+[node name="HealthLabel" type="Label" parent="UI/HUD/HUDMargin/VBoxContainer/HBoxHealth"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("10_mw25s")
+theme_override_font_sizes/font_size = 35
+text = "xxx"
+
+[node name="HBoxMoney" type="HBoxContainer" parent="UI/HUD/HUDMargin/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/HUD/HUDMargin/VBoxContainer/HBoxMoney"]
+layout_mode = 2
+texture = ExtResource("10_rvs2r")
+expand_mode = 2
+
+[node name="MoneyLabel" type="Label" parent="UI/HUD/HUDMargin/VBoxContainer/HBoxMoney"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("10_mw25s")
+theme_override_font_sizes/font_size = 35
+text = "xxx"
 
 [connection signal="set_speedup_fast" from="UI/HUD/HUDMargin/PlaySpeedUpButton" to="UI" method="_on_set_speedup_fast"]
 [connection signal="set_speedup_normal" from="UI/HUD/HUDMargin/PlaySpeedUpButton" to="UI" method="_on_set_speedup_normal"]

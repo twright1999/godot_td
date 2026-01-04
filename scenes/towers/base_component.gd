@@ -3,6 +3,8 @@ extends Area2D
 var building_obstructions: Array[Node2D] = []
 @export var targeting_range : CollisionShape2D
 
+@export var tower_cost : int
+
 var built := false :
 	set(value):
 		# If new value is different, call redraw() to update targeting range visibility

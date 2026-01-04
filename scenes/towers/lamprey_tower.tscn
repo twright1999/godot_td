@@ -19,6 +19,7 @@ script = ExtResource("1_mvn5d")
 
 [node name="BaseComponent" parent="." node_paths=PackedStringArray("targeting_range") instance=ExtResource("2_0nxcu")]
 targeting_range = NodePath("../TargetingComponent/CollisionShape2D")
+tower_cost = 150
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BaseComponent"]
 scale = Vector2(0.99999994, 0.99999994)
