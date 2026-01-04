@@ -7,15 +7,14 @@ var projectile_container: Node2D		## World scene container for projectiles
 
 @export var proj_count := 8
 
-var built = false
 var target = null
 
 func _physics_process(_delta: float) -> void:
-	if built:
+	if base.built:
 		target = targeting.get_first_target()
 
 func _on_turret_component_fire_projectile(projectile: Node) -> void:
-	if built and target:
+	if base.built and target:
 		spawn_fireballs(proj_count, projectile)
 		
 func spawn_fireballs(count: int, proj: Node) -> void:

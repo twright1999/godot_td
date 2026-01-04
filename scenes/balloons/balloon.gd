@@ -24,6 +24,7 @@ func _ready() -> void:
 	$Sprite2D.texture = balloon_stats.sprites[0]
 	contains = balloon_stats.contains
 	resistances = balloon_stats.resistances
+	$Area2D/CollisionShape2D.disabled = true
 
 func _process(delta: float) -> void:
 	move_balloon(delta)
@@ -84,3 +85,11 @@ func update_ceramic_sprite():
 
 func play_ceramic_tap():
 	add_child(ceramic_tap_scene.instantiate())
+
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	$Area2D/CollisionShape2D.disabled = false
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	$Area2D/CollisionShape2D.disabled = true
