@@ -161,7 +161,7 @@ text = "add_money_200"
 
 [node name="DebugSpeedUp" type="Button" parent="UI/HUD/HUDMargin/DebugMenu"]
 layout_mode = 2
-text = "speedup_10x"
+text = "speedup_10 (toggle)"
 
 [connection signal="toggled" from="UI/HUD/HUDMargin/HBoxContainer/VBoxContainer/CheckButton" to="UI" method="_on_check_button_toggled"]
 [connection signal="set_speedup_fast" from="UI/HUD/HUDMargin/HBoxContainer/PlaySpeedUpButton" to="UI" method="_on_set_speedup_fast"]
