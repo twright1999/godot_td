@@ -13,5 +13,5 @@ metadata/_custom_type_script = "uid://bdi2h1kwq867u"
 [resource]
 script = ExtResource("2_l4b6a")
 groups = Array[ExtResource("1_el43s")]([SubResource("Resource_q2xxr")])
-group_delay = 3
+group_delay = 2
 metadata/_custom_type_script = "uid://cxcx2fg2r1yr2"

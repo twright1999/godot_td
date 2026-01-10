@@ -5,13 +5,13 @@
 
 [sub_resource type="Resource" id="Resource_q2xxr"]
 script = ExtResource("1_gsyp1")
-count = 35
-balloon_type = 1
-delay = 1.0
+count = 6
+balloon_type = 10
+delay = 0.5
 metadata/_custom_type_script = "uid://bdi2h1kwq867u"
 
 [resource]
 script = ExtResource("2_14t5d")
 groups = Array[ExtResource("1_gsyp1")]([SubResource("Resource_q2xxr")])
-group_delay = 3
+group_delay = 2
 metadata/_custom_type_script = "uid://cxcx2fg2r1yr2"
