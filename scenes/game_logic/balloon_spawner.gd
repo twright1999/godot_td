@@ -114,7 +114,7 @@ func run_wave() -> void:
 	# If no more waves
 	if wave_number > len(waves):
 		print("No more waves!!!")
-		GameEvents.wave_finished.emit()
+		#GameEvents.wave_finished.emit()
 	# Else, spawn next wave
 	else:
 		# Set state logic for buttons and end of wave detection
