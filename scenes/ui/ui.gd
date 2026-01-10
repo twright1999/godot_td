@@ -45,3 +45,6 @@ func _on_money_updated(new_money) -> void:
 
 func _on_health_updated(new_health) -> void:
 	$HUD/HUDMargin/VBoxContainer/HBoxHealth/HealthLabel.text = str(new_health)
+
+func _on_check_button_toggled(toggled_on: bool) -> void:
+	GameEvents.auto_start = toggled_on

@@ -50,7 +50,8 @@ func _pressed():
 			set_speedup_normal.emit()
 	
 func wave_finished():
-	set_state(ButtonState.PLAY)
+	if not GameEvents.auto_start:
+		set_state(ButtonState.PLAY)
 
 func set_state(new_state : ButtonState):
 	current_state = new_state
