@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="WaveData" load_steps=6 format=3 uid="uid://b31b0u5tlc1uq"]
+
+[ext_resource type="Script" uid="uid://bdi2h1kwq867u" path="res://data/waves/group.gd" id="1_5wmkd"]
+[ext_resource type="Script" uid="uid://cxcx2fg2r1yr2" path="res://data/waves/wave_data.gd" id="2_ly7lt"]
+
+[sub_resource type="Resource" id="Resource_q2xxr"]
+script = ExtResource("1_5wmkd")
+count = 15
+balloon_type = 1
+delay = 1.0
+metadata/_custom_type_script = "uid://bdi2h1kwq867u"
+
+[sub_resource type="Resource" id="Resource_5wmkd"]
+script = ExtResource("1_5wmkd")
+count = 15
+balloon_type = 2
+delay = 1.0
+metadata/_custom_type_script = "uid://bdi2h1kwq867u"
+
+[sub_resource type="Resource" id="Resource_ly7lt"]
+script = ExtResource("1_5wmkd")
+count = 4
+balloon_type = 3
+delay = 1.0
+metadata/_custom_type_script = "uid://bdi2h1kwq867u"
+
+[resource]
+script = ExtResource("2_ly7lt")
+groups = Array[ExtResource("1_5wmkd")]([SubResource("Resource_q2xxr"), SubResource("Resource_5wmkd"), SubResource("Resource_ly7lt")])
+group_delay = 3
+metadata/_custom_type_script = "uid://cxcx2fg2r1yr2"

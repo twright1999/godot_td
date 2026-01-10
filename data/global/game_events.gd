@@ -13,10 +13,12 @@ var wave_running : bool:
 		if wave_running and not value:
 			wave_finished.emit()
 		wave_running = value
-		
 
 func _ready():
 	connect("wave_finished", _on_wave_finished)
+
+#func _process(_delta):
+	#print(wave_running)
 
 func _on_wave_finished():
 	if auto_start:
