@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cge5re5l2dugg" path="res://assets/ui/button_long_brown/buttonLong_brown_hover.png" id="4_hj162"]
 [ext_resource type="FontFile" uid="uid://bqes785rrmhld" path="res://assets/fonts/River Adventurer.ttf" id="4_kiqgm"]
 [ext_resource type="Texture2D" uid="uid://ldid1r43sy1h" path="res://assets/ui/logo.png" id="6_xn6kt"]
-[ext_resource type="VideoStream" uid="uid://bwygqhvltdl06" path="res://assets/video/background_loop.ogv" id="7_isoef"]
+[ext_resource type="VideoStream" uid="uid://bwygqhvltdl06" path="res://assets/ui/background_loop.ogv" id="7_isoef"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3

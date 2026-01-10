@@ -6,12 +6,18 @@ var click_sfx = preload("res://assets/audio/sound_effects/click.ogg")
 var hover_sfx = preload("res://assets/audio/sound_effects/hover.ogg")
 var honk_sfx = preload("res://assets/audio/sound_effects/honk.ogg")
 
-
 func _ready():
 	get_node("MainMenu/Margin/VBoxContainer/Play").pressed.connect(on_play_pressed)
 	get_node("MainMenu/Margin/VBoxContainer/Quit").pressed.connect(on_quit_pressed)
 	get_node("MainMenu/HonkJoe").pressed.connect(on_honk_pressed)
 	get_node("MainMenu/HonkTom").pressed.connect(on_honk_pressed)
+	MoneyHealthManager.connect("game_over", on_game_over)
+	
+func on_game_over():
+	var game_over_scene = load("res://scenes/ui/game_over_screen.tscn").instantiate()
+	add_child(game_over_scene)
+	game_over_scene.connect("game_over_restart", on_game_over_restart)
+	game_over_scene.connect("game_over_main_menu", on_game_over_main_menu)
 
 func on_play_pressed():
 	get_node("MainMenu").queue_free()
@@ -20,9 +26,18 @@ func on_play_pressed():
 
 func on_quit_pressed():
 	get_tree().quit()
+	
+func on_game_over_restart():
+	get_node("GameOverScreen").queue_free()
+	get_node("GameScene").free()
+	var game_scene = load("res://scenes/game_logic/game_scene.tscn").instantiate()
+	add_child(game_scene)
 
-func on_honk_pressed():
-	playback.play_stream(honk_sfx, 0, -10, 1)
+func on_game_over_main_menu():
+	get_node("GameOverScreen").queue_free()
+	get_node("GameScene").free()
+	var main_menu = load("res://scenes/ui/main_menu.tscn").instantiate()
+	add_child(main_menu)
 
 ##
 ## Button Sounds
@@ -62,3 +77,6 @@ func _set_cursor_hover() -> void:
 
 func _set_cursor_default() -> void:
 	CursorHandler.set_state(CursorHandler.CursorState.DEFAULT)
+
+func on_honk_pressed():
+	playback.play_stream(honk_sfx, 0, -10, 1)

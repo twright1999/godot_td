@@ -2,6 +2,7 @@ extends Node2D
 
 @export var starting_money := 500
 @export var starting_health := 200
+var dead = false
 
 var money : int :
 	set(value):
@@ -10,14 +11,21 @@ var money : int :
 		
 var health : int :
 	set(value):
-		health = value
+		if value <= 0:
+			health = 0
+			# If health runs out and not already dead, emit game over and die
+			if not dead:
+				game_over.emit()
+				dead = true
+		else:
+			health = value
 		health_updated.emit(health)
 
 const MIN_MONEY = 0
 
 signal money_updated(new_money : int)
 signal health_updated(new_health : int)
-
+signal game_over()
 
 func _ready() -> void:
 	reset()
@@ -37,6 +45,7 @@ func reset_money():
 
 func reset_health():
 	health = starting_health
+	dead = false
 
 func reset():
 	reset_money()

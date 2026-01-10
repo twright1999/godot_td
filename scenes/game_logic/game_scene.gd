@@ -10,6 +10,7 @@ var build_location
 var build_type
 
 func _ready() -> void:
+	MoneyHealthManager.reset()
 	# For each build button, binds the button to the initiate_build_mode function
 	for i in get_tree().get_nodes_in_group("BuildButtons"):
 		# Adds the tower name as a parameter passed to the binded function
