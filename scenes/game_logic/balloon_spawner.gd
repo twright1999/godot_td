@@ -8,7 +8,7 @@ var ceramic_pop_scene: PackedScene = load("res://scenes/sounds/ceramic_pop.tscn"
 
 const dispersion = 0.002
 
-var wave_number = 1
+var wave_number = 18
 
 const BalloonDict = {
 	DataTypes.Balloon.RED : preload("res://data/balloons/red.tres"),
@@ -123,8 +123,8 @@ func run_wave() -> void:
 		var wave = waves[wave_number - 1]
 		for group in wave.groups:
 			# Waits for group to finish spawning.
-			await spawn_group(group)
 			await get_tree().create_timer(wave.group_delay).timeout
+			await spawn_group(group)
 		
 		# Balloons have stopped spawning
 		print("All balloons spawned in Wave ", wave_number)
@@ -137,7 +137,7 @@ func run_wave() -> void:
 		MoneyHealthManager.add_money(100 + wave_number)
 		
 		wave_number += 1
-		GameEvents.wave_running = false
+		GameEvents.wave_finished.emit()
 
 func spawn_group(group: BalloonGroup) -> void:
 	for i in group.count:

@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="WaveData" load_steps=8 format=3 uid="uid://dlgduqte0aler"]
+
+[ext_resource type="Script" uid="uid://bdi2h1kwq867u" path="res://data/waves/group.gd" id="1_ca3dm"]
+[ext_resource type="Script" uid="uid://cxcx2fg2r1yr2" path="res://data/waves/wave_data.gd" id="2_etuwa"]
+
+[sub_resource type="Resource" id="Resource_q2xxr"]
+script = ExtResource("1_ca3dm")
+count = 20
+balloon_type = 1
+delay = 1.0
+metadata/_custom_type_script = "uid://bdi2h1kwq867u"
+
+[sub_resource type="Resource" id="Resource_ca3dm"]
+script = ExtResource("1_ca3dm")
+count = 15
+balloon_type = 2
+delay = 1.0
+metadata/_custom_type_script = "uid://bdi2h1kwq867u"
+
+[sub_resource type="Resource" id="Resource_etuwa"]
+script = ExtResource("1_ca3dm")
+count = 12
+balloon_type = 3
+delay = 1.0
+metadata/_custom_type_script = "uid://bdi2h1kwq867u"
+
+[sub_resource type="Resource" id="Resource_14ag3"]
+script = ExtResource("1_ca3dm")
+count = 10
+balloon_type = 4
+delay = 1.0
+metadata/_custom_type_script = "uid://bdi2h1kwq867u"
+
+[sub_resource type="Resource" id="Resource_arwre"]
+script = ExtResource("1_ca3dm")
+count = 5
+balloon_type = 5
+delay = 1.0
+metadata/_custom_type_script = "uid://bdi2h1kwq867u"
+
+[resource]
+script = ExtResource("2_etuwa")
+groups = Array[ExtResource("1_ca3dm")]([SubResource("Resource_q2xxr"), SubResource("Resource_ca3dm"), SubResource("Resource_etuwa"), SubResource("Resource_14ag3"), SubResource("Resource_arwre")])
+group_delay = 2
+metadata/_custom_type_script = "uid://cxcx2fg2r1yr2"

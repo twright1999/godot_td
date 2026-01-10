@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="WaveData" load_steps=4 format=3 uid="uid://dry6ix1jql2mx"]
+
+[ext_resource type="Script" uid="uid://bdi2h1kwq867u" path="res://data/waves/group.gd" id="1_ftppx"]
+[ext_resource type="Script" uid="uid://cxcx2fg2r1yr2" path="res://data/waves/wave_data.gd" id="2_4ndda"]
+
+[sub_resource type="Resource" id="Resource_q2xxr"]
+script = ExtResource("1_ftppx")
+count = 35
+balloon_type = 1
+delay = 1.0
+metadata/_custom_type_script = "uid://bdi2h1kwq867u"
+
+[resource]
+script = ExtResource("2_4ndda")
+groups = Array[ExtResource("1_ftppx")]([SubResource("Resource_q2xxr")])
+group_delay = 3
+metadata/_custom_type_script = "uid://cxcx2fg2r1yr2"
