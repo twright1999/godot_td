@@ -8,7 +8,7 @@ var ceramic_pop_scene: PackedScene = load("res://scenes/sounds/ceramic_pop.tscn"
 
 const dispersion = 0.002
 
-var wave_number = 40
+var wave_number = 1
 
 const BalloonDict = {
 	DataTypes.Balloon.RED : preload("res://data/balloons/red.tres"),
