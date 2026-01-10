@@ -16,6 +16,7 @@ var health : int :
 			# If health runs out and not already dead, emit game over and die
 			if not dead:
 				game_over.emit()
+				GameEvents.auto_start = false
 				dead = true
 		else:
 			health = value
