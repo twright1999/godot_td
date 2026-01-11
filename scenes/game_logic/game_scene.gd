@@ -9,6 +9,9 @@ var build_valid = false
 var build_location
 var build_type
 
+var focusing_on_tower = false
+var currently_focused_tower
+
 func _ready() -> void:
 	MoneyHealthManager.reset()
 	# For each build button, binds the button to the initiate_build_mode function
@@ -22,11 +25,30 @@ func initiate_build_mode(tower_type):
 		# If already in build mode, cancel previous build mode to avoid
 		#	duplication/cloning of preview towers
 		cancel_build_mode()
+	if focusing_on_tower:
+		cancel_focus_mode()
 	build_type = tower_type
 	build_mode = true
 	# Begin previewing tower_type to build
 	$UI.set_tower_preview(build_type, get_global_mouse_position())
+
+func initiate_focus(tower):
+	if build_mode:
+		cancel_build_mode()
+	if focusing_on_tower:
+		cancel_focus_mode()
+	focus_on_tower(tower)
+
+func cancel_focus_mode():
+	currently_focused_tower.get_node("BaseComponent").show_range = false
+	focusing_on_tower = false
+	currently_focused_tower = null
 	
+func focus_on_tower(tower):
+	tower.get_node("BaseComponent").show_range = true
+	focusing_on_tower = true
+	currently_focused_tower = tower
+
 func _process(_delta: float) -> void:
 	if build_mode:
 		update_tower_preview()
@@ -38,6 +60,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_released("ui_accept") and build_mode == true:
 		verify_and_build()
 		cancel_build_mode()
+	if event.is_action_pressed("ui_accept") and focusing_on_tower:
+		cancel_focus_mode()
 
 func verify_and_build():
 	# If tower can be built, create tower at position and set built to true
@@ -58,7 +82,7 @@ func verify_and_build():
 			new_tower.queue_free()
 
 func _on_tower_clicked(tower):
-	print(tower)
+	initiate_focus(tower)
 
 func update_tower_preview():
 	var mouse_position = get_global_mouse_position()
