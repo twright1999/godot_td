@@ -101,11 +101,13 @@ func initiate_focus(tower):
 	if focusing_on_tower:
 		cancel_focus_mode()
 	focus_on_tower(tower)
+	%UpgradeMenu.show()
 
 func cancel_focus_mode():
 	currently_focused_tower.get_node("BaseComponent").show_range = false
 	focusing_on_tower = false
 	currently_focused_tower = null
+	%UpgradeMenu.hide()
 	
 func focus_on_tower(tower):
 	tower.get_node("BaseComponent").show_range = true

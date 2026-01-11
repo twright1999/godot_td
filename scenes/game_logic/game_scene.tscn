@@ -163,6 +163,14 @@ text = "add_money_200"
 layout_mode = 2
 text = "speedup_10 (toggle)"
 
+[node name="UpgradeMenu" type="Panel" parent="UI/HUD/HUDMargin"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(480, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
 [connection signal="toggled" from="UI/HUD/HUDMargin/HBoxContainer/VBoxContainer/CheckButton" to="UI" method="_on_check_button_toggled"]
 [connection signal="set_speedup_fast" from="UI/HUD/HUDMargin/HBoxContainer/PlaySpeedUpButton" to="UI" method="_on_set_speedup_fast"]
 [connection signal="set_speedup_normal" from="UI/HUD/HUDMargin/HBoxContainer/PlaySpeedUpButton" to="UI" method="_on_set_speedup_normal"]
