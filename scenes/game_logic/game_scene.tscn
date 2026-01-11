@@ -165,11 +165,28 @@ text = "speedup_10 (toggle)"
 
 [node name="UpgradeMenu" type="Panel" parent="UI/HUD/HUDMargin"]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(480, 64)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/HUD/HUDMargin/UpgradeMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RangeUpgrade" type="Button" parent="UI/HUD/HUDMargin/UpgradeMenu/HBoxContainer"]
+custom_minimum_size = Vector2(100, 48)
+layout_mode = 2
+text = "+Range"
+
+[node name="SpeedUpgrade" type="Button" parent="UI/HUD/HUDMargin/UpgradeMenu/HBoxContainer"]
+custom_minimum_size = Vector2(100, 48)
+layout_mode = 2
+text = "+Speed"
 
 [connection signal="toggled" from="UI/HUD/HUDMargin/HBoxContainer/VBoxContainer/CheckButton" to="UI" method="_on_check_button_toggled"]
 [connection signal="set_speedup_fast" from="UI/HUD/HUDMargin/HBoxContainer/PlaySpeedUpButton" to="UI" method="_on_set_speedup_fast"]
@@ -177,3 +194,4 @@ size_flags_vertical = 8
 [connection signal="pressed" from="UI/HUD/HUDMargin/DebugMenu/DebugDamage" to="UI/HUD/HUDMargin/DebugMenu" method="_on_debug_damage_pressed"]
 [connection signal="pressed" from="UI/HUD/HUDMargin/DebugMenu/DebugAddMoney" to="UI/HUD/HUDMargin/DebugMenu" method="_on_debug_add_money_pressed"]
 [connection signal="pressed" from="UI/HUD/HUDMargin/DebugMenu/DebugSpeedUp" to="UI/HUD/HUDMargin/DebugMenu" method="_on_debug_speed_up_pressed"]
+[connection signal="pressed" from="UI/HUD/HUDMargin/UpgradeMenu/HBoxContainer/RangeUpgrade" to="." method="_on_range_upgrade_pressed"]

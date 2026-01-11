@@ -116,3 +116,7 @@ func focus_on_tower(tower):
 
 func _on_tower_clicked(tower):
 	initiate_focus(tower)
+
+func _on_range_upgrade_pressed() -> void:
+	currently_focused_tower.get_node("TargetingComponent/CollisionShape2D").shape.radius += 10
+	currently_focused_tower.get_node("BaseComponent").queue_redraw()
