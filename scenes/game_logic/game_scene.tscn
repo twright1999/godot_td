@@ -195,3 +195,4 @@ text = "+Speed"
 [connection signal="pressed" from="UI/HUD/HUDMargin/DebugMenu/DebugAddMoney" to="UI/HUD/HUDMargin/DebugMenu" method="_on_debug_add_money_pressed"]
 [connection signal="pressed" from="UI/HUD/HUDMargin/DebugMenu/DebugSpeedUp" to="UI/HUD/HUDMargin/DebugMenu" method="_on_debug_speed_up_pressed"]
 [connection signal="pressed" from="UI/HUD/HUDMargin/UpgradeMenu/HBoxContainer/RangeUpgrade" to="." method="_on_range_upgrade_pressed"]
+[connection signal="pressed" from="UI/HUD/HUDMargin/UpgradeMenu/HBoxContainer/SpeedUpgrade" to="." method="_on_speed_upgrade_pressed"]
