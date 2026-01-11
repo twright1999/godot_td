@@ -52,9 +52,13 @@ func verify_and_build():
 				new_tower.position -= new_tower.get_node("GrabPoint").position
 				
 			new_tower.get_node("BaseComponent").built = true
+			new_tower.get_node("BaseComponent").connect("tower_clicked", _on_tower_clicked)
 			$World.get_node("Towers").add_child(new_tower)
 		else:
 			new_tower.queue_free()
+
+func _on_tower_clicked(tower):
+	print(tower)
 
 func update_tower_preview():
 	var mouse_position = get_global_mouse_position()
