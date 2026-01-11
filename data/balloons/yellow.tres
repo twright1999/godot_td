@@ -9,4 +9,5 @@ health = 1
 speed = 0.025
 sprites = Array[Texture2D]([ExtResource("2_j8641")])
 contains = Array[int]([3])
+strength = 4
 metadata/_custom_type_script = "uid://c3of18vktwx0u"

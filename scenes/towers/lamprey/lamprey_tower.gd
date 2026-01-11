@@ -12,7 +12,7 @@ var lamprey_active = true
 
 func _physics_process(_delta: float) -> void:
 	if base.built:
-		var target = targeting.get_first_target()
+		var target = targeting.get_target()
 		if target:
 			set_lamprey_active(true)
 			turret.look_at(target.global_position)

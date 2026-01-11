@@ -20,3 +20,10 @@ enum Resistance {
 	EXPLOSION,
 	FREEZE
 }
+
+enum Targeting_Mode {
+	FIRST,
+	LAST,
+	WEAK,
+	STRONG	
+}

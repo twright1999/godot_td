@@ -9,4 +9,5 @@ health = 1
 speed = 0.03
 sprites = Array[Texture2D]([ExtResource("2_p50gl")])
 contains = Array[int]([4])
+strength = 5
 metadata/_custom_type_script = "uid://c3of18vktwx0u"

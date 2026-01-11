@@ -6,3 +6,4 @@ extends Resource
 @export var sprites: Array[Texture2D]
 @export var contains: Array[DataTypes.Balloon]
 @export var resistances: Array[DataTypes.Resistance]
+@export var strength: int

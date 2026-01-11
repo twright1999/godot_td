@@ -166,7 +166,7 @@ text = "speedup_10 (toggle)"
 [node name="UpgradeMenu" type="Panel" parent="UI/HUD/HUDMargin"]
 unique_name_in_owner = true
 visible = false
-custom_minimum_size = Vector2(480, 64)
+custom_minimum_size = Vector2(500, 64)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
@@ -191,9 +191,31 @@ layout_mode = 2
 text = "+Speed
 $100"
 
-[node name="Control" type="Control" parent="UI/HUD/HUDMargin/UpgradeMenu/HBoxContainer"]
-custom_minimum_size = Vector2(180, 0)
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/HUD/HUDMargin/UpgradeMenu/HBoxContainer"]
 layout_mode = 2
+
+[node name="FirstTargeting" type="Button" parent="UI/HUD/HUDMargin/UpgradeMenu/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "First"
+
+[node name="LastTargeting" type="Button" parent="UI/HUD/HUDMargin/UpgradeMenu/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "Last"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/HUD/HUDMargin/UpgradeMenu/HBoxContainer"]
+layout_mode = 2
+
+[node name="WeakTargeting" type="Button" parent="UI/HUD/HUDMargin/UpgradeMenu/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "Weak"
+
+[node name="StrongTargeting" type="Button" parent="UI/HUD/HUDMargin/UpgradeMenu/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "Strong"
 
 [node name="SellButton" type="Button" parent="UI/HUD/HUDMargin/UpgradeMenu/HBoxContainer"]
 layout_mode = 2
@@ -208,4 +230,8 @@ text = "Sell Tower"
 [connection signal="pressed" from="UI/HUD/HUDMargin/DebugMenu/DebugSpeedUp" to="UI/HUD/HUDMargin/DebugMenu" method="_on_debug_speed_up_pressed"]
 [connection signal="pressed" from="UI/HUD/HUDMargin/UpgradeMenu/HBoxContainer/RangeUpgrade" to="." method="_on_range_upgrade_pressed"]
 [connection signal="pressed" from="UI/HUD/HUDMargin/UpgradeMenu/HBoxContainer/SpeedUpgrade" to="." method="_on_speed_upgrade_pressed"]
+[connection signal="pressed" from="UI/HUD/HUDMargin/UpgradeMenu/HBoxContainer/VBoxContainer/FirstTargeting" to="." method="_on_first_targeting_pressed"]
+[connection signal="pressed" from="UI/HUD/HUDMargin/UpgradeMenu/HBoxContainer/VBoxContainer/LastTargeting" to="." method="_on_last_targeting_pressed"]
+[connection signal="pressed" from="UI/HUD/HUDMargin/UpgradeMenu/HBoxContainer/VBoxContainer2/WeakTargeting" to="." method="_on_weak_targeting_pressed"]
+[connection signal="pressed" from="UI/HUD/HUDMargin/UpgradeMenu/HBoxContainer/VBoxContainer2/StrongTargeting" to="." method="_on_strong_targeting_pressed"]
 [connection signal="pressed" from="UI/HUD/HUDMargin/UpgradeMenu/HBoxContainer/SellButton" to="." method="_on_sell_button_pressed"]

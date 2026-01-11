@@ -117,6 +117,9 @@ func focus_on_tower(tower):
 func _on_tower_clicked(tower):
 	initiate_focus(tower)
 
+##
+## Upgrade Functionality
+##
 func _on_range_upgrade_pressed() -> void:
 	if MoneyHealthManager.take_money(50):
 		currently_focused_tower.get_node("TargetingComponent/CollisionShape2D").shape.radius += 10
@@ -129,6 +132,9 @@ func _on_speed_upgrade_pressed() -> void:
 			currently_focused_tower.get_node("BaseComponent").tower_cost += 100
 			currently_focused_tower.get_node("TurretComponent").turret_timer.wait_time -= 0.1
 
+##
+## Sell Functionality
+##
 func _on_sell_button_pressed() -> void:
 	sell_focused_tower()
 	cancel_focus_mode()
@@ -136,3 +142,18 @@ func _on_sell_button_pressed() -> void:
 func sell_focused_tower():
 	MoneyHealthManager.add_money(currently_focused_tower.get_node("BaseComponent").tower_cost)
 	currently_focused_tower.queue_free()
+
+##
+## Targeting Mode Functionality
+##
+func _on_first_targeting_pressed() -> void:
+	currently_focused_tower.get_node("TargetingComponent").targeting_mode = DataTypes.Targeting_Mode.FIRST
+
+func _on_last_targeting_pressed() -> void:
+	currently_focused_tower.get_node("TargetingComponent").targeting_mode = DataTypes.Targeting_Mode.LAST
+
+func _on_weak_targeting_pressed() -> void:
+	currently_focused_tower.get_node("TargetingComponent").targeting_mode = DataTypes.Targeting_Mode.WEAK
+
+func _on_strong_targeting_pressed() -> void:
+	currently_focused_tower.get_node("TargetingComponent").targeting_mode = DataTypes.Targeting_Mode.STRONG
