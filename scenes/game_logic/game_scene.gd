@@ -119,14 +119,13 @@ func _on_tower_clicked(tower):
 
 func _on_range_upgrade_pressed() -> void:
 	if MoneyHealthManager.take_money(50):
-		
 		currently_focused_tower.get_node("TargetingComponent/CollisionShape2D").shape.radius += 10
 		currently_focused_tower.get_node("BaseComponent").tower_cost += 50
 		currently_focused_tower.get_node("BaseComponent").queue_redraw()
 
 func _on_speed_upgrade_pressed() -> void:
-	if MoneyHealthManager.take_money(100):
-		if currently_focused_tower.get_node("TurretComponent").turret_timer.wait_time - 0.1 >= 0.1:
+	if currently_focused_tower.get_node("TurretComponent").turret_timer.wait_time - 0.1 >= 0.1:
+		if MoneyHealthManager.take_money(100):
 			currently_focused_tower.get_node("BaseComponent").tower_cost += 100
 			currently_focused_tower.get_node("TurretComponent").turret_timer.wait_time -= 0.1
 
