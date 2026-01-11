@@ -165,6 +165,7 @@ text = "speedup_10 (toggle)"
 
 [node name="UpgradeMenu" type="Panel" parent="UI/HUD/HUDMargin"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(500, 64)
 layout_mode = 2
 size_flags_horizontal = 0
