@@ -4,6 +4,7 @@ var building_obstructions: Array[Node2D] = []
 @export var targeting_range : CollisionShape2D
 
 @export var tower_cost : int
+signal tower_clicked(tower)
 
 var built := false :
 	set(value):
@@ -28,8 +29,9 @@ func is_building_colliding() -> bool:
 	return len(building_obstructions) > 0
 
 func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
+	# If tower is clicked, emit signal passing tower parent
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
-		show_range = not show_range
+		tower_clicked.emit(get_parent())
 
 func _draw():
 	if not built or show_range:
