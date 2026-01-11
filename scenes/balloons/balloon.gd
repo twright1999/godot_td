@@ -9,6 +9,7 @@ var health
 var speed
 var contains = []
 var resistances = []
+var strength
 var sprite_index := 0
 
 var ready_progress
@@ -24,6 +25,7 @@ func _ready() -> void:
 	$Sprite2D.texture = balloon_stats.sprites[0]
 	contains = balloon_stats.contains
 	resistances = balloon_stats.resistances
+	strength = balloon_stats.strength
 	$Area2D/CollisionShape2D.disabled = true
 
 func _process(delta: float) -> void:

@@ -10,4 +10,5 @@ speed = 0.03
 sprites = Array[Texture2D]([ExtResource("2_r3bul")])
 contains = Array[int]([6, 7])
 resistances = Array[int]([1, 2])
+strength = 7
 metadata/_custom_type_script = "uid://c3of18vktwx0u"

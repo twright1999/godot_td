@@ -11,7 +11,7 @@ var target = null
 
 func _physics_process(_delta: float) -> void:
 	if base.built:
-		target = targeting.get_first_target()
+		target = targeting.get_target()
 
 func _on_turret_component_fire_projectile(projectile: Node) -> void:
 	if base.built and target:
