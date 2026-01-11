@@ -124,3 +124,11 @@ func _on_range_upgrade_pressed() -> void:
 func _on_speed_upgrade_pressed() -> void:
 	if currently_focused_tower.get_node("TurretComponent").turret_timer.wait_time - 0.1 >= 0.1:
 		currently_focused_tower.get_node("TurretComponent").turret_timer.wait_time -= 0.1
+
+func _on_sell_button_pressed() -> void:
+	sell_focused_tower()
+	cancel_focus_mode()
+
+func sell_focused_tower():
+	MoneyHealthManager.add_money(currently_focused_tower.get_node("BaseComponent").tower_cost)
+	currently_focused_tower.queue_free()
