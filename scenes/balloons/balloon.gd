@@ -41,7 +41,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 ##
 func move_balloon(delta: float) -> void:
 	# Move balloon along path according to SPEED
-	progress_ratio += speed * delta
+	progress_ratio += speed * delta * 2
 
 	# Handle logic if balloon reaches end of path
 	if progress_ratio >= 1.0:

@@ -8,10 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://cgu8dcxvsk36n" path="res://scenes/towers/components/targeting_component.tscn" id="4_vb7av"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2r247"]
-resource_local_to_scene = true
 radius = 21.095022
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dldts"]
+resource_local_to_scene = true
 radius = 64.0
 
 [node name="SkullTower" type="Node2D"]
