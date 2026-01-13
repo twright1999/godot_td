@@ -109,8 +109,11 @@ func spawn_balloon(new_balloon_type: DataTypes.Balloon, parent_path: Path2D, new
 ##
 func _ready() -> void:
 	GameEvents.wave_start_requested.connect(run_wave)
+	SaveLoad._load()
+	wave_number = SaveLoad.contents_to_save["wave"]
 
 func run_wave() -> void:
+	print(wave_number)
 	# If no more waves
 	if wave_number > len(waves):
 		print("No more waves!!!")
@@ -138,6 +141,9 @@ func run_wave() -> void:
 		
 		wave_number += 1
 		GameEvents.wave_finished.emit()
+		SaveLoad.contents_to_save["wave"] = wave_number
+		SaveLoad._save()
+		
 
 func spawn_group(group: BalloonGroup) -> void:
 	for i in group.count:

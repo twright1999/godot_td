@@ -20,6 +20,7 @@ DataTypes="*res://data/global/data_types.gd"
 GameEvents="*res://data/global/game_events.gd"
 MoneyHealthManager="*res://data/global/money_health_manager.gd"
 CursorHandler="*res://data/global/cursor_handler.gd"
+SaveLoad="*res://data/global/save_load.gd"
 
 [display]
 
