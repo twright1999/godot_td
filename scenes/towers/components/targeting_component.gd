@@ -2,10 +2,13 @@ extends Area2D
 
 var targets_in_range: Array[Node2D] = []
 var targeting_mode := DataTypes.Targeting_Mode.FIRST
-var camo_detection := false
+
+@export var camo_detection := false
 
 func _on_area_entered(area: Area2D) -> void:
-	targets_in_range.append(area.get_parent())
+	var balloon = area.get_parent()
+	if not balloon.camo or camo_detection:
+		targets_in_range.append(area.get_parent())
 	
 func _on_area_exited(area: Area2D) -> void:
 	targets_in_range.erase(area.get_parent())
