@@ -15,6 +15,7 @@ script = ExtResource("1_jxbi2")
 count = 1
 balloon_type = 3
 delay = 1.0
+camo = true
 metadata/_custom_type_script = "uid://bdi2h1kwq867u"
 
 [resource]

@@ -28,6 +28,7 @@ func _ready() -> void:
 	resistances = balloon_stats.resistances
 	strength = balloon_stats.strength
 	$Area2D/CollisionShape2D.disabled = true
+	$CamoMask.visible = camo
 
 func _process(delta: float) -> void:
 	move_balloon(delta)
