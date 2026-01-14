@@ -1,7 +1,8 @@
 extends Area2D
 
 var targets_in_range: Array[Node2D] = []
-var targeting_mode := DataTypes.Targeting_Mode.STRONG
+var targeting_mode := DataTypes.Targeting_Mode.FIRST
+var camo_detection := false
 
 func _on_area_entered(area: Area2D) -> void:
 	targets_in_range.append(area.get_parent())
