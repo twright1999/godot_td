@@ -132,6 +132,11 @@ func _on_speed_upgrade_pressed() -> void:
 			currently_focused_tower.get_node("BaseComponent").tower_cost += 100
 			currently_focused_tower.get_node("TurretComponent").turret_timer.wait_time -= 0.1
 
+func _on_camo_upgrade_pressed() -> void:
+	if not currently_focused_tower.get_node("TargetingComponent").camo_detection:
+		if MoneyHealthManager.take_money(200):
+			currently_focused_tower.get_node("TargetingComponent").camo_detection = true
+
 ##
 ## Sell Functionality
 ##

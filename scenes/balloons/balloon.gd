@@ -11,11 +11,12 @@ var contains = []
 var resistances = []
 var strength
 var sprite_index := 0
+var camo := false
 
 var ready_progress
 var dispersion = 0.002
 
-signal spawn_child_balloons(current_balloon, progress_ratio, contains_list, residual_damage)
+signal spawn_child_balloons(current_balloon, progress_ratio, contains_list, residual_damage, camo)
 signal reach_exit(balloon_type)
 
 func _ready() -> void:
@@ -27,6 +28,7 @@ func _ready() -> void:
 	resistances = balloon_stats.resistances
 	strength = balloon_stats.strength
 	$Area2D/CollisionShape2D.disabled = true
+	$CamoMask.visible = camo
 
 func _process(delta: float) -> void:
 	move_balloon(delta)
@@ -60,7 +62,7 @@ func balloon_reaches_end() -> void:
 ##
 func damage_balloon(damage: int):
 	if damage >= health:
-		spawn_child_balloons.emit(balloon_type, progress_ratio, contains, damage - health)
+		spawn_child_balloons.emit(balloon_type, progress_ratio, contains, damage - health, camo)
 		queue_free()
 	else:
 		health -= damage
