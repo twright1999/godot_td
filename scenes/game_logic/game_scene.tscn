@@ -1,13 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://hxb14nj846pi"]
+[gd_scene load_steps=12 format=3 uid="uid://hxb14nj846pi"]
 
 [ext_resource type="Script" uid="uid://cjfadwtuuiniv" path="res://scenes/game_logic/game_scene.gd" id="1_rurhu"]
 [ext_resource type="PackedScene" uid="uid://c476lm42j8d42" path="res://scenes/game_logic/world.tscn" id="1_w5aja"]
 [ext_resource type="Script" uid="uid://bu4giqfa15aba" path="res://scenes/ui/ui.gd" id="3_kk2rg"]
 [ext_resource type="PackedScene" uid="uid://d3k5ngv6o6m6c" path="res://scenes/ui/build_button.tscn" id="4_b5spy"]
 [ext_resource type="PackedScene" uid="uid://dxmidg8jbjvnv" path="res://scenes/towers/lamprey/lamprey_tower.tscn" id="5_utbpp"]
-[ext_resource type="Texture2D" uid="uid://b7bu8d0ptlx2v" path="res://assets/sprites/towers/lamprey/lamprey_tower.png" id="5_y3j0m"]
 [ext_resource type="PackedScene" uid="uid://da8h1d77kgman" path="res://scenes/towers/skull/skull_tower.tscn" id="7_tcjrq"]
-[ext_resource type="Texture2D" uid="uid://eb8wxsw1xs03" path="res://assets/sprites/towers/skull/skull.png" id="8_rvs2r"]
 [ext_resource type="FontFile" uid="uid://bqes785rrmhld" path="res://assets/fonts/River Adventurer.ttf" id="10_mw25s"]
 [ext_resource type="Texture2D" uid="uid://buqd241i1fvgg" path="res://assets/ui/hud/coins.png" id="10_rvs2r"]
 [ext_resource type="Texture2D" uid="uid://c43fvajn2gjpw" path="res://assets/ui/hud/heart.png" id="12_tqxxy"]
@@ -55,33 +53,13 @@ size_flags_vertical = 4
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 stretch_mode = 0
-Tower = ExtResource("5_utbpp")
-
-[node name="TextureRect" type="TextureRect" parent="UI/HUD/HUDMargin/BuildBar/BuildButtonLamprey"]
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_y3j0m")
+tower_scene = ExtResource("5_utbpp")
 
 [node name="BuildButtonSkull" parent="UI/HUD/HUDMargin/BuildBar" groups=["BuildButtons"] instance=ExtResource("4_b5spy")]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 stretch_mode = 0
-Tower = ExtResource("7_tcjrq")
-
-[node name="TextureRect" type="TextureRect" parent="UI/HUD/HUDMargin/BuildBar/BuildButtonSkull"]
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("8_rvs2r")
+tower_scene = ExtResource("7_tcjrq")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/HUD/HUDMargin"]
 layout_mode = 2

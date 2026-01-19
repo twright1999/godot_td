@@ -17,7 +17,7 @@ func _ready() -> void:
 	# For each build button, binds the button to the initiate_build_mode function
 	for i in get_tree().get_nodes_in_group("BuildButtons"):
 		# Adds the tower name as a parameter passed to the binded function
-		i.pressed.connect(initiate_build_mode.bind(i.Tower))
+		i.pressed.connect(initiate_build_mode.bind(i.tower_scene))
 
 func _process(_delta: float) -> void:
 	if build_mode:
