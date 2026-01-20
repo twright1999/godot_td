@@ -6,8 +6,13 @@
 [sub_resource type="Resource" id="Resource_ain8k"]
 script = ExtResource("1_equx5")
 count = 20
-balloon_type = 1
+balloon_type = 2
 delay = 1.2
+attributes = {
+"camo": true,
+"fortified": false,
+"regrow": false
+}
 metadata/_custom_type_script = "uid://bdi2h1kwq867u"
 
 [resource]
