@@ -16,11 +16,13 @@ var attributes := {
 	"regrow" : false,
 	"fortified" : false
 }
+var regrow_path : Array[DataTypes.Balloon]
 
 var ready_progress
 var dispersion = 0.002
 
-signal spawn_child_balloons(current_balloon, progress_ratio, contains_list, residual_damage, attributes)
+signal spawn_child_balloons(current_balloon, progress_ratio, contains_list, residual_damage, attributes, regrow_path)
+signal spawn_regrow_balloon(new_balloon, progress_ratio, attributes, regrow_path)
 signal reach_exit(balloon_type)
 
 func _ready() -> void:
@@ -33,6 +35,9 @@ func _ready() -> void:
 	strength = balloon_stats.strength
 	$Area2D/CollisionShape2D.disabled = true
 	$CamoMask.visible = attributes.camo
+	
+	if attributes.regrow:
+		$RegrowTimer.start()
 
 func _process(delta: float) -> void:
 	move_balloon(delta)
@@ -66,7 +71,8 @@ func balloon_reaches_end() -> void:
 ##
 func damage_balloon(damage: int):
 	if damage >= health:
-		spawn_child_balloons.emit(balloon_type, progress_ratio, contains, damage - health, attributes)
+		regrow_path.push_front(balloon_type)
+		spawn_child_balloons.emit(balloon_type, progress_ratio, contains, damage - health, attributes, regrow_path)
 		queue_free()
 	else:
 		health -= damage
@@ -101,3 +107,10 @@ func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	$Area2D/CollisionShape2D.disabled = true
+
+
+func _on_regrow_timer_timeout() -> void:
+	if not regrow_path.is_empty():
+		var new_balloon_type = regrow_path.pop_front()
+		spawn_regrow_balloon.emit(new_balloon_type, progress_ratio, attributes, regrow_path)
+		queue_free()

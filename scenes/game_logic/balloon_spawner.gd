@@ -27,7 +27,7 @@ const BalloonDict = {
 ##
 ## Balloon Spawning
 ##
-func _on_spawn_child_balloons(current_balloon_type, progress_ratio, contains_list, residual_damage, attributes):
+func _on_spawn_child_balloons(current_balloon_type, progress_ratio, contains_list, residual_damage, attributes, regrow_path):
 	# Apply residual damage from balloon pop to contained balloons
 	var spawn_list = calculate_balloons_after_residual_damage(contains_list.duplicate(), residual_damage)
 	
@@ -36,7 +36,7 @@ func _on_spawn_child_balloons(current_balloon_type, progress_ratio, contains_lis
 	
 	# Spawn children balloons at given dispersions
 	for i in len(spawn_list):
-		spawn_balloon(spawn_list[i], $BalloonPath, dispersion_list[i] * dispersion + progress_ratio, attributes)
+		spawn_balloon(spawn_list[i], $BalloonPath, dispersion_list[i] * dispersion + progress_ratio, attributes, regrow_path.duplicate())
 	
 	# Pop sound effect
 	if current_balloon_type == DataTypes.Balloon.CERAMIC:
@@ -45,6 +45,9 @@ func _on_spawn_child_balloons(current_balloon_type, progress_ratio, contains_lis
 		add_child(pop_scene.instantiate())
 	
 	MoneyHealthManager.add_money(1)
+	
+func _on_spawn_regrow_balloon(new_balloon, progress_ratio, attributes, regrow_path) -> void:
+	spawn_balloon(new_balloon, $BalloonPath, progress_ratio, attributes, regrow_path)
 
 func get_evenly_distributed_range(n : float) -> Array:
 	# Given n, returns an array of n items distributed evenly between -1 and 1
@@ -85,13 +88,14 @@ func calculate_balloons_after_residual_damage(spawn_list, residual_damage) -> Ar
 			spawn_list.append(back_balloon)
 			return spawn_list
 
-func spawn_balloon(new_balloon_type: DataTypes.Balloon, parent_path: Path2D, new_progress_ratio: float, attributes : Dictionary):
+func spawn_balloon(new_balloon_type: DataTypes.Balloon, parent_path: Path2D, new_progress_ratio: float, attributes : Dictionary, regrow_path: Array[DataTypes.Balloon]):
 	var new_balloon = balloon_scene.instantiate()
 	
 	# Sets new balloon attributes before parenting to path
 	new_balloon.balloon_stats = BalloonDict[new_balloon_type]
 	new_balloon.balloon_type = new_balloon_type
-	new_balloon.attributes.camo = attributes.camo
+	new_balloon.attributes = attributes
+	new_balloon.regrow_path = regrow_path
 	
 	# Progress cannot be immediately set as balloon is not yet child to path
 	# 	so set intermediate "ready" progress before adding child
@@ -99,6 +103,7 @@ func spawn_balloon(new_balloon_type: DataTypes.Balloon, parent_path: Path2D, new
 	
 	# Connect signals used for popping and reaching exit detection
 	new_balloon.connect("spawn_child_balloons", _on_spawn_child_balloons)
+	new_balloon.connect("spawn_regrow_balloon", _on_spawn_regrow_balloon)
 	new_balloon.connect("reach_exit", _on_balloon_reaches_exit)
 	
 	# Set new balloon as child of Path2D, which calls _ready function and sets
@@ -142,7 +147,7 @@ func run_wave() -> void:
 
 func spawn_group(group: BalloonGroup) -> void:
 	for i in group.count:
-		spawn_balloon(group.balloon_type, $BalloonPath, 0.0, group.attributes)
+		spawn_balloon(group.balloon_type, $BalloonPath, 0.0, group.attributes, [])
 		await get_tree().create_timer(group.delay).timeout
 
 ##
