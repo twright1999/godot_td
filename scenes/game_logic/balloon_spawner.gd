@@ -142,7 +142,7 @@ func run_wave() -> void:
 
 func spawn_group(group: BalloonGroup) -> void:
 	for i in group.count:
-		spawn_balloon(group.balloon_type, $BalloonPath, 0.0, group.camo)
+		spawn_balloon(group.balloon_type, $BalloonPath, 0.0, group.attributes.camo)
 		await get_tree().create_timer(group.delay).timeout
 
 ##
