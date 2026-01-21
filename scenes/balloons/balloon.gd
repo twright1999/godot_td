@@ -29,7 +29,6 @@ func _ready() -> void:
 	progress_ratio = ready_progress
 	health = balloon_stats.health
 	speed = balloon_stats.speed
-	$Sprite2D.texture = balloon_stats.sprites[0]
 	contains = balloon_stats.contains
 	resistances = balloon_stats.resistances
 	strength = balloon_stats.strength
@@ -37,7 +36,10 @@ func _ready() -> void:
 	$CamoMask.visible = attributes.camo
 	
 	if attributes.regrow:
+		$Sprite2D.texture = balloon_stats.sprites_regrow[0]
 		$RegrowTimer.start()
+	else:
+		$Sprite2D.texture = balloon_stats.sprites[0]
 
 func _process(delta: float) -> void:
 	move_balloon(delta)
