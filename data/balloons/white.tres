@@ -1,13 +1,15 @@
-[gd_resource type="Resource" script_class="BalloonData" load_steps=3 format=3 uid="uid://b3ufixadp856w"]
+[gd_resource type="Resource" script_class="BalloonData" load_steps=4 format=3 uid="uid://b3ufixadp856w"]
 
 [ext_resource type="Script" uid="uid://c3of18vktwx0u" path="res://data/balloons/balloon_data.gd" id="1_fyq17"]
 [ext_resource type="Texture2D" uid="uid://dqihxe1k2o2na" path="res://assets/sprites/balloons/white_balloon.png" id="2_tly5e"]
+[ext_resource type="Texture2D" uid="uid://c7gj0pn65up12" path="res://assets/sprites/balloons/regrow_white_balloon.png" id="3_bq63b"]
 
 [resource]
 script = ExtResource("1_fyq17")
 health = 1
 speed = 0.03
 sprites = Array[Texture2D]([ExtResource("2_tly5e")])
+sprites_regrow = Array[Texture2D]([ExtResource("3_bq63b")])
 contains = Array[int]([5, 5])
 resistances = Array[int]([2])
 strength = 6
