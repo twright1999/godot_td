@@ -130,7 +130,6 @@ func spawn_balloon(new_balloon_type: DataTypes.Balloon, parent_path: Path2D, new
 ##
 func _ready() -> void:
 	GameEvents.wave_start_requested.connect(run_wave)
-	print(calculate_balloons_after_residual_damage([DataTypes.Balloon.RAINBOW], 3, [[DataTypes.Balloon.RED]]))
 
 func run_wave() -> void:
 	# If no more waves
