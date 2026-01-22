@@ -99,7 +99,10 @@ func update_ceramic_sprite():
 	
 	if new_sprite_index != sprite_index:
 		sprite_index = new_sprite_index
-		$Sprite2D.texture = balloon_stats.sprites[sprite_index]
+		if attributes.regrow:
+			$Sprite2D.texture = balloon_stats.sprites_regrow[sprite_index]
+		else:
+			$Sprite2D.texture = balloon_stats.sprites[sprite_index]
 
 func play_ceramic_tap():
 	add_child(ceramic_tap_scene.instantiate())
