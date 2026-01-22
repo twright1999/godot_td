@@ -16,7 +16,7 @@ var attributes := {
 	"regrow" : false,
 	"fortified" : false
 }
-var regrow_path : Array[DataTypes.Balloon]
+var regrow_path : Array
 
 var ready_progress
 var dispersion = 0.002
@@ -71,7 +71,7 @@ func balloon_reaches_end() -> void:
 ##
 func damage_balloon(damage: int):
 	if damage >= health:
-		regrow_path.push_front(balloon_type)
+		regrow_path.push_back(balloon_type)
 		spawn_child_balloons.emit(balloon_type, progress_ratio, contains, damage - health, attributes, regrow_path)
 		queue_free()
 	else:
@@ -111,6 +111,6 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 
 func _on_regrow_timer_timeout() -> void:
 	if not regrow_path.is_empty():
-		var new_balloon_type = regrow_path.pop_front()
+		var new_balloon_type = regrow_path.pop_back()
 		spawn_regrow_balloon.emit(new_balloon_type, progress_ratio, attributes, regrow_path)
 		queue_free()

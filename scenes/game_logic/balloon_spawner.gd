@@ -29,14 +29,21 @@ const BalloonDict = {
 ##
 func _on_spawn_child_balloons(current_balloon_type, progress_ratio, contains_list, residual_damage, attributes, regrow_path):
 	# Apply residual damage from balloon pop to contained balloons
-	var spawn_list = calculate_balloons_after_residual_damage(contains_list.duplicate(), residual_damage)
+	var regrow_path_init = []
+	regrow_path_init.resize(len(contains_list))
+	regrow_path_init.fill(regrow_path)
+	
+	var residual_damage_output = calculate_balloons_after_residual_damage(contains_list.duplicate(), residual_damage, regrow_path_init)
+	
+	var spawn_list = residual_damage_output[0]
+	var regrow_path_list = residual_damage_output[1]
 	
 	# Get list of dispersions for evenly distributed children
 	var dispersion_list = get_evenly_distributed_range(len(spawn_list))
 	
 	# Spawn children balloons at given dispersions
 	for i in len(spawn_list):
-		spawn_balloon(spawn_list[i], $BalloonPath, dispersion_list[i] * dispersion + progress_ratio, attributes, regrow_path.duplicate())
+		spawn_balloon(spawn_list[i], $BalloonPath, dispersion_list[i] * dispersion + progress_ratio, attributes, regrow_path_list[i])
 	
 	# Pop sound effect
 	if current_balloon_type == DataTypes.Balloon.CERAMIC:
@@ -67,28 +74,36 @@ func get_evenly_distributed_range(n : float) -> Array:
 			distributed_range.append(-1 + i * (2/(n-1)))
 		return distributed_range
 
-func calculate_balloons_after_residual_damage(spawn_list, residual_damage) -> Array:
+func calculate_balloons_after_residual_damage(spawn_list, residual_damage, regrow_path_list) -> Array:
 	# If no balloons in spawn list to damage, return empty list
 	if spawn_list == []:
-		return []
+		return [[], []]
 	# If no more damage to apply, return current spawn list
 	elif residual_damage == 0:
-		return spawn_list
+		return [spawn_list, regrow_path_list]
 	else:
 		var back_balloon = spawn_list.pop_back()
+		var back_balloon_regrow_list = regrow_path_list.pop_back()
 		var back_balloon_health = BalloonDict[back_balloon].health
 		# If residual damage would pop back balloon in spawn list, reapply
 		#	residual damage calculation to spawn list with a popped back balloon
 		if residual_damage >= back_balloon_health:
 			var contained_balloons = BalloonDict[back_balloon].contains
 			spawn_list.append_array(contained_balloons)
-			return calculate_balloons_after_residual_damage(spawn_list, residual_damage - back_balloon_health)
+			var num_added_balloons = len(contained_balloons)
+			for i in range(num_added_balloons):
+				if back_balloon_regrow_list:
+					regrow_path_list.append(back_balloon_regrow_list + [back_balloon])
+				else:
+					regrow_path_list.append([back_balloon])
+			return calculate_balloons_after_residual_damage(spawn_list, residual_damage - back_balloon_health, regrow_path_list)
 		# If residual damage cannot pop back balloon, return current spawn list
 		else:
 			spawn_list.append(back_balloon)
-			return spawn_list
+			regrow_path_list.append(back_balloon_regrow_list)
+			return [spawn_list, regrow_path_list]
 
-func spawn_balloon(new_balloon_type: DataTypes.Balloon, parent_path: Path2D, new_progress_ratio: float, attributes : Dictionary, regrow_path: Array[DataTypes.Balloon]):
+func spawn_balloon(new_balloon_type: DataTypes.Balloon, parent_path: Path2D, new_progress_ratio: float, attributes : Dictionary, regrow_path : Array):
 	var new_balloon = balloon_scene.instantiate()
 	
 	# Sets new balloon attributes before parenting to path
@@ -115,6 +130,7 @@ func spawn_balloon(new_balloon_type: DataTypes.Balloon, parent_path: Path2D, new
 ##
 func _ready() -> void:
 	GameEvents.wave_start_requested.connect(run_wave)
+	print(calculate_balloons_after_residual_damage([DataTypes.Balloon.RAINBOW], 3, [[DataTypes.Balloon.RED]]))
 
 func run_wave() -> void:
 	# If no more waves
