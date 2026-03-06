@@ -15,7 +15,11 @@ script = ExtResource("1_djylu")
 count = 20
 balloon_type = 3
 delay = 0.5
-camo = true
+attributes = {
+"camo": true,
+"fortified": false,
+"regrow": false
+}
 metadata/_custom_type_script = "uid://bdi2h1kwq867u"
 
 [resource]

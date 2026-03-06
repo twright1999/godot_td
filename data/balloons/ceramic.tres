@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BalloonData" load_steps=7 format=3 uid="uid://dyh2gjeyjruwe"]
+[gd_resource type="Resource" script_class="BalloonData" load_steps=12 format=3 uid="uid://dyh2gjeyjruwe"]
 
 [ext_resource type="Script" uid="uid://c3of18vktwx0u" path="res://data/balloons/balloon_data.gd" id="1_gy1b2"]
 [ext_resource type="Texture2D" uid="uid://31fpxomt82nm" path="res://assets/sprites/balloons/ceramic_balloon_0.png" id="2_cl11r"]
@@ -6,12 +6,18 @@
 [ext_resource type="Texture2D" uid="uid://djiptu1cgf85x" path="res://assets/sprites/balloons/ceramic_balloon_2.png" id="4_0h7of"]
 [ext_resource type="Texture2D" uid="uid://e7lyv7dxwdmq" path="res://assets/sprites/balloons/ceramic_balloon_3.png" id="5_n1cw6"]
 [ext_resource type="Texture2D" uid="uid://bnemuaueh2r5q" path="res://assets/sprites/balloons/ceramic_balloon_4.png" id="6_0regw"]
+[ext_resource type="Texture2D" uid="uid://34lh4gejwctl" path="res://assets/sprites/balloons/regrow_ceramic_balloon_0.png" id="7_rorh8"]
+[ext_resource type="Texture2D" uid="uid://cwqwi0tn3n7h2" path="res://assets/sprites/balloons/regrow_ceramic_balloon_1.png" id="8_0f5xj"]
+[ext_resource type="Texture2D" uid="uid://cgvsxf5rumjuj" path="res://assets/sprites/balloons/regrow_ceramic_balloon_2.png" id="9_faysh"]
+[ext_resource type="Texture2D" uid="uid://cytxw6x1cauem" path="res://assets/sprites/balloons/regrow_ceramic_balloon_3.png" id="10_qstik"]
+[ext_resource type="Texture2D" uid="uid://bc3n4hjrntk7o" path="res://assets/sprites/balloons/regrow_ceramic_balloon_4.png" id="11_nuw6g"]
 
 [resource]
 script = ExtResource("1_gy1b2")
 health = 10
 speed = 0.02
 sprites = Array[Texture2D]([ExtResource("2_cl11r"), ExtResource("3_25g4v"), ExtResource("4_0h7of"), ExtResource("5_n1cw6"), ExtResource("6_0regw")])
+sprites_regrow = Array[Texture2D]([ExtResource("7_rorh8"), ExtResource("8_0f5xj"), ExtResource("9_faysh"), ExtResource("10_qstik"), ExtResource("11_nuw6g")])
 contains = Array[int]([9, 9])
 strength = 9
 metadata/_custom_type_script = "uid://c3of18vktwx0u"

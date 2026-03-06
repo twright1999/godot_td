@@ -11,24 +11,37 @@ var contains = []
 var resistances = []
 var strength
 var sprite_index := 0
-var camo := false
+var attributes := {
+	"camo" : false,
+	"regrow" : false,
+	"fortified" : false
+}
+var regrow_path : Array
 
 var ready_progress
 var dispersion = 0.002
 
-signal spawn_child_balloons(current_balloon, progress_ratio, contains_list, residual_damage, camo)
+signal spawn_child_balloons(current_balloon, progress_ratio, contains_list, residual_damage, attributes, regrow_path)
+signal spawn_regrow_balloon(new_balloon, progress_ratio, attributes, regrow_path)
 signal reach_exit(balloon_type)
 
 func _ready() -> void:
 	progress_ratio = ready_progress
 	health = balloon_stats.health
 	speed = balloon_stats.speed
-	$Sprite2D.texture = balloon_stats.sprites[0]
 	contains = balloon_stats.contains
 	resistances = balloon_stats.resistances
 	strength = balloon_stats.strength
 	$Area2D/CollisionShape2D.disabled = true
-	$CamoMask.visible = camo
+	
+	if attributes.regrow:
+		$Sprite2D.texture = balloon_stats.sprites_regrow[0]
+		$RegrowCamoMask.visible = attributes.camo
+		$RegrowTimer.start()
+	else:
+		$Sprite2D.texture = balloon_stats.sprites[0]
+		$CamoMask.visible = attributes.camo
+		
 
 func _process(delta: float) -> void:
 	move_balloon(delta)
@@ -62,7 +75,8 @@ func balloon_reaches_end() -> void:
 ##
 func damage_balloon(damage: int):
 	if damage >= health:
-		spawn_child_balloons.emit(balloon_type, progress_ratio, contains, damage - health, camo)
+		regrow_path.push_back(balloon_type)
+		spawn_child_balloons.emit(balloon_type, progress_ratio, contains, damage - health, attributes, regrow_path)
 		queue_free()
 	else:
 		health -= damage
@@ -85,7 +99,10 @@ func update_ceramic_sprite():
 	
 	if new_sprite_index != sprite_index:
 		sprite_index = new_sprite_index
-		$Sprite2D.texture = balloon_stats.sprites[sprite_index]
+		if attributes.regrow:
+			$Sprite2D.texture = balloon_stats.sprites_regrow[sprite_index]
+		else:
+			$Sprite2D.texture = balloon_stats.sprites[sprite_index]
 
 func play_ceramic_tap():
 	add_child(ceramic_tap_scene.instantiate())
@@ -97,3 +114,10 @@ func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	$Area2D/CollisionShape2D.disabled = true
+
+
+func _on_regrow_timer_timeout() -> void:
+	if not regrow_path.is_empty():
+		var new_balloon_type = regrow_path.pop_back()
+		spawn_regrow_balloon.emit(new_balloon_type, progress_ratio, attributes, regrow_path)
+		queue_free()

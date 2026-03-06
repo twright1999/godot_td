@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WaveData" load_steps=14 format=3 uid="uid://dn5xn0avq72mp"]
+[gd_resource type="Resource" script_class="WaveData" load_steps=12 format=3 uid="uid://dn5xn0avq72mp"]
 
 [ext_resource type="Script" uid="uid://bdi2h1kwq867u" path="res://data/waves/group.gd" id="1_qelx1"]
 [ext_resource type="Script" uid="uid://cxcx2fg2r1yr2" path="res://data/waves/wave_data.gd" id="2_stw8e"]
@@ -6,82 +6,113 @@
 [sub_resource type="Resource" id="Resource_s6y1r"]
 script = ExtResource("1_qelx1")
 count = 1
-balloon_type = 1
-camo = true
+balloon_type = 11
+delay = 1.3
+attributes = {
+"camo": false,
+"fortified": false,
+"regrow": true
+}
+metadata/_custom_type_script = "uid://bdi2h1kwq867u"
+
+[sub_resource type="Resource" id="Resource_qelx1"]
+script = ExtResource("1_qelx1")
+count = 1
+balloon_type = 2
+delay = 1.0
+attributes = {
+"camo": true,
+"fortified": false,
+"regrow": true
+}
+metadata/_custom_type_script = "uid://bdi2h1kwq867u"
+
+[sub_resource type="Resource" id="Resource_stw8e"]
+script = ExtResource("1_qelx1")
+count = 1
+balloon_type = 3
+delay = 1.0
+attributes = {
+"camo": true,
+"fortified": false,
+"regrow": true
+}
 metadata/_custom_type_script = "uid://bdi2h1kwq867u"
 
 [sub_resource type="Resource" id="Resource_l8rh0"]
 script = ExtResource("1_qelx1")
 count = 1
-balloon_type = 2
-camo = true
+balloon_type = 4
+delay = 1.0
+attributes = {
+"camo": true,
+"fortified": false,
+"regrow": true
+}
 metadata/_custom_type_script = "uid://bdi2h1kwq867u"
 
 [sub_resource type="Resource" id="Resource_ifnl2"]
 script = ExtResource("1_qelx1")
 count = 1
-balloon_type = 3
-camo = true
+balloon_type = 5
+delay = 1.0
+attributes = {
+"camo": true,
+"fortified": false,
+"regrow": true
+}
 metadata/_custom_type_script = "uid://bdi2h1kwq867u"
 
 [sub_resource type="Resource" id="Resource_lgfvs"]
 script = ExtResource("1_qelx1")
 count = 1
-balloon_type = 4
-camo = true
+balloon_type = 6
+delay = 1.0
+attributes = {
+"camo": true,
+"fortified": false,
+"regrow": true
+}
 metadata/_custom_type_script = "uid://bdi2h1kwq867u"
 
 [sub_resource type="Resource" id="Resource_htlhu"]
 script = ExtResource("1_qelx1")
 count = 1
-balloon_type = 5
-camo = true
+balloon_type = 7
+delay = 1.0
+attributes = {
+"camo": true,
+"fortified": false,
+"regrow": true
+}
 metadata/_custom_type_script = "uid://bdi2h1kwq867u"
 
 [sub_resource type="Resource" id="Resource_6w0xp"]
 script = ExtResource("1_qelx1")
 count = 1
-balloon_type = 6
-camo = true
+balloon_type = 8
+delay = 1.0
+attributes = {
+"camo": true,
+"fortified": false,
+"regrow": true
+}
 metadata/_custom_type_script = "uid://bdi2h1kwq867u"
 
 [sub_resource type="Resource" id="Resource_xaycj"]
 script = ExtResource("1_qelx1")
 count = 1
-balloon_type = 7
-camo = true
-metadata/_custom_type_script = "uid://bdi2h1kwq867u"
-
-[sub_resource type="Resource" id="Resource_ecegp"]
-script = ExtResource("1_qelx1")
-count = 1
-balloon_type = 8
-camo = true
-metadata/_custom_type_script = "uid://bdi2h1kwq867u"
-
-[sub_resource type="Resource" id="Resource_uod8d"]
-script = ExtResource("1_qelx1")
-count = 1
 balloon_type = 9
-camo = true
-metadata/_custom_type_script = "uid://bdi2h1kwq867u"
-
-[sub_resource type="Resource" id="Resource_qx4d3"]
-script = ExtResource("1_qelx1")
-count = 1
-balloon_type = 10
-camo = true
-metadata/_custom_type_script = "uid://bdi2h1kwq867u"
-
-[sub_resource type="Resource" id="Resource_uhux5"]
-script = ExtResource("1_qelx1")
-count = 1
-balloon_type = 11
-camo = true
+delay = 1.0
+attributes = {
+"camo": true,
+"fortified": false,
+"regrow": true
+}
 metadata/_custom_type_script = "uid://bdi2h1kwq867u"
 
 [resource]
 script = ExtResource("2_stw8e")
-groups = Array[ExtResource("1_qelx1")]([SubResource("Resource_s6y1r"), SubResource("Resource_l8rh0"), SubResource("Resource_ifnl2"), SubResource("Resource_lgfvs"), SubResource("Resource_htlhu"), SubResource("Resource_6w0xp"), SubResource("Resource_xaycj"), SubResource("Resource_ecegp"), SubResource("Resource_uod8d"), SubResource("Resource_qx4d3"), SubResource("Resource_uhux5")])
+groups = Array[ExtResource("1_qelx1")]([SubResource("Resource_s6y1r"), SubResource("Resource_qelx1"), SubResource("Resource_stw8e"), SubResource("Resource_l8rh0"), SubResource("Resource_ifnl2"), SubResource("Resource_lgfvs"), SubResource("Resource_htlhu"), SubResource("Resource_6w0xp"), SubResource("Resource_xaycj")])
 group_delay = 3
 metadata/_custom_type_script = "uid://cxcx2fg2r1yr2"

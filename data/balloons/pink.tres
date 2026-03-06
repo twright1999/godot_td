@@ -1,13 +1,15 @@
-[gd_resource type="Resource" script_class="BalloonData" load_steps=3 format=3 uid="uid://c6h5dqjjf78vp"]
+[gd_resource type="Resource" script_class="BalloonData" load_steps=4 format=3 uid="uid://c6h5dqjjf78vp"]
 
 [ext_resource type="Script" uid="uid://c3of18vktwx0u" path="res://data/balloons/balloon_data.gd" id="1_6olch"]
 [ext_resource type="Texture2D" uid="uid://bla11iijchv3d" path="res://assets/sprites/balloons/pink_balloon.png" id="2_p50gl"]
+[ext_resource type="Texture2D" uid="uid://dd3c4oi3e78u6" path="res://assets/sprites/balloons/regrow_pink_balloon.png" id="3_arl4l"]
 
 [resource]
 script = ExtResource("1_6olch")
 health = 1
 speed = 0.03
 sprites = Array[Texture2D]([ExtResource("2_p50gl")])
+sprites_regrow = Array[Texture2D]([ExtResource("3_arl4l")])
 contains = Array[int]([4])
 strength = 5
 metadata/_custom_type_script = "uid://c3of18vktwx0u"

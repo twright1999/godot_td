@@ -1,13 +1,15 @@
-[gd_resource type="Resource" script_class="BalloonData" load_steps=3 format=3 uid="uid://binxrlgs3ckhe"]
+[gd_resource type="Resource" script_class="BalloonData" load_steps=4 format=3 uid="uid://binxrlgs3ckhe"]
 
 [ext_resource type="Script" uid="uid://c3of18vktwx0u" path="res://data/balloons/balloon_data.gd" id="1_w5mja"]
 [ext_resource type="Texture2D" uid="uid://chp2w1cweplc4" path="res://assets/sprites/balloons/rainbow_balloon.png" id="2_366ot"]
+[ext_resource type="Texture2D" uid="uid://sa0quq312fbl" path="res://assets/sprites/balloons/regrow_rainbow_balloon.png" id="3_tycmb"]
 
 [resource]
 script = ExtResource("1_w5mja")
 health = 1
 speed = 0.05
 sprites = Array[Texture2D]([ExtResource("2_366ot")])
+sprites_regrow = Array[Texture2D]([ExtResource("3_tycmb")])
 contains = Array[int]([8, 8])
 strength = 8
 metadata/_custom_type_script = "uid://c3of18vktwx0u"
